@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OnboardingPackage.Onboarding4" >
+
+    <ImageView
+        android:id="@+id/onboarding4_image"
+        style="@style/onboarding_image"
+        android:src="@drawable/onboarding4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/onboarding4_title"
+        style="@style/onboarding_title"
+        android:text="@string/onboarding4_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding4_image" />
+
+    <TextView
+        android:id="@+id/onboarding4_subtitle"
+        style="@style/onboarding_subtitle"
+        android:text="@string/onboarding4_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding4_title" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

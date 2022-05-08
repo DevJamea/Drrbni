@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Drrbni</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding1_title">مرحبا</string>
+    <string name="onboarding1_subtitle">تطبيق درّبني يساعد الباحثين عن فرصة التدريب الميداني ويساعد الجهات التدريبية لتقديم الخدمة بتدريب الشباب والشابات وتهيئتهم لسوق العمل</string>
+    <string name="onboarding2_title">أعرض أعمالك</string>
+    <string name="onboarding2_subtitle">أعرض كافة أعمالك في ملفك الشحصي لتتمكن المؤسسات من الاطلاع عليها وقبول تدريبك</string>
+    <string name="onboarding3_title">أختر مدربك</string>
+    <string name="onboarding3_subtitle">أختر المؤسسة المناسبة للتدرب بها من بين عشرات المؤسسات والشركات الموجودة بالتطبيق</string>
+    <string name="onboarding4_title">أستعرض إعلانات التدريب</string>
+    <string name="onboarding4_subtitle">فرص تدريب متنوعة أختر المناسب منها</string>
+    <string name="getStarted">البدء</string>
 </resources>
