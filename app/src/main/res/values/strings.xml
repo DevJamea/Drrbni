@@ -11,4 +11,7 @@
     <string name="onboarding4_title">أستعرض إعلانات التدريب</string>
     <string name="onboarding4_subtitle">فرص تدريب متنوعة أختر المناسب منها</string>
     <string name="getStarted">البدء</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
 </resources>
