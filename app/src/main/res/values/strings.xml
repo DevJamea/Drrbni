@@ -14,9 +14,20 @@
     <string name="onboarding3_subtitle">أختر المؤسسة المناسبة للتدرب بها من بين عشرات المؤسسات والشركات الموجودة بالتطبيق</string>
     <string name="onboarding4_subtitle">فرص تدريب متنوعة أختر المناسب منها</string>
 
-    <!-- Login -->
+    <!-- LoginFragment -->
     <string name="getStarted">البدء</string>
     <string name="login">تسجيل الدخول</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="password">كلمة المرور</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!-- bottom_nav_menu_title -->
+    <string name="title_home">الرئيسية</string>
+    <string name="title_categories">التصنيفات</string>
+    <string name="title_notifications">الأشعارات</string>
+    <string name="title_profile">الملف الشخصي</string>
+    <string name="filter">الفرز</string>
+    <string name="sortBy">الترتيب حسب المنطقة</string>
+
 </resources>
