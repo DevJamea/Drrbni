@@ -104,29 +104,6 @@
         android:layout_below="@+id/filter_bar_container"
         android:background="@drawable/bg_shadow" />
 
-    <LinearLayout
-        android:id="@+id/view_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_150sdp"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="no Result"
-            android:textColor="@color/basic" />
-
-    </LinearLayout>
 
 </RelativeLayout>
