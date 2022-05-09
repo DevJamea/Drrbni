@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/login">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/splashScreen"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboarding"
-        android:name="com.example.drrbni.OnboardingPackage.Onboarding"
+        android:name="com.example.drrbni.OnboardingPackage.OnBoarding"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
