@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OnboardingPackage.OnBoardingContainer" >
+    tools:context=".OnboardingPackage.OnboardingContainerFragment" >
 
     <ImageView
         android:id="@+id/onboarding1_image"
@@ -19,7 +19,6 @@
         android:id="@+id/onboarding1_title"
         style="@style/onboarding_title"
         android:text="@string/onboarding1_title"
-        android:layout_marginEnd="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/onboarding1_image" />
