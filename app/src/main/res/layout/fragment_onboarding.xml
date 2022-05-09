@@ -6,42 +6,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/_24sdp"
-    tools:context=".OnboardingPackage.OnboardingFragment" >
+    tools:context=".OnboardingPackage.OnBoarding" >
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/onboarding_slider"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        app:layout_constraintBottom_toTopOf="@+id/dot_slider"
+        app:layout_constraintBottom_toTopOf="@+id/getStarted"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.viewpager2.widget.ViewPager2>
+
+
+    </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/dot_slider"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_36sdp"
-        app:tabBackground="@drawable/tab_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabBackground="@drawable/indicator_selector"
         app:tabGravity="center"
-        app:tabIndicatorHeight="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/getStarted"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:tabIndicatorHeight="0dp">
+
 
     </com.google.android.material.tabs.TabLayout>
+
 
     <Button
         android:id="@+id/getStarted"
         style="@style/blue_btn"
         android:text="@string/getStarted"
-        android:layout_marginBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@+id/dot_slider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        style="@style/blue_btn"
+        android:backgroundTint="@drawable/btn_blue"
+        android:layout_width="@dimen/_36sdp"
+        android:gravity="center"
+        android:visibility="visible"
+        app:icon="@drawable/arrow_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
