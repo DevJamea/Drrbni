@@ -2,45 +2,43 @@ package com.example.drrbni;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.databinding.FragmentLoginBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.HashMap;
+
 public class LoginFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore fireStore;
 
     public LoginFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static LoginFragment newInstance(String param1, String param2) {
         LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
@@ -65,11 +63,58 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(getLayoutInflater());
 
+        mAuth = FirebaseAuth.getInstance();
+        fireStore = FirebaseFirestore.getInstance();
+
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavController navController = Navigation.findNavController(binding.getRoot());
-                navController.navigate(R.id.action_login_to_homeActivity);
+                String mEmail = binding.loginEmail.getText().toString().trim();
+                String mPassword = binding.loginPassword.getText().toString().trim();
+
+                if (mEmail.isEmpty()) {
+                    Snackbar.make(view, "أدخل الايميل", Snackbar.LENGTH_LONG).show();
+
+                } else if (mPassword.isEmpty()) {
+                    Snackbar.make(view, "أدخل كلمة المرور", Snackbar.LENGTH_LONG).show();
+                } else {
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    mAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                HashMap<String, String> dataProfileUser = new HashMap<>();
+                                dataProfileUser.put("Email", mEmail);
+                                dataProfileUser.put("Name", "");
+                                dataProfileUser.put("Img", "");
+                                dataProfileUser.put("University", "");
+                                dataProfileUser.put("Specialization", "");
+                                dataProfileUser.put("UserId", mAuth.getUid());
+
+                                fireStore.collection("StudentProfiles").document(mAuth.getUid()).set(dataProfileUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("ttt", "onFailure : " + e.getMessage());
+                                    }
+                                });
+
+                                NavController navController = Navigation.findNavController(binding.getRoot());
+                                navController.navigate(R.id.action_login_to_homeActivity);
+                                binding.progressBar.setVisibility(View.INVISIBLE);
+                            } else {
+                                binding.progressBar.setVisibility(View.VISIBLE);
+                                Snackbar.make(view, "الحساب غير موجود", Snackbar.LENGTH_LONG).show();
+                            }
+                            binding.progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                }
+
             }
         });
 

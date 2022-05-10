@@ -28,9 +28,9 @@ import java.util.ArrayList;
 public class OnboardingFragment extends Fragment {
 
     FragmentOnboardingBinding binding ;
-
     int position = 0;
     Animation btnAnimation;
+
     public OnboardingFragment() {
         // Required empty public constructor
     }

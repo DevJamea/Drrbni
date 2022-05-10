@@ -47,15 +47,43 @@
                 android:inputType="textPassword"
                 android:hint="@string/password" />
 
-            <Button
-                android:id="@+id/login_btn"
-                style="@style/blue_btn"
-                android:layout_marginRight="@dimen/_24sdp"
-                android:layout_marginLeft="@dimen/_24sdp"
-                android:layout_marginTop="@dimen/_48sdp"
-                android:layout_marginBottom="@dimen/_48sdp"
-                android:text="@string/login"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+
+                <Button
+                    android:id="@+id/login_btn"
+                    style="@style/blue_btn"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_48sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_48sdp"
+                    android:text="@string/login" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/login_btn"
+                    android:layout_alignParentTop="true"
+                    android:elevation="@dimen/_8sdp"
+                    android:layout_alignParentBottom="true"
+                    android:indeterminate="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/white"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    app:indicatorSize="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:trackCornerRadius="5dp" />
+
+            </RelativeLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
 
