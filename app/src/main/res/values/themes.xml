@@ -27,7 +27,7 @@
         <item name="android:layout_marginTop">@dimen/_48sdp</item>
         <item name="android:textColor">@color/title_text</item>
         <item name="android:textSize">@dimen/_32sdp</item>
-        <item name="android:fontFamily">@font/ibm_plex_arabic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 
     <style name="onboarding_subtitle">
@@ -36,7 +36,7 @@
         <item name="android:layout_marginTop">@dimen/_16sdp</item>
         <item name="android:textColor">@color/subtitle_text</item>
         <item name="android:textSize">@dimen/_16sdp</item>
-        <item name="android:fontFamily">@font/ibm_plex_arabic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 
     <style name="blue_btn">
@@ -45,14 +45,14 @@
         <item name="android:background">@drawable/btn_blue</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/_16sdp</item>
-        <item name="android:fontFamily">@font/ibm_plex_arabic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 
     <style name="toolbarTitle" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">@dimen/_32sdp</item>
-        <item name="android:fontFamily">@font/ibm_plex_arabic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">right</item>
@@ -62,7 +62,7 @@
     <style name="editText" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/_52sdp</item>
-        <item name="android:fontFamily">@font/ibm_plex_arabic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
         <item name="android:textColor">@color/basic</item>
         <item name="android:layout_marginRight">@dimen/_24sdp</item>
         <item name="android:layout_marginLeft">@dimen/_24sdp</item>
@@ -75,6 +75,8 @@
         <item name="android:singleLine">true</item>
     </style>
 
-
+    <style name="bottomNav">
+        <item name="fontFamily">@font/ibm_plex_sans_arabic_regular</item>
+    </style>
 
 </resources>
