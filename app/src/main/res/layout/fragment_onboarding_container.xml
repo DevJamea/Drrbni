@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OnboardingPackage.OnBoardingContainer" >
+    android:padding="@dimen/_24sdp"
+    tools:context=".OnboardingPackage.OnboardingContainerFragment" >
 
     <ImageView
-        android:id="@+id/onboarding1_image"
+        android:id="@+id/onboarding_image"
         style="@style/onboarding_image"
         android:src="@drawable/onboarding1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,21 +17,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/onboarding1_title"
+        android:id="@+id/onboarding_title"
         style="@style/onboarding_title"
         android:text="@string/onboarding1_title"
-        android:layout_marginEnd="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onboarding1_image" />
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_image" />
 
     <TextView
-        android:id="@+id/onboarding1_subtitle"
+        android:id="@+id/onboarding_subtitle"
         style="@style/onboarding_subtitle"
         android:text="@string/onboarding1_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onboarding1_title" />
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_title" />
 
 
 

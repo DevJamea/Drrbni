@@ -3,29 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.example.drrbni.SplashScreen"
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.drrbni.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/action_splashScreen_to_onboarding"
-            app:destination="@id/onboarding" />
+            app:destination="@id/onboardingFragment"
+          />
     </fragment>
     <fragment
-        android:id="@+id/onboarding"
-        android:name="com.example.drrbni.OnboardingPackage.OnBoarding"
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.drrbni.OnboardingPackage.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
             android:id="@+id/action_onboarding_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/login"
-        android:name="com.example.drrbni.Login"
+        android:id="@+id/loginFragment"
+        android:name="com.example.drrbni.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.drrbni.HomeActivity"
+        android:label="HomeActivity" />
 </navigation>

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable-v24/btn_back.xml" value="0.147" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/bg_shadow.xml" value="0.1195" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.126" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/btn_back.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/btn_blue.xml" value="0.16" />
@@ -11,10 +12,14 @@
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/btn_forward_blue.xml" value="0.147" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/edittext_background.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_categories.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_filter.xml" value="0.1195" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_home.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_logo.xml" value="0.126" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_notifications.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/ic_profile.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/indicator_default.xml" value="0.1195" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/indicator_selected.xml" value="0.1195" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/indicator_selector.xml" value="0.1195" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/tab_indicator_default.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/drawable/tab_selector.xml" value="0.16" />
@@ -23,10 +28,10 @@
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/activity_home.xml" value="0.11085526315789473" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_categories.xml" value="0.11085526315789473" />
-        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_home.xml" value="0.14666666666666667" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_login.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_notifications.xml" value="0.11085526315789473" />
-        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_onboarding.xml" value="0.11085526315789473" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_onboarding.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_onboarding1.xml" value="0.13333333333333333" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_onboarding2.xml" value="0.13333333333333333" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_onboarding3.xml" value="0.11085526315789473" />
@@ -36,10 +41,8 @@
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/fragment_splash_screen.xml" value="0.14666666666666667" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/layout/vvv.xml" value="0.11085526315789473" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11085526315789473" />
-        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.124" />
-        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/activity_home.xml" value="0.11302083333333333" />
-        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_onboarding.xml" value="0.23055555555555557" />
-        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_onboarding_container.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>
