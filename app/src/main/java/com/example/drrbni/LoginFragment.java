@@ -108,6 +108,7 @@ public class LoginFragment extends Fragment {
                                 binding.progressBar.setVisibility(View.INVISIBLE);
                             } else {
                                 binding.progressBar.setVisibility(View.VISIBLE);
+
                                 Snackbar.make(view, "الحساب غير موجود", Snackbar.LENGTH_LONG).show();
                             }
                             binding.progressBar.setVisibility(View.INVISIBLE);
