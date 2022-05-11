@@ -26,8 +26,42 @@
     <string name="title_notifications">الاشعارات</string>
     <string name="title_categories">التصنيفات</string>
     <string name="title_home">الرئيسية</string>
-    <string name="filter">filter</string>
-    <string name="sortBy">sortBy</string>
+    <string name="filter">الفرز</string>
+    <string name="sortBy">الترتيب حسب المنطقة</string>
+    <string name="custom_item_post">عندما أقف أمام الله في نهاية حياتي ، أتمنى ألا يتبقى لديّ القليل من الموهبة وأستطيع القول ، لقد استخدمت كل ما أعطيتني إياه.</string>
+    <string name="custom_item_date">5 فبراير</string>
+    <string name="custom_item_name">شركة تكنولوجيا المعلومات</string>
+    <string name="next">التالي</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">موافق</string>
+    <string name="post_title">اعلان تدريب رقم 1 لبلدية جباليا</string>
+    <string name="post_description">الوصف</string>
+    <string name="description">"تعلن بلدية جباليا عن قبولها طلبات التدريب من كافة الجامعات المعتمدة بقطاع غزة من كلا الجنسين "</string>
+    <string name="requirements">توفر الأجهزة والمعدّات المهنية الإلكترونية اللازمة مثل أجهزة الكمبيوتر.  توفير شبكة خاصة بالإنترنت للتدريب المهني الالكتروني والتدريب المهني عن بعد. الحاجة إلى المدرب المهني المتخصص، بحيث يكون ماهر وذو يجب توفر الإرادة القوية لدى المدرب المهني والمتدربين من أفراد وموظفين، بحيث يتوجب عليهم التعرُّف على أهمية التدريب المهني للعمل وكيفية الحصول عليه بطريقة سهلة مثل التدريب المهني الإلكتروني</string>
+    <string name="post_requirements">المتطلبات</string>
+    <string name="training_request">طلب فرصة تدريب</string>
+    <string name="student_name">غادة احمد العطار</string>
+    <string name="collage_name">الكلية الجامعية للعلوم التطبيقية</string>
+    <string name="major_name">برمجيات وقواعد البيانات</string>
 
+
+
+    <string-array name="employment_array">
+        <item>تكنولوجيا المعلومات</item>
+        <item>المحاسبة</item>
+        <item>الصحافة والاعلام</item>
+        <item>الهندسة</item>
+        <item>التصميم والديكور</item>
+        <item>التسويق</item>
+        <item>البلديات</item>
+    </string-array>
+
+    <string-array name="location_array">
+        <item>شمال غزة</item>
+        <item>غزة</item>
+        <item>الوسطى</item>
+        <item>خانيونس</item>
+        <item>رفح</item>
+    </string-array>
 
 </resources>

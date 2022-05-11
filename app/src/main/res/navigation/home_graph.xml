@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/homeFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.drrbni.ui.HomeFragment"
         android:label="homeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_showPostFragment"
+            app:destination="@id/showPostFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/categoriesFragment"
@@ -28,4 +32,9 @@
         android:name="com.example.drrbni.ui.ProfileFragment"
         android:label="profileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/showPostFragment"
+        android:name="com.example.drrbni.ShowPostFragment"
+        android:label="fragment_show_post"
+        tools:layout="@layout/fragment_show_post" />
 </navigation>
