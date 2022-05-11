@@ -2,41 +2,25 @@ package com.example.drrbni;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.drrbni.Models.Filters;
 
-public class FilterDialogFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class FilterDialogFragment extends DialogFragment {
 
-    private String mParam1;
-    private String mParam2;
+    public static final String TAG = "FilterDialog";
 
     public FilterDialogFragment() {
         // Required empty public constructor
     }
 
-    public static FilterDialogFragment newInstance(String param1, String param2) {
-        FilterDialogFragment fragment = new FilterDialogFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    interface FilterListener {
+        void onFilter(Filters filters);
     }
 
     @Override
@@ -45,4 +29,16 @@ public class FilterDialogFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_filter_dialog, container, false);
     }
+
+    public void resetFilters() {
+        /*
+        if (mRootView != null) {
+            mCategorySpinner.setSelection(0);
+            mCitySpinner.setSelection(0);
+            mPriceSpinner.setSelection(0);
+            mSortSpinner.setSelection(0);
+        }
+         */
+    }
+
 }

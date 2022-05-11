@@ -1,44 +1,44 @@
 package com.example.drrbni.ui;
 
+import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
+import static com.example.drrbni.Constant.EMAIL;
+import static com.example.drrbni.Constant.NAME;
+import static com.example.drrbni.Constant.SPECIALIZATION;
+import static com.example.drrbni.Constant.UNIVERSITY;
 import android.os.Bundle;
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.drrbni.Models.Student;
+import com.example.drrbni.databinding.FragmentProfileBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import com.example.drrbni.R;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private FirebaseFirestore fireStore;
+    private Student student;
+
 
     public ProfileFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -60,7 +60,50 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        FragmentProfileBinding binding = FragmentProfileBinding
+                .inflate(getLayoutInflater(), container, false);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        fireStore = FirebaseFirestore.getInstance();
+
+        getInfoProfile();
+//        binding.studentName.setText(getInfoProfile().getEmail());
+//        binding.collageName.setText(getInfoProfile().getUniversity());
+//        binding.majorName.setText(getInfoProfile().getSpecialization());
+
+        return binding.getRoot();
     }
+
+    private Student getInfoProfile() {
+        fireStore.collection(COLLECTION_STUDENT_PROFILES)
+                .whereEqualTo(EMAIL,currentUser.getEmail())
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.w("ttt", "error" + error);
+                            return;
+                        }
+
+                        student = new Student();
+                        if (value != null) {
+                            for (DocumentSnapshot doc : value) {
+                                    student.setEmail(doc.getString(EMAIL));
+                                    student.setName(doc.getString(NAME));
+                                    student.setUniversity(doc.getString(UNIVERSITY));
+                                    student.setSpecialization(doc.getString(SPECIALIZATION));
+                            }
+                            Log.d("ttt", "email: "+student.getEmail());
+                            Log.d("ttt", "Specialization: "+student.getSpecialization());
+                            Log.d("ttt", "University: "+student.getUniversity());
+                        }else {
+                            Log.e("ttt", "value is null");
+                        }
+
+                    }
+                });
+        return student;
+    }
+
 }

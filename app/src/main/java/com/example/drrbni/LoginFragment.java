@@ -1,5 +1,7 @@
 package com.example.drrbni;
 
+import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.drrbni.Models.Student;
 import com.example.drrbni.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,15 +68,10 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                HashMap<String, String> dataProfileUser = new HashMap<>();
-                                dataProfileUser.put("Email", mEmail);
-                                dataProfileUser.put("Name", "");
-                                dataProfileUser.put("Img", "");
-                                dataProfileUser.put("University", "");
-                                dataProfileUser.put("Specialization", "");
-                                dataProfileUser.put("UserId", mAuth.getUid());
 
-                                fireStore.collection("StudentProfiles").document(mAuth.getUid()).set(dataProfileUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                Student student = new Student(mEmail,"","","","",mAuth.getUid());
+
+                                fireStore.collection(COLLECTION_STUDENT_PROFILES).document(mAuth.getUid()).set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
 
