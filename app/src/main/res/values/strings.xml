@@ -43,7 +43,26 @@
     <string name="student_name">غادة احمد العطار</string>
     <string name="collage_name">الكلية الجامعية للعلوم التطبيقية</string>
     <string name="major_name">برمجيات وقواعد البيانات</string>
-
+    <string name="description1">الوصف</string>
+    <string name="add">اضافة</string>
+    <string name="add_description">كتابة وصف</string>
+    <string name="job_link">رابط العمل</string>
+    <string name="major">التخصص</string>
+    <string name="add_major">اختيار تخصص</string>
+    <string name="job_name">أسم العمل</string>
+    <string name="add_job">" اضافة عمل"</string>
+    <string name="company_name">شركة المستقبل للتكنولوجيا</string>
+    <string name="company_location">غزة - مفترق الصناعة</string>
+    <string name="company_major">تكنولوجيا المعلومات</string>
+    <string name="categorie_title">اسم التصنيف</string>
+    <string name="gmail">Gmail</string>
+    <string name="facebook">Facebook</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="notification_description">رفضت شركة المستقبل طلب التدريب الخاص بك نتمنى لك حظا اوفر في المرة القادمة</string>
+    <string name="notification_subtitle">قامت شركة المستقبل بتحديد موعد المقابلة يوم الاربعاء 24 اكتوبر الساعة 9:00 صباحا</string>
+    <string name="notification_title">موعد المقابلة</string>
+    <string name="confirm">تأكيد الحضور</string>
+    <string name="dismiss">عدم الحضور</string>
 
 
     <string-array name="employment_array">

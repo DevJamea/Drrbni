@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.Models.Student;
+import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,6 +69,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding
                 .inflate(getLayoutInflater(), container, false);
+
+        binding.addJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_profileFragment_to_addJobFragment);
+            }
+        });
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();

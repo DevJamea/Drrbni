@@ -23,5 +23,7 @@
 
 
     <color name="inActive">#FFFFFFFF</color>
+    <color name="purple">#665EFF</color>
+
 
 </resources>

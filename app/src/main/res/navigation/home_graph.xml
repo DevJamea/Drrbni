@@ -19,7 +19,11 @@
         android:id="@+id/categoriesFragment"
         android:name="com.example.drrbni.ui.CategoriesFragment"
         android:label="categoriesFragment"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_categoryItemFragment"
+            app:destination="@id/categoryItemFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/notificationsFragment"
@@ -31,10 +35,33 @@
         android:id="@+id/profileFragment"
         android:name="com.example.drrbni.ui.ProfileFragment"
         android:label="profileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_addJobFragment"
+            app:destination="@id/addJobFragment" />
+    </fragment>
     <fragment
         android:id="@+id/showPostFragment"
         android:name="com.example.drrbni.ShowPostFragment"
         android:label="fragment_show_post"
         tools:layout="@layout/fragment_show_post" />
+    <fragment
+        android:id="@+id/addJobFragment"
+        android:name="com.example.drrbni.AddJobFragment"
+        android:label="fragment_add_job"
+        tools:layout="@layout/fragment_add_job" />
+    <fragment
+        android:id="@+id/categoryItemFragment"
+        android:name="com.example.drrbni.CategoryItemFragment"
+        android:label="fragment_category_item"
+        tools:layout="@layout/fragment_category_items" >
+        <action
+            android:id="@+id/action_categoryItemFragment_to_companyProfileFragment"
+            app:destination="@id/companyProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyProfileFragment"
+        android:name="com.example.drrbni.CompanyProfileFragment"
+        android:label="fragment_company_profile"
+        tools:layout="@layout/fragment_company_profile" />
 </navigation>
