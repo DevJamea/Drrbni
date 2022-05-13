@@ -79,13 +79,15 @@
             android:layout_marginTop="@dimen/_24sdp">
 
             <Button
+                android:id="@+id/btn_chancel"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:text="@string/cancel"
+                android:text="@string/chancel"
                 style="@style/blue_btn"
                 android:backgroundTint="@color/btn_cancel"
                 android:layout_marginRight="@dimen/_8sdp"/>
             <Button
+                android:id="@+id/btn_ok"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:text="@string/ok"

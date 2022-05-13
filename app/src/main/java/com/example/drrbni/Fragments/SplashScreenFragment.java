@@ -51,6 +51,10 @@ public class SplashScreenFragment extends Fragment {
                 }else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
                     navController.navigate(R.id.action_splashScreen_to_onboarding);
+/*
+                    getParentFragmentManager().beginTransaction()
+                            .replace(container,R.id.action_splashScreen_to_onboarding).commit();
+ */
                 }
             }
         },SPLASH_SCREEN_TIME_OUT);

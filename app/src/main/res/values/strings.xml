@@ -26,13 +26,13 @@
     <string name="title_notifications">الاشعارات</string>
     <string name="title_categories">التصنيفات</string>
     <string name="title_home">الرئيسية</string>
-    <string name="filter">الفرز</string>
+    <string name="filter">الفلتر</string>
     <string name="sortBy">الترتيب حسب المنطقة</string>
     <string name="custom_item_post">عندما أقف أمام الله في نهاية حياتي ، أتمنى ألا يتبقى لديّ القليل من الموهبة وأستطيع القول ، لقد استخدمت كل ما أعطيتني إياه.</string>
     <string name="custom_item_date">5 فبراير</string>
     <string name="custom_item_name">شركة تكنولوجيا المعلومات</string>
     <string name="next">التالي</string>
-    <string name="cancel">إلغاء</string>
+    <string name="chancel">إلغاء</string>
     <string name="ok">موافق</string>
     <string name="post_title">اعلان تدريب رقم 1 لبلدية جباليا</string>
     <string name="post_description">الوصف</string>
@@ -54,7 +54,7 @@
     <string name="company_name">شركة المستقبل للتكنولوجيا</string>
     <string name="company_location">غزة - مفترق الصناعة</string>
     <string name="company_major">تكنولوجيا المعلومات</string>
-    <string name="categorie_title">اسم التصنيف</string>
+    <string name="category_title">اسم التصنيف</string>
     <string name="gmail">Gmail</string>
     <string name="facebook">Facebook</string>
     <string name="whatsapp">Whatsapp</string>
@@ -66,6 +66,7 @@
 
 
     <string-array name="employment_array">
+        <item>كل المجالات</item>
         <item>تكنولوجيا المعلومات</item>
         <item>المحاسبة</item>
         <item>الصحافة والاعلام</item>
@@ -76,6 +77,7 @@
     </string-array>
 
     <string-array name="location_array">
+        <item>كل المناطق</item>
         <item>شمال غزة</item>
         <item>غزة</item>
         <item>الوسطى</item>
