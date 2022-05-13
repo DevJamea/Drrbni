@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/_48sdp"
-    tools:context=".ui.CategoriesFragment">
+    tools:context=".Fragments.BottomNavigationScreens.CategoriesFragment">
+
+<!--    android:paddingBottom="@dimen/_48sdp"   ^^^  -->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/_6sdp"
-        tools:listitem="@layout/custom_notification_item"/>
+        tools:listitem="@layout/custom_category_item"/>
 
 
 </LinearLayout>

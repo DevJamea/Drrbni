@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.drrbni.ui.HomeFragment"
+        android:name="com.example.drrbni.Fragments.BottomNavigationScreens.HomeFragment"
         android:label="homeFragment"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.drrbni.ui.CategoriesFragment"
+        android:name="com.example.drrbni.Fragments.BottomNavigationScreens.CategoriesFragment"
         android:label="categoriesFragment"
         tools:layout="@layout/fragment_categories" >
         <action
@@ -27,13 +27,13 @@
 
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.example.drrbni.ui.NotificationsFragment"
+        android:name="com.example.drrbni.Fragments.BottomNavigationScreens.NotificationsFragment"
         android:label="notificationsFragment"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.drrbni.ui.ProfileFragment"
+        android:name="com.example.drrbni.Fragments.BottomNavigationScreens.ProfileFragment"
         android:label="profileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -42,17 +42,17 @@
     </fragment>
     <fragment
         android:id="@+id/showPostFragment"
-        android:name="com.example.drrbni.ShowPostFragment"
+        android:name="com.example.drrbni.Fragments.ShowPostFragment"
         android:label="fragment_show_post"
         tools:layout="@layout/fragment_show_post" />
     <fragment
         android:id="@+id/addJobFragment"
-        android:name="com.example.drrbni.AddJobFragment"
+        android:name="com.example.drrbni.Fragments.AddJobFragment"
         android:label="fragment_add_job"
         tools:layout="@layout/fragment_add_job" />
     <fragment
         android:id="@+id/categoryItemFragment"
-        android:name="com.example.drrbni.CategoryItemFragment"
+        android:name="com.example.drrbni.Fragments.CategoryItemFragment"
         android:label="fragment_category_item"
         tools:layout="@layout/fragment_category_items" >
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/companyProfileFragment"
-        android:name="com.example.drrbni.CompanyProfileFragment"
+        android:name="com.example.drrbni.Fragments.CompanyProfileFragment"
         android:label="fragment_company_profile"
         tools:layout="@layout/fragment_company_profile" />
 </navigation>

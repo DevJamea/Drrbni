@@ -1,26 +1,18 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentAddJobBinding;
-
 
 public class AddJobFragment extends Fragment {
 
 
-    public AddJobFragment() {
-        // Required empty public constructor
-    }
-
-
+    public AddJobFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +23,8 @@ public class AddJobFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        FragmentAddJobBinding binding = FragmentAddJobBinding.inflate(getLayoutInflater());
+        FragmentAddJobBinding binding = FragmentAddJobBinding
+                .inflate(getLayoutInflater(),container,false);
 
         binding.addJobName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +34,7 @@ public class AddJobFragment extends Fragment {
                 bottomSheet.show(getFragmentManager() , "tag");
             }
         });
+
 
         return binding.getRoot();
     }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment">
+    tools:context=".Fragments.BottomNavigationScreens.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -34,10 +34,10 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_48sdp"
         android:layout_marginTop="-10dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+<!--        android:layout_marginBottom="@dimen/_48sdp"  ^^^    -->
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -131,7 +131,7 @@
         android:layout_width="@dimen/_52sdp"
         android:src="@drawable/ic_add"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:layout_marginRight="@dimen/_16sdp"
         app:fabCustomSize="@dimen/_52sdp"/>
 

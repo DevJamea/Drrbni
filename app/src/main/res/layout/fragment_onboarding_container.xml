@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/_24sdp"
-    tools:context=".OnboardingPackage.OnboardingContainerFragment" >
+    tools:context=".Fragments.OnBoarding.OnBoardingContainerFragment" >
 
     <ImageView
         android:id="@+id/onboarding_image"

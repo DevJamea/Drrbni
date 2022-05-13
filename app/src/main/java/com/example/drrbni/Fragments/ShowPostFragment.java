@@ -1,4 +1,4 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments;
 
 import android.os.Bundle;
 

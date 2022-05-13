@@ -1,4 +1,4 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments.Dialogs;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.Models.Filters;
+import com.example.drrbni.R;
 
 
 public class FilterDialogFragment extends DialogFragment {

@@ -7,7 +7,7 @@
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_8sdp"
     app:cardUseCompatPadding="true"
-    tools:context=".NotificationDialogFragment">
+    tools:context=".Fragments.Dialogs.NotificationDialogFragment">
 
     <LinearLayout
             android:layout_width="match_parent"

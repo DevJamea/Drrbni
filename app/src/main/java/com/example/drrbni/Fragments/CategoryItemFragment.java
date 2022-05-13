@@ -1,42 +1,22 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.drrbni.databinding.FragmentCategoryItemsBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CategoryItemFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CategoryItemFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public CategoryItemFragment() {
-        // Required empty public constructor
-    }
+    public CategoryItemFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CategoryItemFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CategoryItemFragment newInstance(String param1, String param2) {
         CategoryItemFragment fragment = new CategoryItemFragment();
         Bundle args = new Bundle();
@@ -58,7 +38,9 @@ public class CategoryItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category_items, container, false);
+        FragmentCategoryItemsBinding binding = FragmentCategoryItemsBinding
+                .inflate(getLayoutInflater(),container,false);
+
+        return binding.getRoot();
     }
 }

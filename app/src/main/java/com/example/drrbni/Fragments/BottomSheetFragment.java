@@ -1,19 +1,14 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentBottomSheetBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import java.io.Serializable;
 
 public class BottomSheetFragment extends BottomSheetDialogFragment {
 
@@ -46,8 +41,8 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        FragmentBottomSheetBinding binding = FragmentBottomSheetBinding.inflate(getLayoutInflater());
+        FragmentBottomSheetBinding binding = FragmentBottomSheetBinding
+                .inflate(getLayoutInflater(),container,false);
 
         binding.title.setText(title);
         binding.description.setHint(title);
@@ -64,6 +59,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
                 dismiss();
             }
         });
+
         return binding.getRoot();
     }
 }

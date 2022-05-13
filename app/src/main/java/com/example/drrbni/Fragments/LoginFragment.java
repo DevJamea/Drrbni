@@ -1,4 +1,4 @@
-package com.example.drrbni;
+package com.example.drrbni.Fragments;
 
 import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
 
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.Models.Student;
+import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -68,7 +69,6 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-
                                 Student student = new Student(mEmail,"","","","",mAuth.getUid());
 
                                 fireStore.collection(COLLECTION_STUDENT_PROFILES).document(mAuth.getUid()).set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -88,7 +88,6 @@ public class LoginFragment extends Fragment {
                                 binding.progressBar.setVisibility(View.INVISIBLE);
                             } else {
                                 binding.progressBar.setVisibility(View.VISIBLE);
-
                                 Snackbar.make(view, "الحساب غير موجود", Snackbar.LENGTH_LONG).show();
                             }
                             binding.progressBar.setVisibility(View.INVISIBLE);

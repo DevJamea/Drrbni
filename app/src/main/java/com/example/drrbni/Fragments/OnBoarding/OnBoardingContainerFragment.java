@@ -1,4 +1,4 @@
-package com.example.drrbni.OnboardingPackage;
+package com.example.drrbni.Fragments.OnBoarding;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.drrbni.databinding.FragmentOnboardingContainerBinding;
 
-public class OnboardingContainerFragment extends Fragment {
+public class OnBoardingContainerFragment extends Fragment {
 
     private static final String SCREEN_IMG = "screen_img";
     private static final String TITLE = "title";
@@ -17,13 +17,13 @@ public class OnboardingContainerFragment extends Fragment {
     private int title;
     private int sub_title;
 
-    public OnboardingContainerFragment() {
+    public OnBoardingContainerFragment() {
         // Required empty public constructor
     }
 
 
-    public static OnboardingContainerFragment newInstance(int screen_img, int title , int sub_title) {
-        OnboardingContainerFragment fragment = new OnboardingContainerFragment();
+    public static OnBoardingContainerFragment newInstance(int screen_img, int title , int sub_title) {
+        OnBoardingContainerFragment fragment = new OnBoardingContainerFragment();
         Bundle args = new Bundle();
         args.putInt(SCREEN_IMG, screen_img);
         args.putInt(TITLE, title);

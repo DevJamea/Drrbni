@@ -1,4 +1,4 @@
-package com.example.drrbni.ui;
+package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.example.drrbni.FilterDialogFragment;
+import com.example.drrbni.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbni.Models.Filters;
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentHomeBinding;

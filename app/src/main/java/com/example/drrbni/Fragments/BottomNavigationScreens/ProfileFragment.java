@@ -1,23 +1,19 @@
-package com.example.drrbni.ui;
+package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
 import static com.example.drrbni.Constant.EMAIL;
 import static com.example.drrbni.Constant.NAME;
 import static com.example.drrbni.Constant.SPECIALIZATION;
 import static com.example.drrbni.Constant.UNIVERSITY;
-
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentProfileBinding;
@@ -27,8 +23,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class ProfileFragment extends Fragment {
 
