@@ -15,11 +15,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
     private FilterDialogFragment filterDialog;
+    public HomeFragment() {}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentHomeBinding
+                .inflate(inflater, container, false);
 
 
         return binding.getRoot();
@@ -109,4 +110,5 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onCancelClicked() {
 //        dismiss();
     }
+
 }

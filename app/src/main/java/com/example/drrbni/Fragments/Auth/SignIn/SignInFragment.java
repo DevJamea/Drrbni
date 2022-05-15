@@ -1,22 +1,18 @@
-package com.example.drrbni.Fragments;
+package com.example.drrbni.Fragments.Auth.SignIn;
 
 import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
-
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
-import com.example.drrbni.databinding.FragmentLoginBinding;
+import com.example.drrbni.databinding.FragmentSignInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,31 +21,29 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.HashMap;
 
-public class LoginFragment extends Fragment {
+public class SignInFragment extends Fragment {
 
-
+    private FragmentSignInBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
 
-    public LoginFragment() {
-    }
+    public SignInFragment() {}
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static SignInFragment newInstance() {
+        SignInFragment fragment = new SignInFragment();
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        FragmentLoginBinding binding = FragmentLoginBinding.inflate(getLayoutInflater());
+        binding = FragmentSignInBinding
+                .inflate(getLayoutInflater(),container,false);
 
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +92,21 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        binding.loginTvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
+            }
+        });
+
         return binding.getRoot();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

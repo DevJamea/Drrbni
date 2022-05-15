@@ -11,10 +11,12 @@ import com.example.drrbni.databinding.FragmentCategoriesBinding;
 public class CategoriesFragment extends Fragment {
 
     private FragmentCategoriesBinding binding;
+    public CategoriesFragment() {}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentCategoriesBinding.inflate(inflater, container, false);
+        binding = FragmentCategoriesBinding
+                .inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;

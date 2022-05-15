@@ -43,11 +43,13 @@
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_job_item.xml" value="0.4" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_notification_item.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_post_item.xml" value="0.264" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_add_job.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_category_items.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_company_profile.xml" value="0.2" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_filter_dialog.xml" value="0.2" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_forgot_password.xml" value="0.11302083333333333" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_notification_dialog.xml" value="0.25416666666666665" />
@@ -56,6 +58,11 @@
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_onboarding_container.xml" value="0.264" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_show_post.xml" value="0.264" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_in.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_add_img.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_address.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_contact_information.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_splash_screen.xml" value="0.23055555555555557" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11302083333333333" />
       </map>

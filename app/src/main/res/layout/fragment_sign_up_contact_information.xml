@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">a
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/basic"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                style="@style/toolbarTitle"
+                android:text="@string/Contact_Information"/>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_whatsapp"
+                style="@style/editText"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:hint="@string/whatsapp"
+                android:inputType="textEmailAddress"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_link_facebook"
+                style="@style/editText"
+                android:hint="@string/link_facebook" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/btn_next"
+                    style="@style/blue_btn"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:text="@string/next" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/btn_next"
+                    android:layout_alignParentTop="true"
+                    android:elevation="@dimen/_8sdp"
+                    android:layout_alignParentBottom="true"
+                    android:indeterminate="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/white"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    app:indicatorSize="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:trackCornerRadius="5dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

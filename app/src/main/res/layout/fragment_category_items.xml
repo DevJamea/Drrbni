@@ -21,7 +21,7 @@ tools:context=".Fragments.CategoryItemFragment">
 
     <TextView
         style="@style/toolbarTitle"
-        android:text="@string/categorie_title"/>
+        android:text="@string/categories_title"/>
 </androidx.appcompat.widget.Toolbar>
 
 <androidx.recyclerview.widget.RecyclerView

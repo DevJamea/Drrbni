@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.LoginFragment" >
+    >
 
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -18,75 +20,35 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                style="@style/toolbarTitle"
-                android:text="@string/login"/>
-        </androidx.appcompat.widget.Toolbar>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/loginEmail"
-                style="@style/editText"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/loginPassword"
-                style="@style/editText"
-                android:inputType="textPassword"
-                android:hint="@string/password" />
-
-            <RelativeLayout
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                app:tabIndicatorGravity="bottom"
+                app:tabIndicatorColor="@color/subtitle_text"
+                app:tabIndicatorHeight="@dimen/_3sdp"
+                app:tabTextAppearance="@style/tabTextFont"
+                android:layout_marginBottom="@dimen/_4sdp"
+                app:tabTextColor="@color/white">
 
+            </com.google.android.material.tabs.TabLayout>
 
-                <Button
-                    android:id="@+id/login_btn"
-                    style="@style/blue_btn"
-                    android:layout_marginLeft="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_48sdp"
-                    android:layout_marginRight="@dimen/_24sdp"
-                    android:layout_marginBottom="@dimen/_48sdp"
-                    android:text="@string/login" />
-
-
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/login_btn"
-                    android:layout_alignParentTop="true"
-                    android:elevation="@dimen/_8sdp"
-                    android:layout_alignParentBottom="true"
-                    android:indeterminate="true"
-                    android:layout_centerVertical="true"
-                    android:visibility="invisible"
-                    app:indicatorColor="@color/white"
-                    android:layout_marginEnd="@dimen/_42sdp"
-                    app:indicatorSize="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:trackCornerRadius="5dp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
+        </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
 
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/login_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/linear_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
-
-</ScrollView>
+</RelativeLayout>

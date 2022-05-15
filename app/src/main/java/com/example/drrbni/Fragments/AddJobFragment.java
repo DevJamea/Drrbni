@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentAddJobBinding;
 
 public class AddJobFragment extends Fragment {
 
-
+    private FragmentAddJobBinding binding;
     public AddJobFragment() {}
 
     @Override
@@ -23,7 +22,7 @@ public class AddJobFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentAddJobBinding binding = FragmentAddJobBinding
+        binding = FragmentAddJobBinding
                 .inflate(getLayoutInflater(),container,false);
 
         binding.addJobName.setOnClickListener(new View.OnClickListener() {
@@ -38,4 +37,11 @@ public class AddJobFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

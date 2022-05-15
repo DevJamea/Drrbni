@@ -59,6 +59,12 @@
         <item name="android:layout_marginRight">@dimen/_24sdp</item>
     </style>
 
+    <style name="tabTextFont" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/cairo_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="editText" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/_52sdp</item>

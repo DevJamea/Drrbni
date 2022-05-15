@@ -1,5 +1,7 @@
 package com.example.drrbni.Fragments;
 
+import static com.example.drrbni.Constant.TITLE;
+
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -12,12 +14,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomSheetFragment extends BottomSheetDialogFragment {
 
-    private static final String TITLE = "title";
+    private FragmentBottomSheetBinding binding;
     private String title;
-
-    public BottomSheetFragment() {
-
-    }
+    public BottomSheetFragment() {}
 
 
     public static BottomSheetFragment newInstance(String title ) {
@@ -41,7 +40,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentBottomSheetBinding binding = FragmentBottomSheetBinding
+        binding = FragmentBottomSheetBinding
                 .inflate(getLayoutInflater(),container,false);
 
         binding.title.setText(title);
@@ -62,4 +61,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

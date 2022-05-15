@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_splashScreen_to_onboarding"
             app:destination="@id/onboardingFragment"
-          />
+            />
         <action
             android:id="@+id/action_splashScreenFragment_to_homeActivity"
             app:destination="@id/homeActivity" />
@@ -29,15 +29,220 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.drrbni.Fragments.LoginFragment"
+        android:name="com.example.drrbni.Fragments.Auth.SignIn.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_homeActivity"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpAddressFragment"
+            app:destination="@id/signUpAddressFragment" >
+
+        </action>
+
     </fragment>
     <activity
         android:id="@+id/homeActivity"
         android:name="com.example.drrbni.HomeActivity"
         android:label="HomeActivity" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.drrbni.Fragments.Auth.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpAddressFragment"
+        android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
+        android:label="SignUpAddressFragment" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="category"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <action
+            android:id="@+id/action_signUpAddressFragment_to_signUpContactInformationFragment"
+            app:destination="@id/signUpContactInformationFragment" >
+            <argument
+                android:name="name"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="email"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="password"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="category"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="governorate"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="address"
+                app:argType="string"
+                app:nullable="true"
+                />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/signUpContactInformationFragment"
+        android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpContactInformationFragment"
+        android:label="SignUpContactInformationFragment" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="category"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="governorate"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="address"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <action
+            android:id="@+id/action_signUpContactInformationFragment_to_signUpAddImgFragment"
+            app:destination="@id/signUpAddImgFragment" >
+            <argument
+                android:name="name"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="email"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="password"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="category"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="governorate"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="address"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="whatsapp"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="linkFacebook"
+                app:argType="string"
+                app:nullable="true"
+                />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/signUpAddImgFragment"
+        android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddImgFragment"
+        android:label="SignUpAddImgFragment" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="category"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="governorate"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="address"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="whatsapp"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <argument
+            android:name="linkFacebook"
+            app:argType="string"
+            app:nullable="true"
+            />
+        <action
+            android:id="@+id/action_signUpAddImgFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
 </navigation>

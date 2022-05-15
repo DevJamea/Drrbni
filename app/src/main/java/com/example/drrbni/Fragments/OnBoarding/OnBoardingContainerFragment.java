@@ -1,5 +1,8 @@
 package com.example.drrbni.Fragments.OnBoarding;
 
+import static com.example.drrbni.Constant.SCREEN_IMG;
+import static com.example.drrbni.Constant.SUB_TITLE;
+import static com.example.drrbni.Constant.TITLE;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,17 +12,12 @@ import com.example.drrbni.databinding.FragmentOnboardingContainerBinding;
 
 public class OnBoardingContainerFragment extends Fragment {
 
-    private static final String SCREEN_IMG = "screen_img";
-    private static final String TITLE = "title";
-    private static final String SUB_TITLE = "sub_title";
-
+    private FragmentOnboardingContainerBinding binding;
     private int screen_img;
     private int title;
     private int sub_title;
 
-    public OnBoardingContainerFragment() {
-        // Required empty public constructor
-    }
+    public OnBoardingContainerFragment() {}
 
 
     public static OnBoardingContainerFragment newInstance(int screen_img, int title , int sub_title) {
@@ -45,8 +43,8 @@ public class OnBoardingContainerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentOnboardingContainerBinding binding =
-                FragmentOnboardingContainerBinding.inflate(getLayoutInflater());
+        binding = FragmentOnboardingContainerBinding
+                .inflate(getLayoutInflater(),container,false);
 
         binding.onboardingImage.setImageResource(screen_img);
         binding.onboardingTitle.setText(title);
@@ -54,4 +52,11 @@ public class OnBoardingContainerFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

@@ -61,7 +61,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:text="@string/cancel"
+                android:text="@string/chancel"
                 style="@style/blue_btn"
                 android:backgroundTint="@color/btn_cancel"
                 android:layout_marginTop="@dimen/_12sdp"/>

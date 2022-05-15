@@ -2,40 +2,32 @@ package com.example.drrbni.Fragments.OnBoarding;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
 import com.example.drrbni.Adapters.OnboardingPagerAdapter;
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentOnboardingBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
 import java.util.ArrayList;
 
 public class OnBoardingFragment extends Fragment {
 
-    FragmentOnboardingBinding binding ;
-    int position = 0;
-    Animation btnAnimation;
+    private FragmentOnboardingBinding binding ;
+    private int position = 0;
+    private Animation btnAnimation;
+    public OnBoardingFragment() {}
 
-    public OnBoardingFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static OnBoardingFragment newInstance(int screen_img, int title , int description) {
+    public static OnBoardingFragment newInstance() {
         OnBoardingFragment fragment = new OnBoardingFragment();
         return fragment;
     }
@@ -56,8 +48,6 @@ public class OnBoardingFragment extends Fragment {
                              Bundle savedInstanceState) {
 
          binding = FragmentOnboardingBinding.inflate(getLayoutInflater());
-
-        // ArrayList of on boarding fragments
 
         ArrayList<Fragment> fragments = new ArrayList<>();
 
@@ -131,6 +121,13 @@ public class OnBoardingFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     private Boolean restorePrefData() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());

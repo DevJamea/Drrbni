@@ -9,5 +9,10 @@ public class Constant {
     public static final String UNIVERSITY = "University";
     public static final String UID = "UserId";
 
+    public static int SPLASH_SCREEN_TIME_OUT = 2500;
+    public static final String SCREEN_IMG = "screen_img";
+    public static final String TITLE = "title";
+    public static final String SUB_TITLE = "sub_title";
+
 
 }

@@ -55,14 +55,33 @@
     <string name="company_location">غزة - مفترق الصناعة</string>
     <string name="company_major">تكنولوجيا المعلومات</string>
     <string name="category_title">اسم التصنيف</string>
-    <string name="gmail">Gmail</string>
-    <string name="facebook">Facebook</string>
-    <string name="whatsapp">Whatsapp</string>
     <string name="notification_description">رفضت شركة المستقبل طلب التدريب الخاص بك نتمنى لك حظا اوفر في المرة القادمة</string>
     <string name="notification_subtitle">قامت شركة المستقبل بتحديد موعد المقابلة يوم الاربعاء 24 اكتوبر الساعة 9:00 صباحا</string>
     <string name="notification_title">موعد المقابلة</string>
     <string name="confirm">تأكيد الحضور</string>
     <string name="dismiss">عدم الحضور</string>
+    <string name="categories_title">التصنيفات</string>
+    <string name="Complete_the_registration_process">إكمال عملية التسجيل</string>
+    <string name="name">الاسم</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
+    <string name="governorate">المحافظة</string>
+    <string name="address">العنوان</string>
+    <string name="Contact_Information">معلومات التواصل</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="facebook">Facebook</string>
+    <string name="gmail">Gmail</string>
+    <string name="link_facebook">رابط الفيسبوك</string>
+    <string name="add_img">إضافة صورة</string>
+    <string name="skip">تخطي</string>
+    <string name="add_img_profile">إضافة صورة ملف شخصي</string>
+    <string name="take_picture">إلتقاط صورة</string>
+    <string name="Choose_from_the_library">اختيار من المكتبة</string>
+    <string name="restore_password">أستعادة كلمة المرور</string>
+    <string name="get_code">الحصول على رمز</string>
+    <string name="verification_code">رمز التحقق</string>
+    <string name="verification">التحقق</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="conf_password">تأكيد كلمة المرور الجديدة</string>
 
 
     <string-array name="employment_array">
