@@ -76,4 +76,6 @@
             android:label="notificationsFragment"
             tools:layout="@layout/fragment_notifications" />
     </navigation>
+
+
 </navigation>

@@ -20,7 +20,7 @@ tools:context=".Fragments.CategoryItemFragment">
 
     <TextView
         style="@style/toolbarTitle"
-        android:text="@string/categories_title"/>
+        android:text="اسم التصنيف"/>
 </androidx.appcompat.widget.Toolbar>
 
 <androidx.recyclerview.widget.RecyclerView

@@ -27,13 +27,14 @@ public class SignUpAddressFragment extends Fragment {
         binding = FragmentSignUpAddressBinding
                 .inflate(getLayoutInflater(),container,false);
 
+        String name = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getName();
+        String email = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getEmail();
+        String password = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getPassword();
+        String category = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getCategory();
+
         binding.signUpBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getName();
-                String email = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getEmail();
-                String password = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getPassword();
-                String category = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getCategory();
                 String governorate = binding.signUpEtGovernorate.getText().toString().trim();
                 String address = binding.signUpEtAddress.getText().toString().trim();
 
@@ -43,7 +44,7 @@ public class SignUpAddressFragment extends Fragment {
                     Snackbar.make(view, "أدخل العنوان", Snackbar.LENGTH_LONG).show();
                 } else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
-                   navController.navigate(SignUpAddressFragmentDirections.actionSignUpAddressFragmentToSignUpAddImgFragment(
+                   navController.navigate(SignUpAddressFragmentDirections.actionSignUpAddressFragmentToEducationInformationFragment(
                            name, email, password, category, governorate, address));
                 }
             }

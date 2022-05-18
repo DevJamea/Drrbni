@@ -1,7 +1,10 @@
 package com.example.drrbni.Fragments.Auth.SignIn;
 
 import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
+import static com.example.drrbni.Constant.EMAIL;
+
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentSignInBinding;
@@ -23,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class SignInFragment extends Fragment {
 
@@ -30,7 +35,8 @@ public class SignInFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
 
-    public SignInFragment() {}
+    public SignInFragment() {
+    }
 
     public static SignInFragment newInstance() {
         SignInFragment fragment = new SignInFragment();
@@ -41,54 +47,45 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSignInBinding
-                .inflate(getLayoutInflater(),container,false);
+                .inflate(getLayoutInflater(), container, false);
 
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
 
-
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mEmail = binding.loginEmail.getText().toString().trim();
-                String mPassword = binding.loginPassword.getText().toString().trim();
+                String email = binding.loginEmail.getText().toString().trim();
+                String password = binding.loginPassword.getText().toString().trim();
 
-                if (TextUtils.isEmpty(mEmail)) {
+                if (TextUtils.isEmpty(email)) {
                     Snackbar.make(view, "أدخل الايميل", Snackbar.LENGTH_LONG).show();
 
-                } else if (TextUtils.isEmpty(mPassword)) {
+                } else if (TextUtils.isEmpty(password)) {
                     Snackbar.make(view, "أدخل كلمة المرور", Snackbar.LENGTH_LONG).show();
                 } else {
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    mAuth.signInWithEmailAndPassword(mEmail, mPassword).
-                            addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    fireStore.collection(COLLECTION_STUDENT_PROFILES).whereEqualTo(EMAIL, email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Student student = new Student(mEmail,"","","","",mAuth.getUid());
-
-                                fireStore.collection(COLLECTION_STUDENT_PROFILES).document(mAuth.getUid()).set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d("ttt", "onFailure : " + e.getMessage());
-                                    }
-                                });
-
-                                NavController navController = Navigation.findNavController(binding.getRoot());
-                                navController.navigate(R.id.action_loginFragment_to_mainFragment);
-                                binding.progressBar.setVisibility(View.INVISIBLE);
-                            } else {
-                                binding.progressBar.setVisibility(View.VISIBLE);
-                                Snackbar.make(view, "الحساب غير موجود", Snackbar.LENGTH_LONG).show();
-                            }
-                            binding.progressBar.setVisibility(View.INVISIBLE);
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            mAuth.signInWithEmailAndPassword(email, password).
+                                    addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                NavController navController = Navigation.findNavController(binding.getRoot());
+                                                navController.navigate(R.id.action_loginFragment_to_mainFragment);
+                                                binding.progressBar.setVisibility(View.INVISIBLE);
+                                            } else {
+                                                binding.progressBar.setVisibility(View.VISIBLE);
+                                                Snackbar.make(view, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                                            }
+                                            binding.progressBar.setVisibility(View.INVISIBLE);
+                                        }
+                                    });
                         }
                     });
+
                 }
 
             }

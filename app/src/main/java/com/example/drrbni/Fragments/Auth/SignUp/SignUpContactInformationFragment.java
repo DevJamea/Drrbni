@@ -26,23 +26,27 @@ public class SignUpContactInformationFragment extends Fragment {
         binding = FragmentSignUpContactInformationBinding
                 .inflate(getLayoutInflater(),container,false);
 
+        String name = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getName();
+        String email = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getEmail();
+        String password = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getPassword();
+        String category = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getCategory();
+        String university = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getUniversity();
+        String specialization = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getSpecialization();
+        String address = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getAddress();
+        String governorate = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getGovernorate();
+
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String name = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getName();
-//                String email = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getEmail();
-//                String password = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getPassword();
-//                String category = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getCategory();
-//                String governorate = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getGovernorate();
-//                String address = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getAddress();
                 String whatsApp = binding.etWhatsapp.getText().toString().trim();
 
                 if (whatsApp.isEmpty()) {
                     Snackbar.make(view, "أدخل رقم الواتس اب", Snackbar.LENGTH_LONG).show();
                 } else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
-//                    navController.navigate(SignUpContactInformationFragmentDirections
-//                            .actionSignUpContactInformationFragmentToSignUpAddImgFragment(name, email, password, category, governorate, address, whatsApp, linkFacebook));
+                    navController.navigate(SignUpContactInformationFragmentDirections
+                            .actionSignUpContactInformationFragmentToSignUpAddImgFragment
+                                    (name,email,password,category,governorate,address,university,specialization,whatsApp));
                 }
             }
         });

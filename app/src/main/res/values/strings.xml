@@ -85,6 +85,9 @@
     <string name="select_img">أختيار من المكتبة</string>
     <string name="email_address">mm@gmail.com</string>
     <string name="whatsapp_num">+09720208783</string>
+    <string name="education_information">معلومات التعليم</string>
+    <string name="university">الجامعة</string>
+    <string name="specialization">التخصص</string>
 
 
     <string-array name="employment_array">

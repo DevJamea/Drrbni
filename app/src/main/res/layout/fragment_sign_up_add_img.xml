@@ -57,16 +57,34 @@
                 android:layout_marginRight="@dimen/_24sdp"
                 android:text="@string/add_img" />
 
-            <Button
-                android:id="@+id/add_img_btn_skip"
-                style="@style/blue_btn"
-                android:backgroundTint="@color/btn_cancel"
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/add_img_btn_add"
-                android:layout_marginLeft="@dimen/_24sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_24sdp"
-                android:layout_marginBottom="@dimen/_40sdp"
-                android:text="@string/skip" />
+                >
+
+                <Button
+                    android:id="@+id/add_img_btn_skip"
+                    style="@style/blue_btn"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:backgroundTint="@color/btn_cancel"
+                    android:layout_centerVertical="true"
+                    android:text="@string/skip" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    style="@style/ProgressBar"
+                    android:layout_alignEnd="@+id/add_img_btn_skip"
+                    android:layout_centerVertical="true"
+                    app:indicatorColor="@color/white"
+                    app:indicatorSize="25dp"
+                    app:trackCornerRadius="5dp" />
+            </RelativeLayout>
 
 
         </RelativeLayout>

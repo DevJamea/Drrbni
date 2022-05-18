@@ -60,11 +60,12 @@ public class SignUpFragment extends Fragment {
                     Snackbar.make(view, "حدد التخصص", Snackbar.LENGTH_LONG).show();
                 }else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate
-                            (LoginFragmentDirections.actionLoginFragmentToSignUpAddressFragment(name,email,password,email));
+                    navController.navigate(LoginFragmentDirections
+                            .actionLoginFragmentToSignUpAddressFragment(name,email,password,""));
                 }
             }
         });
+
 
         return binding.getRoot();
     }

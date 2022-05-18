@@ -1,15 +1,20 @@
 package com.example.drrbni.Models;
 
 public class Student {
-    private String email, img, name, specialization, University, UserId;
+    private String email, img, name, specialization, university, governorate, address, linkWhatsApp, UserId;
+    private int typeUser;
 
-    public Student(String email, String img, String name, String specialization, String university, String userId) {
+    public Student(String email, String img, String name, String specialization, String university, String governorate, String address, String linkWhatsApp, String userId, int typeUser) {
         this.email = email;
         this.img = img;
         this.name = name;
         this.specialization = specialization;
-        University = university;
+        this.university = university;
+        this.governorate = governorate;
+        this.address = address;
+        this.linkWhatsApp = linkWhatsApp;
         UserId = userId;
+        this.typeUser = typeUser;
     }
 
     public Student() {}
@@ -47,11 +52,35 @@ public class Student {
     }
 
     public String getUniversity() {
-        return University;
+        return university;
     }
 
     public void setUniversity(String university) {
-        University = university;
+        this.university = university;
+    }
+
+    public String getGovernorate() {
+        return governorate;
+    }
+
+    public void setGovernorate(String governorate) {
+        this.governorate = governorate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLinkWhatsApp() {
+        return linkWhatsApp;
+    }
+
+    public void setLinkWhatsApp(String linkWhatsApp) {
+        this.linkWhatsApp = linkWhatsApp;
     }
 
     public String getUserId() {
@@ -60,5 +89,13 @@ public class Student {
 
     public void setUserId(String userId) {
         UserId = userId;
+    }
+
+    public int getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(int typeUser) {
+        this.typeUser = typeUser;
     }
 }
