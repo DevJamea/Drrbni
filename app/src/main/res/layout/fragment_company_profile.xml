@@ -107,105 +107,56 @@
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_4sdp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp">
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:gravity="right|center_vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_68sdp"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/company_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:text="@string/email_address"
+                    android:textColor="@color/title_text"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                    android:gravity="center_vertical"/>
 
-                    <LinearLayout
-                        android:id="@+id/facebook"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:src="@drawable/ic_email"/>
 
-                        <ImageView
-                            android:layout_width="@dimen/_24sdp"
-                            android:layout_height="@dimen/_24sdp"
-                            android:src="@drawable/ic_facebook"
-                            android:layout_marginBottom="@dimen/_4sdp"/>
+            </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/facebook"
-                            android:textColor="@color/title_text"
-                            android:textSize="@dimen/_12sdp"/>
+            <LinearLayout
+                android:id="@+id/company_whatsapp_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:gravity="right|center_vertical">
 
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/company_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:text="@string/whatsapp_num"
+                    android:textColor="@color/title_text"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                    android:gravity="center_vertical"/>
 
-                    <View
-                        android:layout_width="@dimen/_1sdp"
-                        android:layout_height="match_parent"
-                        android:background="@color/subtitle_text"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_8sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:src="@drawable/ic_whatsapp"/>
 
-                    <LinearLayout
-                        android:id="@+id/whatsapp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
-                        android:src="@drawable/ic_whatsapp"
-                        android:layout_marginBottom="@dimen/_4sdp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/whatsapp"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_12sdp"/>
-
-                </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/_1sdp"
-                        android:layout_height="match_parent"
-                        android:background="@color/subtitle_text"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_8sdp"/>
-
-                    <LinearLayout
-                        android:id="@+id/Gmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="@dimen/_24sdp"
-                            android:layout_height="@dimen/_24sdp"
-                            android:src="@drawable/ic_gmail"
-                            android:layout_marginBottom="@dimen/_4sdp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/gmail"
-                            android:textColor="@color/title_text"
-                            android:textSize="@dimen/_12sdp"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <View
                 style="@style/divider"
@@ -215,8 +166,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/_6sdp"
-                android:layout_marginLeft="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
                 tools:listitem="@layout/custom_post_item"/>
 
         </LinearLayout>

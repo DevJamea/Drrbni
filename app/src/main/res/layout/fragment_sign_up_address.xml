@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,66 +26,46 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_et_governorate"
+            style="@style/editText"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:hint="@string/governorate"
+            android:inputType="textEmailAddress"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_et_address"
+            style="@style/editText"
+            android:hint="@string/address" />
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_et_governorate"
-                style="@style/editText"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:hint="@string/governorate"
-                android:inputType="textEmailAddress"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_et_address"
-                style="@style/editText"
-                android:hint="@string/address" />
+            <Button
+                android:id="@+id/sign_up_btn_next"
+                style="@style/blue_btn"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_24sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:text="@string/next" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBar"
+                style="@style/ProgressBar"
+                android:layout_alignEnd="@+id/sign_up_btn_next"
+                app:indicatorColor="@color/white"
+                app:indicatorSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:trackCornerRadius="5dp" />
 
-                <Button
-                    android:id="@+id/sign_up_btn_next"
-                    style="@style/blue_btn"
-                    android:layout_marginLeft="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:layout_marginRight="@dimen/_24sdp"
-                    android:layout_marginBottom="@dimen/_40sdp"
-                    android:text="@string/next" />
-
-
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/sign_up_btn_next"
-                    android:layout_alignParentTop="true"
-                    android:elevation="@dimen/_8sdp"
-                    android:layout_alignParentBottom="true"
-                    android:indeterminate="true"
-                    android:layout_centerVertical="true"
-                    android:visibility="invisible"
-                    app:indicatorColor="@color/white"
-                    android:layout_marginEnd="@dimen/_42sdp"
-                    app:indicatorSize="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:trackCornerRadius="5dp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
-
 
 
 

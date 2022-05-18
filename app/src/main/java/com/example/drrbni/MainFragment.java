@@ -1,0 +1,59 @@
+package com.example.drrbni;
+
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
+
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.drrbni.Adapters.PagerFragmentsAdapter;
+import com.example.drrbni.Fragments.BottomNavigationScreens.CategoriesFragment;
+import com.example.drrbni.Fragments.BottomNavigationScreens.HomeFragment;
+import com.example.drrbni.Fragments.BottomNavigationScreens.NotificationsFragment;
+import com.example.drrbni.Fragments.BottomNavigationScreens.ProfileFragment;
+import com.example.drrbni.databinding.FragmentMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+
+public class MainFragment extends Fragment {
+
+    public MainFragment() {
+        // Required empty public constructor
+    }
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        FragmentMainBinding binding = FragmentMainBinding.inflate(getLayoutInflater());
+
+        ArrayList<Fragment> list = new ArrayList<>();
+        list.add(HomeFragment.newInstance());
+        list.add(CategoriesFragment.newInstance());
+        list.add(NotificationsFragment.newInstance());
+        list.add(ProfileFragment.newInstance());
+
+        NavHostFragment navHostFragment = (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.mainFragmentContainerView);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(binding.navView, navController);
+
+        return binding.getRoot();
+    }
+}

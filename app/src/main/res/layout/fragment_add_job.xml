@@ -35,7 +35,7 @@
            android:layout_marginLeft="@dimen/_16sdp"
            android:layout_marginRight="@dimen/_16sdp"
            android:src="@drawable/add_image"
-           android:padding="@dimen/_1sdp"
+           android:padding="@dimen/_2sdp"
            android:background="@drawable/image_reduis" />
 
 
@@ -256,7 +256,7 @@
            android:layout_marginLeft="@dimen/_16sdp"
            android:layout_marginRight="@dimen/_16sdp"
            android:layout_marginTop="@dimen/_16sdp"
-           android:layout_marginBottom="@dimen/_60sdp"/>
+           android:layout_marginBottom="@dimen/_16sdp"/>
    </LinearLayout>
 
 </ScrollView>

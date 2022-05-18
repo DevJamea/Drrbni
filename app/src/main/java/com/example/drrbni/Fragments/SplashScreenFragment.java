@@ -46,7 +46,7 @@ public class SplashScreenFragment extends Fragment {
             {
                 if (mAuth.getCurrentUser() != null){
                     NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate(R.id.action_splashScreenFragment_to_homeActivity);
+                  //  navController.navigate(R.id.action_splashScreenFragment_to_homeActivity);
                 }else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
                     navController.navigate(R.id.action_splashScreen_to_onboarding);

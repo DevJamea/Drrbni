@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,14 +50,12 @@ public class SignUpAddImgFragment extends Fragment {
         String category = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getCategory();
         String governorate = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getGovernorate();
         String address = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getAddress();
-        String whatsApp = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getWhatsapp();
-        String linkFacebook = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getLinkFacebook();
 
         binding.addImgBtnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (!email.equals("") && !password.equals("")) {
+                if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -76,7 +76,7 @@ public class SignUpAddImgFragment extends Fragment {
                                         });
 
                                         NavController navController = Navigation.findNavController(binding.getRoot());
-                                        navController.navigate(R.id.action_signUpAddImgFragment_to_homeActivity);
+                                        navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
 //                                    binding.progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 }

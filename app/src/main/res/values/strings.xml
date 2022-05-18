@@ -67,7 +67,7 @@
     <string name="governorate">المحافظة</string>
     <string name="address">العنوان</string>
     <string name="Contact_Information">معلومات التواصل</string>
-    <string name="whatsapp">Whatsapp</string>
+    <string name="whatsapp">رقم واتس آب</string>
     <string name="facebook">Facebook</string>
     <string name="gmail">Gmail</string>
     <string name="link_facebook">رابط الفيسبوك</string>
@@ -82,6 +82,9 @@
     <string name="verification">التحقق</string>
     <string name="new_password">كلمة المرور الجديدة</string>
     <string name="conf_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="select_img">أختيار من المكتبة</string>
+    <string name="email_address">mm@gmail.com</string>
+    <string name="whatsapp_num">+09720208783</string>
 
 
     <string-array name="employment_array">

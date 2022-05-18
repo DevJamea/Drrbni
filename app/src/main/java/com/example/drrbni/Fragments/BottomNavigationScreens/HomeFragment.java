@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.example.drrbni.Fragments.Auth.SignIn.SignInFragment;
 import com.example.drrbni.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbni.Models.Filters;
 import com.example.drrbni.R;
@@ -16,6 +18,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private FragmentHomeBinding binding;
     private FilterDialogFragment filterDialog;
     public HomeFragment() {}
+
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

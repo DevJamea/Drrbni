@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="floatingActionButtonStyle">@style/Widget.App.FloatingActionButton</item>
+
     </style>
 
     <style name="onboarding_image">
@@ -54,9 +55,10 @@
         <item name="android:textSize">@dimen/_32sdp</item>
         <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">bottom</item>
         <item name="android:layout_gravity">right</item>
         <item name="android:layout_marginRight">@dimen/_24sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8sdp</item>
     </style>
 
     <style name="tabTextFont" parent="TextAppearance.Design.Tab">
@@ -125,6 +127,21 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="ProgressBar" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/_8sdp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginEnd">@dimen/_42sdp</item>
 
     </style>
+
+
+
 </resources>

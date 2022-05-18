@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import com.example.drrbni.Adapters.OnboardingPagerAdapter;
+import com.example.drrbni.Adapters.PagerFragmentsAdapter;
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentOnboardingBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -63,9 +63,9 @@ public class OnBoardingFragment extends Fragment {
         fragments.add(OnBoardingContainerFragment.newInstance(R.drawable.onboarding1 ,
                 R.string.onboarding4_title , R.string.onboarding4_subtitle ));
 
-        OnboardingPagerAdapter pagerAdapter = new OnboardingPagerAdapter(requireActivity() , fragments);
+        PagerFragmentsAdapter pagerFragmentsAdapter = new PagerFragmentsAdapter(requireActivity() , fragments);
 
-        binding.onboardingSlider.setAdapter(pagerAdapter);
+        binding.onboardingSlider.setAdapter(pagerFragmentsAdapter);
 
         new TabLayoutMediator(binding.dotSlider, binding.onboardingSlider, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

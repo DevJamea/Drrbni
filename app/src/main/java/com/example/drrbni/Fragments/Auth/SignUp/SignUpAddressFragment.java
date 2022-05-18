@@ -43,8 +43,8 @@ public class SignUpAddressFragment extends Fragment {
                     Snackbar.make(view, "أدخل العنوان", Snackbar.LENGTH_LONG).show();
                 } else {
                     NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate(SignUpAddressFragmentDirections
-                            .actionSignUpAddressFragmentToSignUpContactInformationFragment(name, email, password, category, governorate, address));
+                   navController.navigate(SignUpAddressFragmentDirections.actionSignUpAddressFragmentToSignUpAddImgFragment(
+                           name, email, password, category, governorate, address));
                 }
             }
         });

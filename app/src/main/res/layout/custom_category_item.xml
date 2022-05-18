@@ -29,7 +29,7 @@
             android:layout_height="@dimen/_56sdp"
             android:paddingRight="@dimen/_16sdp"
             android:gravity="top"
-            android:background="#80000000"
+            android:background="#80232323"
             android:text="تكنولوجيا المعلومات"
             android:textColor="@color/white"
             android:textSize="@dimen/_24sdp"

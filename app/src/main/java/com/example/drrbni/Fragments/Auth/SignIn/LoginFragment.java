@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.drrbni.Adapters.OnboardingPagerAdapter;
+import com.example.drrbni.Adapters.PagerFragmentsAdapter;
 import com.example.drrbni.Fragments.Auth.SignUp.SignUpFragment;
 import com.example.drrbni.databinding.FragmentLoginBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -29,7 +29,7 @@ public class LoginFragment extends Fragment {
         list.add(SignInFragment.newInstance());
         list.add(SignUpFragment.newInstance());
 
-        OnboardingPagerAdapter adapter = new OnboardingPagerAdapter(requireActivity(),list);
+        PagerFragmentsAdapter adapter = new PagerFragmentsAdapter(requireActivity(),list);
         binding.loginViewPager.setAdapter(adapter);
 
         new TabLayoutMediator(binding.tabLayout,binding.loginViewPager, new TabLayoutMediator.TabConfigurationStrategy() {

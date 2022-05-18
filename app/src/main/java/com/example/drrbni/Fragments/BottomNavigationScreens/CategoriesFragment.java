@@ -13,6 +13,10 @@ public class CategoriesFragment extends Fragment {
     private FragmentCategoriesBinding binding;
     public CategoriesFragment() {}
 
+    public static CategoriesFragment newInstance() {
+        return new CategoriesFragment();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCategoriesBinding

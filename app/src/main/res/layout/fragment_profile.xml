@@ -50,8 +50,8 @@
                android:id="@+id/student_name"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_24sdp"
-               android:layout_marginRight="@dimen/_24sdp"
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"
                android:text="@string/student_name"
                android:textColor="@color/title_text"
                android:textSize="@dimen/_30sdp"
@@ -60,8 +60,8 @@
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_24sdp"
-               android:layout_marginRight="@dimen/_24sdp"
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"
                android:gravity="right|center_vertical">
 
                <TextView
@@ -78,15 +78,15 @@
                <ImageView
                    android:layout_width="@dimen/_18sdp"
                    android:layout_height="@dimen/_18sdp"
-                   android:src="@drawable/ic_college_buliding"/>
+                   android:src="@drawable/ic_college"/>
 
            </LinearLayout>
 
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_24sdp"
-               android:layout_marginRight="@dimen/_24sdp"
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"
                android:gravity="right|center_vertical">
 
                <TextView
@@ -103,20 +103,71 @@
                <ImageView
                    android:layout_width="@dimen/_18sdp"
                    android:layout_height="@dimen/_18sdp"
-                   android:src="@drawable/ic_college_graduate"/>
+                   android:src="@drawable/ic_college"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"
+               android:gravity="right|center_vertical">
+
+               <TextView
+                   android:id="@+id/student_email"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="@dimen/_8sdp"
+                   android:text="@string/email_address"
+                   android:textColor="@color/title_text"
+                   android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                   android:gravity="center_vertical"/>
+
+               <ImageView
+                   android:layout_width="@dimen/_18sdp"
+                   android:layout_height="@dimen/_18sdp"
+                   android:src="@drawable/ic_email"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/student_whatsapp_group"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"
+               android:gravity="right|center_vertical">
+
+               <TextView
+                   android:id="@+id/student_whatsapp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="@dimen/_8sdp"
+                   android:text="@string/whatsapp_num"
+                   android:textColor="@color/title_text"
+                   android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                   android:gravity="center_vertical"/>
+
+               <ImageView
+                   android:layout_width="@dimen/_18sdp"
+                   android:layout_height="@dimen/_18sdp"
+                   android:src="@drawable/ic_whatsapp"/>
 
            </LinearLayout>
 
            <View
                style="@style/divider"
-               android:layout_marginLeft="@dimen/_24sdp"
-               android:layout_marginRight="@dimen/_24sdp"/>
+               android:layout_marginLeft="@dimen/_16sdp"
+               android:layout_marginRight="@dimen/_16sdp"/>
 
            <androidx.recyclerview.widget.RecyclerView
                android:layout_width="match_parent"
                android:layout_height="match_parent"
-               android:layout_marginRight="@dimen/_12sdp"
-               android:layout_marginLeft="@dimen/_12sdp"
+               android:layout_marginRight="@dimen/_4sdp"
+               android:layout_marginLeft="@dimen/_4sdp"
                tools:listitem="@layout/custom_job_item"/>
 
 

@@ -34,8 +34,7 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {}
 
     public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
-        return fragment;
+        return new ProfileFragment();
     }
 
 
@@ -57,7 +56,7 @@ public class ProfileFragment extends Fragment {
         currentUser = auth.getCurrentUser();
         fireStore = FirebaseFirestore.getInstance();
 
-        getInfoProfile();
+       // getInfoProfile();
 //        binding.studentName.setText(getInfoProfile().getEmail());
 //        binding.collageName.setText(getInfoProfile().getUniversity());
 //        binding.majorName.setText(getInfoProfile().getSpecialization());
@@ -71,7 +70,7 @@ public class ProfileFragment extends Fragment {
         binding = null;
     }
 
-    private Student getInfoProfile() {
+    /*private Student getInfoProfile() {
         fireStore.collection(COLLECTION_STUDENT_PROFILES)
                 .document(currentUser.getUid())
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -98,6 +97,6 @@ public class ProfileFragment extends Fragment {
                     }
                 });
         return student;
-    }
+    }*/
 
 }

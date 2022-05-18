@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,10 +53,10 @@ public class SignInFragment extends Fragment {
                 String mEmail = binding.loginEmail.getText().toString().trim();
                 String mPassword = binding.loginPassword.getText().toString().trim();
 
-                if (mEmail.isEmpty()) {
+                if (TextUtils.isEmpty(mEmail)) {
                     Snackbar.make(view, "أدخل الايميل", Snackbar.LENGTH_LONG).show();
 
-                } else if (mPassword.isEmpty()) {
+                } else if (TextUtils.isEmpty(mPassword)) {
                     Snackbar.make(view, "أدخل كلمة المرور", Snackbar.LENGTH_LONG).show();
                 } else {
                     binding.progressBar.setVisibility(View.VISIBLE);
@@ -78,7 +80,7 @@ public class SignInFragment extends Fragment {
                                 });
 
                                 NavController navController = Navigation.findNavController(binding.getRoot());
-                                navController.navigate(R.id.action_login_to_homeActivity);
+                                navController.navigate(R.id.action_loginFragment_to_mainFragment);
                                 binding.progressBar.setVisibility(View.INVISIBLE);
                             } else {
                                 binding.progressBar.setVisibility(View.VISIBLE);

@@ -13,6 +13,10 @@ public class NotificationsFragment extends Fragment {
     private FragmentNotificationsBinding binding;
     public NotificationsFragment() {}
 
+    public static NotificationsFragment newInstance() {
+        return new NotificationsFragment();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -15,30 +14,27 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_height="@dimen/_40sdp"
             android:background="@color/basic"
-            android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_16sdp"
-                app:tabIndicatorGravity="bottom"
-                app:tabIndicatorColor="@color/subtitle_text"
-                app:tabIndicatorHeight="@dimen/_3sdp"
-                app:tabTextAppearance="@style/tabTextFont"
-                android:layout_marginBottom="@dimen/_4sdp"
-                app:tabTextColor="@color/white">
-
-            </com.google.android.material.tabs.TabLayout>
-
         </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="bottom"
+            android:background="@color/basic"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorColor="@color/secondary"
+            app:tabIndicatorHeight="@dimen/_3sdp"
+            app:tabTextAppearance="@style/tabTextFont"
+            app:tabTextColor="@color/white">
+
+        </com.google.android.material.tabs.TabLayout>
     </LinearLayout>
 
 
