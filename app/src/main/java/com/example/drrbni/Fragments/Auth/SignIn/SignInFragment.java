@@ -2,14 +2,16 @@ package com.example.drrbni.Fragments.Auth.SignIn;
 
 import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
 import static com.example.drrbni.Constant.EMAIL;
+import static com.example.drrbni.Constant.TYPE_USER;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,20 +20,23 @@ import android.view.ViewGroup;
 
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
+import com.example.drrbni.ViewModel.ViewModel;
 import com.example.drrbni.databinding.FragmentSignInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class SignInFragment extends Fragment {
 
     private FragmentSignInBinding binding;
+    private ViewModel viewModel;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
 
@@ -49,6 +54,7 @@ public class SignInFragment extends Fragment {
         binding = FragmentSignInBinding
                 .inflate(getLayoutInflater(), container, false);
 
+        viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
 
@@ -65,24 +71,33 @@ public class SignInFragment extends Fragment {
                     Snackbar.make(view, "أدخل كلمة المرور", Snackbar.LENGTH_LONG).show();
                 } else {
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    fireStore.collection(COLLECTION_STUDENT_PROFILES).whereEqualTo(EMAIL, email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                    /*
+                    viewModel.init(COLLECTION_STUDENT_PROFILES,EMAIL,email);
+                    viewModel.getData().observe(requireActivity(), new Observer<List<QueryDocumentSnapshot>>() {
+                        @Override
+                        public void onChanged(List<QueryDocumentSnapshot> queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot snapshot:queryDocumentSnapshots){
+                                Log.d("ttt","snapshot: "+snapshot.toObject(Student.class).getEmail());
+                            }
+                            Log.d("ttt","---------------------------------");
+                        }
+                    });
+                     */
+
+
+                    fireStore.collection(COLLECTION_STUDENT_PROFILES).whereEqualTo(TYPE_USER, 1)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            mAuth.signInWithEmailAndPassword(email, password).
-                                    addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                NavController navController = Navigation.findNavController(binding.getRoot());
-                                                navController.navigate(R.id.action_loginFragment_to_mainFragment);
-                                                binding.progressBar.setVisibility(View.INVISIBLE);
-                                            } else {
-                                                binding.progressBar.setVisibility(View.VISIBLE);
-                                                Snackbar.make(view, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                                            }
-                                            binding.progressBar.setVisibility(View.INVISIBLE);
-                                        }
-                                    });
+                            if (task.isSuccessful()){
+                                Log.e("ttt","List User: "+task.getResult().getDocuments());
+                                //TODO فحص اذا الايميل الراجع يساوي الايميل المدخل
+                                SignIn(email,password,view);
+                            }else {
+                                Snackbar.make(view, "ليس لديك الصلاحية في الوصول الى هذا الحساب..تأكد من ادخال البيانات بشكل صحيح", Snackbar.LENGTH_LONG).show();
+                            }
                         }
                     });
 
@@ -100,6 +115,24 @@ public class SignInFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void SignIn(String email,String password,View view){
+        mAuth.signInWithEmailAndPassword(email, password).
+                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            NavController navController = Navigation.findNavController(binding.getRoot());
+                            navController.navigate(R.id.action_loginFragment_to_mainFragment);
+                            binding.progressBar.setVisibility(View.INVISIBLE);
+                        } else {
+                            binding.progressBar.setVisibility(View.VISIBLE);
+                            Snackbar.make(view, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                        }
+                        binding.progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
     }
 
     @Override

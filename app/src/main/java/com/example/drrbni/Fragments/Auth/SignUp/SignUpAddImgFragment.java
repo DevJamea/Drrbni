@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SignUpAddImgFragment extends Fragment {
 
     private FragmentSignUpAddImgBinding binding;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
     private FirebaseFirestore fireStore;
     private String imagePath;
 
@@ -44,7 +44,7 @@ public class SignUpAddImgFragment extends Fragment {
         binding = FragmentSignUpAddImgBinding
                 .inflate(getLayoutInflater(), container, false);
 
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
 
         String name = SignUpAddImgFragmentArgs.fromBundle(requireArguments()).getName();
@@ -72,35 +72,10 @@ public class SignUpAddImgFragment extends Fragment {
                 //TODO finish this fragment when navigate
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Student student = new Student
-                                                (email,imagePath,name,specialization,university,governorate,address,whatsApp,mAuth.getUid(),1);
 
-                                        fireStore.collection(COLLECTION_STUDENT_PROFILES).document(mAuth.getUid()).set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
+                    SignUpStudent(email,password,imagePath,name,specialization,university,governorate,
+                            address,whatsApp,auth.getUid(),1);
 
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d("ttt", "onFailure : " + e.getMessage());
-                                            }
-                                        });
-
-                                        NavController navController = Navigation.findNavController(binding.getRoot());
-                                        navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
-                                        binding.progressBar.setVisibility(View.INVISIBLE);
-                                    }
-                                    else {
-                                        binding.progressBar.setVisibility(View.INVISIBLE);
-                                    }
-                                }
-                            });
                 } else {
                     Snackbar.make(view, "تأكد من اضافة البيانات بشكل صحيح", Snackbar.LENGTH_LONG).show();
                 }
@@ -108,6 +83,45 @@ public class SignUpAddImgFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+    private void SignUpStudent(String email,String password,String imagePath,String name,String specialization,String university,
+                               String governorate,String address,String whatsApp,String UID,int typeUser){
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Student student = new Student
+                                    (email,imagePath,name,specialization,university,governorate,
+                                            address,whatsApp,UID,typeUser);
+
+                            StoreDataStudent(UID,student);
+
+                            NavController navController = Navigation.findNavController(binding.getRoot());
+                            navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
+                            binding.progressBar.setVisibility(View.INVISIBLE);
+                        }
+                        else {
+                            binding.progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
+    }
+
+    private void StoreDataStudent(String UID,Student student){
+        fireStore.collection(COLLECTION_STUDENT_PROFILES).document(UID)
+                .set(student)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("ttt", "onFailure : " + e.getMessage());
+            }
+        });
     }
 
     @Override
