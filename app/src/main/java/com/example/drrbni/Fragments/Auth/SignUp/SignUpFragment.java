@@ -1,27 +1,32 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.example.drrbni.Fragments.Auth.SignIn.LoginFragmentDirections;
 import com.example.drrbni.R;
+import com.example.drrbni.ViewModel.MyListener;
+import com.example.drrbni.ViewModel.MyViewModel;
 import com.example.drrbni.databinding.FragmentSignUpBinding;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SignUpFragment extends Fragment {
 
     private FragmentSignUpBinding binding;
+    private MyViewModel myViewModel;
     public SignUpFragment() {}
 
     public static SignUpFragment newInstance() {
@@ -30,15 +35,19 @@ public class SignUpFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSignUpBinding
                 .inflate(getLayoutInflater(),container,false);
 
-        String[] items = {"y.m" , "llk" , "ldmk"};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext() , android.R.layout.simple_list_item_1, items);
-        binding.spinner.setAdapter(adapter);
 
         binding.signUpBtnCompleteTheRegistrationProcess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,28 +55,71 @@ public class SignUpFragment extends Fragment {
                 String name = binding.signUpEtName.getText().toString().trim();
                 String email = binding.signUpEtEmail.getText().toString().trim();
                 String password = binding.signUpEtPassword.getText().toString().trim();
-               // String category = binding.signUpEtCategory.getText().toString().trim();
 
+                // فحص المدخلات
                 if (TextUtils.isEmpty(name)) {
                     Snackbar.make(view, "أدخل الاسم", Snackbar.LENGTH_LONG).show();
+                    return;
                 } else if (TextUtils.isEmpty(email)) {
                     Snackbar.make(view, "أدخل الايميل", Snackbar.LENGTH_LONG).show();
+                    return;
                 } else if (TextUtils.isEmpty(password)) {
                     Snackbar.make(view, "أدخل كلمة المرور", Snackbar.LENGTH_LONG).show();
-                } else if (password.length() < 6) {
-                    Snackbar.make(view, "أدخل كلمة المرور أكبر من 6 أحرف", Snackbar.LENGTH_LONG).show();
-                } else if (TextUtils.isEmpty(email)) {
-                    Snackbar.make(view, "حدد التخصص", Snackbar.LENGTH_LONG).show();
-                }else {
-                    NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate(LoginFragmentDirections
-                            .actionLoginFragmentToSignUpAddressFragment(name,email,password,""));
+                    return;
                 }
+
+                load();
+
+                myViewModel.register(email, password, new MyListener<FirebaseUser>() {
+                    @Override
+                    public void onValuePosted(FirebaseUser value) {
+
+                        //في حالة النجاح يرفع الداتا وينتقل للواجهة التالية
+                        myViewModel.storeNo1(value, name, new MyListener<Boolean>() {
+                            @Override
+                            public void onValuePosted(Boolean value) {
+                               if (value){
+                                   stopLoad();
+                                   NavController navController = Navigation.findNavController(binding.getRoot());
+                                   navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
+                               }
+                            }
+                        });
+
+                    }
+                }, new MyListener<String>() {
+                    @Override
+                    public void onValuePosted(String value) {
+
+                        //في حالة الفشل يرفع الداتا يظهر الخطأ
+                        if (!TextUtils.isEmpty(value)) {
+                            if (value.contains("password is invalid"))
+                                Snackbar.make(view, "كلمة مرور غير صالحة", Snackbar.LENGTH_LONG).show();
+                            else if (value.contains("badly formatted"))
+                                Snackbar.make(view, "البريد الألكتروني غير صالح", Snackbar.LENGTH_LONG).show();
+                            else if (value.contains("use by another account"))
+                                Snackbar.make(view, "البريد الألكتروني مستخدم", Snackbar.LENGTH_LONG).show();
+                            stopLoad();
+                        }
+                    }
+                });
             }
         });
 
 
         return binding.getRoot();
+    }
+
+    public void load(){
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.signUpBtnCompleteTheRegistrationProcess.setEnabled(false);
+        binding.signUpBtnCompleteTheRegistrationProcess.setClickable(false);
+    }
+
+    public void stopLoad(){
+        binding.progressBar.setVisibility(View.GONE);
+        binding.signUpBtnCompleteTheRegistrationProcess.setEnabled(true);
+        binding.signUpBtnCompleteTheRegistrationProcess.setClickable(true);
     }
 
     @Override

@@ -44,13 +44,8 @@ public class SplashScreenFragment extends Fragment {
             @Override
             public void run()
             {
-                if (mAuth.getCurrentUser() != null){
-                    NavController navController = Navigation.findNavController(binding.getRoot());
-                  //  navController.navigate(R.id.action_splashScreenFragment_to_homeActivity);
-                }else {
-                    NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate(R.id.action_splashScreen_to_onboarding);
-                }
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_splashScreen_to_onboarding);
             }
         },SPLASH_SCREEN_TIME_OUT);
 

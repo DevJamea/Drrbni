@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -27,17 +28,38 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/sign_up_et_university"
-            style="@style/editText"
-            android:layout_marginTop="@dimen/_24sdp"
-            android:hint="@string/university"
-            android:inputType="textEmailAddress" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:background="@drawable/edittext_background"
+            android:layout_margin="@dimen/_24sdp"
+            android:elevation="@dimen/_8sdp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/sign_up_et_specialization"
-            style="@style/editText"
-            android:hint="@string/specialization" />
+            <Spinner
+                android:id="@+id/sign_up_college"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/college_array"
+                android:theme="@style/spinner"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:layout_marginLeft="@dimen/_24sdp"
+            android:elevation="@dimen/_8sdp">
+
+            <Spinner
+                android:id="@+id/sign_up_major"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/majors_array"
+                android:theme="@style/spinner"/>
+
+        </FrameLayout>
 
 
         <RelativeLayout

@@ -83,14 +83,15 @@
         <!-- Color when pressed -->
         <item name="colorAccent">@color/white</item>
         <!-- Default color for the dropdown arrow and line -->
-        <item name="colorControlNormal">@color/white</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="colorControlNormal">@color/basic</item>
+        <item name="android:textColor">@color/basic</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 
     <style name="divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/_1sdp</item>
-        <item name="android:background">@color/subtitle_text</item>
+        <item name="android:background">@color/intro_description_color</item>
     </style>
 
     <!-- FAB -->

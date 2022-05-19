@@ -1,15 +1,11 @@
 package com.example.drrbni.Fragments.Auth.SignIn;
 
-import static com.example.drrbni.Constant.COLLECTION_STUDENT_PROFILES;
-import static com.example.drrbni.Constant.EMAIL;
+import static com.example.drrbni.Constant.COLLECTION_USERS_PROFILES;
 import static com.example.drrbni.Constant.TYPE_USER;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import android.text.TextUtils;
@@ -18,9 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModel.ViewModel;
+import com.example.drrbni.ViewModel.MyViewModel;
 import com.example.drrbni.databinding.FragmentSignInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,15 +23,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class SignInFragment extends Fragment {
 
     private FragmentSignInBinding binding;
-    private ViewModel viewModel;
+    private MyViewModel myViewModel;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
 
@@ -54,9 +46,7 @@ public class SignInFragment extends Fragment {
         binding = FragmentSignInBinding
                 .inflate(getLayoutInflater(), container, false);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
-        mAuth = FirebaseAuth.getInstance();
-        fireStore = FirebaseFirestore.getInstance();
+
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +63,8 @@ public class SignInFragment extends Fragment {
                     binding.progressBar.setVisibility(View.VISIBLE);
 
                     /*
-                    viewModel.init(COLLECTION_STUDENT_PROFILES,EMAIL,email);
-                    viewModel.getData().observe(requireActivity(), new Observer<List<QueryDocumentSnapshot>>() {
+                    myViewModel.init(COLLECTION_USERS_PROFILES,EMAIL,email);
+                    myViewModel.getData().observe(requireActivity(), new Observer<List<QueryDocumentSnapshot>>() {
                         @Override
                         public void onChanged(List<QueryDocumentSnapshot> queryDocumentSnapshots) {
                             for (QueryDocumentSnapshot snapshot:queryDocumentSnapshots){
@@ -86,7 +76,7 @@ public class SignInFragment extends Fragment {
                      */
 
 
-                    fireStore.collection(COLLECTION_STUDENT_PROFILES).whereEqualTo(TYPE_USER, 1)
+                    fireStore.collection(COLLECTION_USERS_PROFILES).whereEqualTo(TYPE_USER, 1)
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override

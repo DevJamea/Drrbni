@@ -1,25 +1,41 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.drrbni.R;
+import com.example.drrbni.ViewModel.MyListener;
+import com.example.drrbni.ViewModel.MyViewModel;
 import com.example.drrbni.databinding.FragmentSignUpAddressBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpAddressFragment extends Fragment {
 
     private FragmentSignUpAddressBinding binding;
+    private MyViewModel myViewModel;
+
     public SignUpAddressFragment() {}
 
     public static SignUpAddressFragment newInstance() {
-        SignUpAddressFragment fragment = new SignUpAddressFragment();
-        return fragment;
+        return new SignUpAddressFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,30 +43,49 @@ public class SignUpAddressFragment extends Fragment {
         binding = FragmentSignUpAddressBinding
                 .inflate(getLayoutInflater(),container,false);
 
-        String name = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getName();
-        String email = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getEmail();
-        String password = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getPassword();
-        String category = SignUpAddressFragmentArgs.fromBundle(requireArguments()).getCategory();
 
         binding.signUpBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String governorate = binding.signUpEtGovernorate.getText().toString().trim();
+                String governorate = binding.signUpGovernorate.getSelectedItem().toString();;
                 String address = binding.signUpEtAddress.getText().toString().trim();
 
-                if (governorate.isEmpty()) {
+                if (binding.signUpGovernorate.getSelectedItemPosition() < 1) {
                     Snackbar.make(view, "حدد المحافظة", Snackbar.LENGTH_LONG).show();
-                } else if (address.isEmpty()) {
+                    return;
+                } else if (TextUtils.isEmpty(address)) {
                     Snackbar.make(view, "أدخل العنوان", Snackbar.LENGTH_LONG).show();
-                } else {
-                    NavController navController = Navigation.findNavController(binding.getRoot());
-                   navController.navigate(SignUpAddressFragmentDirections.actionSignUpAddressFragmentToEducationInformationFragment(
-                           name, email, password, category, governorate, address));
+                    return;
                 }
+
+                load();
+                myViewModel.storeNo2(governorate, address, new MyListener<Boolean>() {
+                    @Override
+                    public void onValuePosted(Boolean value) {
+                        if (value){
+                            stopLoad();
+                            NavController navController = Navigation.findNavController(binding.getRoot());
+                            navController.navigate(R.id.action_signUpAddressFragment_to_educationInformationFragment);
+                        }
+                    }
+                });
+
             }
         });
 
         return binding.getRoot();
+    }
+
+    public void load(){
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.signUpBtnNext.setEnabled(false);
+        binding.signUpBtnNext.setClickable(false);
+    }
+
+    public void stopLoad(){
+        binding.progressBar.setVisibility(View.GONE);
+        binding.signUpBtnNext.setEnabled(true);
+        binding.signUpBtnNext.setClickable(true);
     }
 
     @Override

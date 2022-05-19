@@ -1,23 +1,40 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.drrbni.R;
+import com.example.drrbni.ViewModel.MyListener;
+import com.example.drrbni.ViewModel.MyViewModel;
 import com.example.drrbni.databinding.FragmentSignUpContactInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpContactInformationFragment extends Fragment {
 
     private FragmentSignUpContactInformationBinding binding;
+    private MyViewModel myViewModel;
+    
     public SignUpContactInformationFragment() {}
 
     public static SignUpContactInformationFragment newInstance() {
-        SignUpContactInformationFragment fragment = new SignUpContactInformationFragment();
-        return fragment;
+        return new SignUpContactInformationFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
     }
 
     @Override
@@ -26,32 +43,47 @@ public class SignUpContactInformationFragment extends Fragment {
         binding = FragmentSignUpContactInformationBinding
                 .inflate(getLayoutInflater(),container,false);
 
-        String name = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getName();
-        String email = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getEmail();
-        String password = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getPassword();
-        String category = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getCategory();
-        String university = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getUniversity();
-        String specialization = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getSpecialization();
-        String address = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getAddress();
-        String governorate = SignUpContactInformationFragmentArgs.fromBundle(requireArguments()).getGovernorate();
+
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String whatsApp = binding.etWhatsapp.getText().toString().trim();
 
-                if (whatsApp.isEmpty()) {
-                    Snackbar.make(view, "أدخل رقم الواتس اب", Snackbar.LENGTH_LONG).show();
-                } else {
-                    NavController navController = Navigation.findNavController(binding.getRoot());
-                    navController.navigate(SignUpContactInformationFragmentDirections
-                            .actionSignUpContactInformationFragmentToSignUpAddImgFragment
-                                    (name,email,password,category,governorate,address,university,specialization,whatsApp));
+                if (TextUtils.isEmpty(whatsApp)){
+                    Snackbar.make(view, "أدخل رقم الواتس آب ", Snackbar.LENGTH_LONG).show();
+                    return;
                 }
+
+                load();
+
+                myViewModel.storeNo4(whatsApp, new MyListener<Boolean>() {
+                    @Override
+                    public void onValuePosted(Boolean value) {
+                        if (value){
+                            stopLoad();
+                            NavController navController = Navigation.findNavController(binding.getRoot());
+                            navController.navigate(R.id.action_signUpContactInformationFragment_to_signUpAddImgFragment);
+                        }
+                    }
+                });
+
             }
         });
 
         return binding.getRoot();
+    }
+
+    public void load(){
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnNext.setEnabled(false);
+        binding.btnNext.setClickable(false);
+    }
+
+    public void stopLoad(){
+        binding.progressBar.setVisibility(View.GONE);
+        binding.btnNext.setEnabled(true);
+        binding.btnNext.setClickable(true);
     }
 
     @Override

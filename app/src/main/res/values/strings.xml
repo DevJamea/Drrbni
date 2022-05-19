@@ -87,11 +87,11 @@
     <string name="whatsapp_num">+09720208783</string>
     <string name="education_information">معلومات التعليم</string>
     <string name="university">الجامعة</string>
-    <string name="specialization">التخصص</string>
 
 
-    <string-array name="employment_array">
-        <item>كل المجالات</item>
+
+    <string-array name="majors_array">
+        <item>أختر التخصص</item>
         <item>تكنولوجيا المعلومات</item>
         <item>المحاسبة</item>
         <item>الصحافة والاعلام</item>
@@ -101,12 +101,31 @@
         <item>البلديات</item>
     </string-array>
 
-    <string-array name="location_array">
-        <item>كل المناطق</item>
+    <string-array name="governorate_array">
+        <item>أختر المحافظة</item>
         <item>شمال غزة</item>
         <item>غزة</item>
         <item>الوسطى</item>
         <item>خانيونس</item>
+        <item>رفح</item>
+    </string-array>
+
+
+    <string-array name="college_array">
+        <item>أختر جامعة</item>
+        <item>الجامعة الإسلامية</item>
+        <item>جامعة الأقصى</item>
+        <item>جامعة فلسطين</item>
+        <item>جامعة القدس المفتوحة</item>
+        <item>بوليتكنك فلسطين</item>
+        <item>جامعة الإسراء</item>
+        <item>جامعة غزة</item>
+        <item>جامعة الأمة</item>
+        <item>الكلية الجامعية للعلوم التطبيقية</item>
+        <item>الكلية الجامعية للعلوم والتكنولوجيا</item>
+        <item>كلية فلسطين التقنية - دير البلح</item>
+        <item>كلية العودة الجامعية</item>
+        <item>رفح</item>
         <item>رفح</item>
     </string-array>
 

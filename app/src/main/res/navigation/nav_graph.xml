@@ -71,50 +71,11 @@
         android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
         android:label="signUpAddressFragment">
 
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="password"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="category"
-            app:argType="string"
-            app:nullable="true" />
+
 
         <action
             android:id="@+id/action_signUpAddressFragment_to_educationInformationFragment"
             app:destination="@id/educationInformationFragment">
-            <argument
-                android:name="name"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="email"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="password"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="category"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="governorate"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="address"
-                app:argType="string"
-                app:nullable="true" />
         </action>
 
     </fragment>
@@ -123,43 +84,6 @@
         android:id="@+id/signUpAddImgFragment"
         android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddImgFragment"
         android:label="SignUpAddImgFragment">
-
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="password"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="category"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="governorate"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="address"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="university"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="specialization"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="whatsapp"
-            app:argType="string"
-            app:nullable="true" />
 
         <action
             android:id="@+id/action_signUpAddImgFragment_to_mainFragment"
@@ -176,143 +100,23 @@
         android:id="@+id/signUpContactInformationFragment"
         android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpContactInformationFragment"
         android:label="SignUpContactInformationFragment">
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="password"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="category"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="governorate"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="address"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="university"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="specialization"
-            app:argType="string"
-            app:nullable="true" />
+
         <action
             android:id="@+id/action_signUpContactInformationFragment_to_signUpAddImgFragment"
             app:destination="@id/signUpAddImgFragment">
-            <argument
-                android:name="name"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="email"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="password"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="category"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="governorate"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="address"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="university"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="specialization"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="whatsapp"
-                app:argType="string"
-                app:nullable="true" />
+
         </action>
     </fragment>
     <fragment
         android:id="@+id/educationInformationFragment"
         android:name="com.example.drrbni.Fragments.Auth.SignUp.EducationInformationFragment"
         android:label="EducationInformationFragment">
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="email"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="password"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="category"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="governorate"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="address"
-            app:argType="string"
-            app:nullable="true" />
+
 
         <action
             android:id="@+id/action_educationInformationFragment_to_signUpContactInformationFragment"
             app:destination="@id/signUpContactInformationFragment">
-            <argument
-                android:name="name"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="email"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="password"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="category"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="governorate"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="address"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="university"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="specialization"
-                app:argType="string"
-                app:nullable="true" />
+
         </action>
 
     </fragment>

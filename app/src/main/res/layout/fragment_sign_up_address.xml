@@ -27,12 +27,23 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/sign_up_et_governorate"
-            style="@style/editText"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:background="@drawable/edittext_background"
             android:layout_marginTop="@dimen/_24sdp"
-            android:hint="@string/governorate"
-            android:inputType="textEmailAddress"/>
+            android:layout_marginLeft="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:elevation="@dimen/_8sdp">
+
+            <Spinner
+                android:id="@+id/sign_up_governorate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/governorate_array"
+                android:theme="@style/spinner"/>
+
+        </FrameLayout>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_et_address"

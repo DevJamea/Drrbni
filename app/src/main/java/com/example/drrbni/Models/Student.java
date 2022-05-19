@@ -1,19 +1,19 @@
 package com.example.drrbni.Models;
 
 public class Student {
-    private String email, img, name, specialization, university, governorate, address, linkWhatsApp, UserId;
+    private String email, img, name, major, university, governorate, address, linkWhatsApp, userId;
     private int typeUser;
 
     public Student(String email, String img, String name, String specialization, String university, String governorate, String address, String linkWhatsApp, String userId, int typeUser) {
         this.email = email;
         this.img = img;
         this.name = name;
-        this.specialization = specialization;
+        this.major = specialization;
         this.university = university;
         this.governorate = governorate;
         this.address = address;
         this.linkWhatsApp = linkWhatsApp;
-        UserId = userId;
+        this.userId = userId;
         this.typeUser = typeUser;
     }
 
@@ -43,12 +43,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getSpecialization() {
-        return specialization;
+    public String getMajor() {
+        return major;
     }
 
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getUniversity() {
@@ -84,11 +84,11 @@ public class Student {
     }
 
     public String getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(String userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public int getTypeUser() {

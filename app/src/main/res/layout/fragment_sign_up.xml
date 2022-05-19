@@ -33,22 +33,7 @@
             android:hint="@string/password"
             android:inputType="textPassword" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_52sdp"
-            android:layout_margin="@dimen/_24sdp"
-            app:boxBackgroundColor="@color/btn_cancel"
-            android:elevation="@dimen/_4sdp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:hint="@string/major">
 
-        <AutoCompleteTextView
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="none" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
         <RelativeLayout

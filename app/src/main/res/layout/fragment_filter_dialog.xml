@@ -39,7 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_marginRight="@dimen/_16sdp"
-                android:entries="@array/employment_array"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:theme="@style/spinner"/>
 
@@ -61,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_marginRight="@dimen/_16sdp"
-                android:entries="@array/location_array"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:theme="@style/spinner"/>
 
