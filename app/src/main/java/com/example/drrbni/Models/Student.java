@@ -1,19 +1,19 @@
 package com.example.drrbni.Models;
 
 public class Student {
-    private String email, img, name, major, university, governorate, address, linkWhatsApp, userId;
+    private String email, img, name, major, college, governorate, address, whatsApp, UserId;
     private int typeUser;
 
-    public Student(String email, String img, String name, String specialization, String university, String governorate, String address, String linkWhatsApp, String userId, int typeUser) {
+    public Student(String email, String img, String name, String specialization, String college, String governorate, String address, String whatsApp, String UserId, int typeUser) {
         this.email = email;
         this.img = img;
         this.name = name;
         this.major = specialization;
-        this.university = university;
+        this.college = college;
         this.governorate = governorate;
         this.address = address;
-        this.linkWhatsApp = linkWhatsApp;
-        this.userId = userId;
+        this.whatsApp = whatsApp;
+        this.UserId = this.UserId;
         this.typeUser = typeUser;
     }
 
@@ -51,12 +51,12 @@ public class Student {
         this.major = major;
     }
 
-    public String getUniversity() {
-        return university;
+    public String getCollege() {
+        return college;
     }
 
-    public void setUniversity(String university) {
-        this.university = university;
+    public void setCollege(String college) {
+        this.college = college;
     }
 
     public String getGovernorate() {
@@ -75,20 +75,20 @@ public class Student {
         this.address = address;
     }
 
-    public String getLinkWhatsApp() {
-        return linkWhatsApp;
+    public String getWhatsApp() {
+        return whatsApp;
     }
 
-    public void setLinkWhatsApp(String linkWhatsApp) {
-        this.linkWhatsApp = linkWhatsApp;
+    public void setWhatsApp(String whatsApp) {
+        this.whatsApp = whatsApp;
     }
 
     public String getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.UserId = userId;
     }
 
     public int getTypeUser() {

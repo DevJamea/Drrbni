@@ -14,15 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModel.MyListener;
-import com.example.drrbni.ViewModel.MyViewModel;
+import com.example.drrbni.ViewModels.AddressViewModel;
+import com.example.drrbni.ViewModels.MyListener;
+
 import com.example.drrbni.databinding.FragmentSignUpAddressBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpAddressFragment extends Fragment {
 
     private FragmentSignUpAddressBinding binding;
-    private MyViewModel myViewModel;
+    private AddressViewModel addressViewModel;
 
     public SignUpAddressFragment() {}
 
@@ -34,7 +35,7 @@ public class SignUpAddressFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        addressViewModel = new ViewModelProvider(this).get(AddressViewModel.class);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class SignUpAddressFragment extends Fragment {
                 }
 
                 load();
-                myViewModel.storeNo2(governorate, address, new MyListener<Boolean>() {
+                addressViewModel.storeData(governorate, address, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
                         if (value){
@@ -69,6 +70,7 @@ public class SignUpAddressFragment extends Fragment {
                         }
                     }
                 });
+
 
             }
         });

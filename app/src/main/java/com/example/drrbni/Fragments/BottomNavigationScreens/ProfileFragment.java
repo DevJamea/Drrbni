@@ -50,7 +50,7 @@ public class ProfileFragment extends Fragment {
 
        // getInfoProfile();
 //        binding.studentName.setText(getInfoProfile().getEmail());
-//        binding.collageName.setText(getInfoProfile().getUniversity());
+//        binding.collageName.setText(getInfoProfile().getCollege());
 //        binding.majorName.setText(getInfoProfile().getMajor());
 
         return binding.getRoot();
@@ -77,12 +77,12 @@ public class ProfileFragment extends Fragment {
                         if (value != null) {
                             student.setEmail(value.getString(EMAIL));
                             student.setName(value.getString(NAME));
-                            student.setUniversity(value.getString(UNIVERSITY));
+                            student.setCollege(value.getString(UNIVERSITY));
                             student.setMajor(value.getString(MAJOR));
 
                             Log.d("ttt", "email: " + value.getString(EMAIL));
                             Log.d("ttt", "Specialization: " + student.getMajor());
-                            Log.d("ttt", "University: " + student.getUniversity());
+                            Log.d("ttt", "University: " + student.getCollege());
                         } else {
                             Log.e("ttt", "value is null");
                         }

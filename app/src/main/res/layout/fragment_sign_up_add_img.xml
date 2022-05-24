@@ -53,41 +53,52 @@
                 style="@style/blue_btn"
                 android:layout_below="@+id/tv_add_img"
                 android:layout_marginLeft="@dimen/_24sdp"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_32sdp"
                 android:layout_marginRight="@dimen/_24sdp"
                 android:text="@string/add_img" />
 
 
 
             <RelativeLayout
+                android:id="@+id/add_img_layout_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/add_img_btn_add"
-                >
+                android:layout_marginTop="@dimen/_16sdp"
+                android:visibility="gone"
+                android:layout_below="@+id/add_img_btn_add">
 
                 <Button
-                    android:id="@+id/add_img_btn_skip"
+                    android:id="@+id/add_img_btn_next"
                     style="@style/blue_btn"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_24sdp"
                     android:layout_marginRight="@dimen/_24sdp"
-                    android:layout_marginBottom="@dimen/_40sdp"
-                    android:backgroundTint="@color/btn_cancel"
-                    android:layout_centerVertical="true"
-                    android:text="@string/skip" />
+                    android:backgroundTint="@color/purple"
+                    android:text="@string/next" />
 
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/progressBar"
                     style="@style/ProgressBar"
-                    android:layout_alignEnd="@+id/add_img_btn_skip"
+                    android:layout_alignEnd="@+id/add_img_btn_next"
                     android:layout_centerVertical="true"
                     app:indicatorColor="@color/white"
                     app:indicatorSize="25dp"
                     app:trackCornerRadius="5dp" />
             </RelativeLayout>
 
-
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_img_btn_skip"
+            style="@style/blue_btn"
+            android:layout_marginLeft="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:backgroundTint="@color/btn_cancel"
+            android:layout_centerVertical="true"
+            android:text="@string/skip" />
 
     </LinearLayout>
 

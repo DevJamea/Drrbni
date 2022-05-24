@@ -1,4 +1,4 @@
-package com.example.drrbni.ViewModel;
+package com.example.drrbni.ViewModels;
 
 public interface MyListener<T> {
     void onValuePosted(T value);

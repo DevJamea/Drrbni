@@ -14,15 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModel.MyListener;
-import com.example.drrbni.ViewModel.MyViewModel;
+import com.example.drrbni.ViewModels.ContactInformationViewModel;
+import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentSignUpContactInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpContactInformationFragment extends Fragment {
 
     private FragmentSignUpContactInformationBinding binding;
-    private MyViewModel myViewModel;
+    private ContactInformationViewModel contactInformationViewModel;
     
     public SignUpContactInformationFragment() {}
 
@@ -34,7 +34,7 @@ public class SignUpContactInformationFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        contactInformationViewModel = new ViewModelProvider(this).get(ContactInformationViewModel.class);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SignUpContactInformationFragment extends Fragment {
 
                 load();
 
-                myViewModel.storeNo4(whatsApp, new MyListener<Boolean>() {
+                contactInformationViewModel.storeData(whatsApp, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
                         if (value){

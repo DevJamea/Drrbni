@@ -13,15 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModel.MyListener;
-import com.example.drrbni.ViewModel.MyViewModel;
+import com.example.drrbni.ViewModels.EducationInformationViewModel;
+import com.example.drrbni.ViewModels.MyListener;
+
 import com.example.drrbni.databinding.FragmentEducationInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class EducationInformationFragment extends Fragment {
 
     private FragmentEducationInformationBinding binding;
-    private MyViewModel myViewModel;
+    private EducationInformationViewModel educationInformationViewModel;
 
     public EducationInformationFragment() {}
 
@@ -33,7 +34,7 @@ public class EducationInformationFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        educationInformationViewModel = new ViewModelProvider(this).get(EducationInformationViewModel.class);
     }
 
 
@@ -59,7 +60,7 @@ public class EducationInformationFragment extends Fragment {
 
                 load();
 
-                myViewModel.storeNo3(college, major, new MyListener<Boolean>() {
+                educationInformationViewModel.storeData(college, major, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
                         if (value){

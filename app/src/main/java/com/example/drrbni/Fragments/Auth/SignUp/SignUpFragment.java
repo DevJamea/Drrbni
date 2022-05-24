@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.TextUtils;
 
@@ -15,18 +16,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.drrbni.MainActivity;
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModel.MyListener;
-import com.example.drrbni.ViewModel.MyViewModel;
+import com.example.drrbni.ViewModels.MyListener;
+import com.example.drrbni.ViewModels.SignUpViewModel;
 import com.example.drrbni.databinding.FragmentSignUpBinding;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.concurrent.ScheduledExecutorService;
 
 
 public class SignUpFragment extends Fragment {
 
     private FragmentSignUpBinding binding;
-    private MyViewModel myViewModel;
+    private SignUpViewModel signUpViewModel;
+    private FirebaseAuth firebaseAuth;
+    private Fragment fragment;
     public SignUpFragment() {}
 
     public static SignUpFragment newInstance() {
@@ -38,8 +45,9 @@ public class SignUpFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
-
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        firebaseAuth = FirebaseAuth.getInstance();
+        fragment = this;
     }
 
     @Override
@@ -70,12 +78,17 @@ public class SignUpFragment extends Fragment {
 
                 load();
 
-                myViewModel.register(email, password, new MyListener<FirebaseUser>() {
+                if (firebaseAuth.getCurrentUser() != null){
+                    NavController navController = Navigation.findNavController(binding.getRoot());
+                    navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
+                }
+
+                signUpViewModel.signUp(email, password, new MyListener<FirebaseUser>() {
                     @Override
                     public void onValuePosted(FirebaseUser value) {
 
                         //في حالة النجاح يرفع الداتا وينتقل للواجهة التالية
-                        myViewModel.storeNo1(value, name, new MyListener<Boolean>() {
+                        signUpViewModel.storeData(value, name, new MyListener<Boolean>() {
                             @Override
                             public void onValuePosted(Boolean value) {
                                if (value){
