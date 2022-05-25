@@ -33,7 +33,8 @@ public class SignUpAddImgFragment extends Fragment {
     private AddImfViewModel addImfViewModel;
     private Uri image;
 
-    public SignUpAddImgFragment() {}
+    public SignUpAddImgFragment() {
+    }
 
     public static SignUpAddImgFragment newInstance() {
         return new SignUpAddImgFragment();
@@ -45,28 +46,28 @@ public class SignUpAddImgFragment extends Fragment {
 
         addImfViewModel = new ViewModelProvider(this).get(AddImfViewModel.class);
 
-        getImg = registerForActivityResult(
-                new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri result) {
-                        if (result != null) {
-                            binding.addImgLayoutBtn.setVisibility(View.VISIBLE);
-                            binding.profileImage.setImageURI(result);
-                            image = result;
+            getImg = registerForActivityResult(
+                    new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+                        @Override
+                        public void onActivityResult(Uri result) {
+                            if (result != null) {
+                                binding.addImgLayoutBtn.setVisibility(View.VISIBLE);
+                                binding.profileImage.setImageURI(result);
+                                image = result;
+                            }
+                        }
+                    });
+
+            permission = registerForActivityResult(
+                    new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+                        @Override
+                        public void onActivityResult(Boolean result) {
+                            if (result)
+                                getImg.launch("image/*");
+
                         }
                     }
-                });
-
-         permission = registerForActivityResult(
-                 new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
-                     @Override
-                     public void onActivityResult(Boolean result) {
-                         if (result)
-                             getImg.launch("image/*");
-
-                     }
-                 }
-         );
+        );
     }
 
     @Override
@@ -91,7 +92,7 @@ public class SignUpAddImgFragment extends Fragment {
                 addImfViewModel.storeData(image, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value){
+                        if (value) {
                             stopLoad();
                             NavController navController = Navigation.findNavController(binding.getRoot());
                             navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
@@ -123,13 +124,14 @@ public class SignUpAddImgFragment extends Fragment {
 
         return binding.getRoot();
     }
-    public void load(){
+
+    public void load() {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.addImgBtnNext.setEnabled(false);
         binding.addImgBtnNext.setClickable(false);
     }
 
-    public void stopLoad(){
+    public void stopLoad() {
         binding.progressBar.setVisibility(View.GONE);
         binding.addImgBtnNext.setEnabled(true);
         binding.addImgBtnNext.setClickable(true);

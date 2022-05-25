@@ -1,40 +1,54 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
+import android.net.Uri;
 import android.os.Bundle;
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.drrbni.Adapters.JobAdapter;
+import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
+import com.example.drrbni.ViewModels.MyListener;
+import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private FirebaseAuth auth;
-    private FirebaseUser currentUser;
-    private FirebaseFirestore fireStore;
-    private Student student;
-    public ProfileFragment() {}
+    private ProfileViewModel profileViewModel;
+    private JobAdapter adapter;
+
+    public ProfileFragment() {
+    }
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding
                 .inflate(getLayoutInflater(), container, false);
+
+        auth = FirebaseAuth.getInstance();
 
         binding.addJob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,14 +58,9 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
-        fireStore = FirebaseFirestore.getInstance();
+        getInfoProfile(auth.getCurrentUser().getUid());
+        getJobs(auth.getCurrentUser().getUid());
 
-       // getInfoProfile();
-//        binding.studentName.setText(getInfoProfile().getEmail());
-//        binding.collageName.setText(getInfoProfile().getCollege());
-//        binding.majorName.setText(getInfoProfile().getMajor());
 
         return binding.getRoot();
     }
@@ -62,33 +71,54 @@ public class ProfileFragment extends Fragment {
         binding = null;
     }
 
-    /*private Student getInfoProfile() {
-        fireStore.collection(COLLECTION_USERS_PROFILES)
-                .document(currentUser.getUid())
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+    void getInfoProfile(String uid) {
+        profileViewModel.getInfoProfile(uid, new MyListener<Student>() {
+            @Override
+            public void onValuePosted(Student value) {
+                if (value.getImg() == null){
+                    binding.appBarImage.setImageResource(R.drawable.defult_img_student);
+                }else {
+                    binding.appBarImage.setImageURI(Uri.parse(value.getImg()));
+                }
+                binding.studentName.setText(value.getName());
+                binding.collageName.setText(value.getCollege());
+                binding.majorName.setText(value.getMajor());
+                binding.studentEmail.setText(value.getEmail());
+                binding.studentWhatsapp.setText(value.getWhatsApp());
+            }
+        }, new MyListener<Boolean>() {
+            @Override
+            public void onValuePosted(Boolean value) {
+
+            }
+        });
+    }
+
+    void getJobs(String UID){
+        profileViewModel.getJobs(UID, new MyListener<List<Job>>() {
+            @Override
+            public void onValuePosted(List<Job> value) {
+                adapter = new JobAdapter(value, new MyListener<Job>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            Log.w("ttt", "error" + error);
-                            return;
-                        }
+                    public void onValuePosted(Job value) {
 
-                        student = new Student();
-                        if (value != null) {
-                            student.setEmail(value.getString(EMAIL));
-                            student.setName(value.getString(NAME));
-                            student.setCollege(value.getString(UNIVERSITY));
-                            student.setMajor(value.getString(MAJOR));
-
-                            Log.d("ttt", "email: " + value.getString(EMAIL));
-                            Log.d("ttt", "Specialization: " + student.getMajor());
-                            Log.d("ttt", "University: " + student.getCollege());
-                        } else {
-                            Log.e("ttt", "value is null");
-                        }
                     }
                 });
-        return student;
-    }*/
+                initRV();
+            }
+        }, new MyListener<Boolean>() {
+            @Override
+            public void onValuePosted(Boolean value) {
+
+            }
+        });
+    }
+
+    void initRV(){
+        binding.rvJobs.setAdapter(adapter);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false);
+        binding.rvJobs.setLayoutManager(lm);
+        binding.rvJobs.setHasFixedSize(true);
+    }
 
 }

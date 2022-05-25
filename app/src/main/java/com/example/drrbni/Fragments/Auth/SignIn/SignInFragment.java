@@ -36,7 +36,6 @@ public class SignInFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
 
     }
@@ -47,8 +46,6 @@ public class SignInFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSignInBinding
                 .inflate(getLayoutInflater(), container, false);
-
-
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

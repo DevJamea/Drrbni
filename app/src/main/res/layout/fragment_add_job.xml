@@ -67,29 +67,15 @@
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent" />
 
-               <TextView
-                   android:id="@+id/add_job_name"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/_16sdp"
-                   android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                   android:text="@string/add"
-                   android:textColor="@color/basic"
-                   android:textSize="@dimen/_12sdp"
-                   app:layout_constraintBaseline_toBaselineOf="@+id/job_name"
-                   app:layout_constraintStart_toStartOf="parent" />
-
-               <ImageView
-                   android:id="@+id/imageView"
-                   android:layout_width="@dimen/_80sdp"
-                   android:layout_height="@dimen/_80sdp"
-                   android:layout_marginTop="@dimen/_24sdp"
-                   android:layout_marginBottom="@dimen/_16sdp"
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/et_job_name"
+                   style="@style/editText"
+                   android:layout_margin="@dimen/_16sdp"
+                   android:inputType="text"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/job_name"
-                   android:src="@drawable/ic_job_name" />
+                   app:layout_constraintTop_toBottomOf="@+id/job_name" />
            </androidx.constraintlayout.widget.ConstraintLayout>
        </androidx.cardview.widget.CardView>
 
@@ -120,28 +106,28 @@
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent" />
 
-               <TextView
-                   android:id="@+id/add_major"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/_16sdp"
-                   android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                   android:text="@string/add_major"
-                   android:textColor="@color/basic"
-                   android:textSize="@dimen/_12sdp"
-                   app:layout_constraintBaseline_toBaselineOf="@+id/major"
-                   app:layout_constraintStart_toStartOf="parent" />
-
-               <ImageView
-                   android:layout_width="@dimen/_80sdp"
-                   android:layout_height="@dimen/_80sdp"
-                   android:layout_marginTop="@dimen/_24sdp"
-                   android:layout_marginBottom="@dimen/_16sdp"
+               <FrameLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/_52sdp"
+                   android:layout_margin="@dimen/_16sdp"
+                   android:background="@drawable/edittext_background"
+                   android:elevation="@dimen/_8sdp"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/major"
-                   android:src="@drawable/ic_major" />
+                   app:layout_constraintTop_toBottomOf="@+id/major">
+
+                   <Spinner
+                       android:id="@+id/sp_major"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_margin="@dimen/_16sdp"
+                       android:entries="@array/majors_array"
+                       android:theme="@style/spinner"
+                       />
+
+               </FrameLayout>
+
            </androidx.constraintlayout.widget.ConstraintLayout>
        </androidx.cardview.widget.CardView>
 
@@ -172,28 +158,16 @@
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent" />
 
-               <TextView
-                   android:id="@+id/add_link"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/_16sdp"
-                   android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                   android:text="@string/add"
-                   android:textColor="@color/basic"
-                   android:textSize="@dimen/_12sdp"
-                   app:layout_constraintBaseline_toBaselineOf="@+id/job_link"
-                   app:layout_constraintStart_toStartOf="parent" />
 
-               <ImageView
-                   android:layout_width="@dimen/_80sdp"
-                   android:layout_height="@dimen/_80sdp"
-                   android:layout_marginTop="@dimen/_24sdp"
-                   android:layout_marginBottom="@dimen/_16sdp"
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/et_job_link"
+                   style="@style/editText"
+                   android:layout_margin="@dimen/_16sdp"
+                   android:inputType="text"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/job_link"
-                   android:src="@drawable/ic_link" />
+                   app:layout_constraintTop_toBottomOf="@+id/job_link" />
 
            </androidx.constraintlayout.widget.ConstraintLayout>
        </androidx.cardview.widget.CardView>
@@ -225,32 +199,21 @@
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent" />
 
-               <TextView
-                   android:id="@+id/add_description"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/_16sdp"
-                   android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                   android:text="@string/add_description"
-                   android:textColor="@color/basic"
-                   android:textSize="@dimen/_12sdp"
-                   app:layout_constraintBaseline_toBaselineOf="@+id/description"
-                   app:layout_constraintStart_toStartOf="parent" />
-
-               <ImageView
-                   android:layout_width="@dimen/_80sdp"
-                   android:layout_height="@dimen/_80sdp"
-                   android:layout_marginTop="@dimen/_24sdp"
-                   android:layout_marginBottom="@dimen/_16sdp"
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/et_description"
+                   style="@style/editText"
+                   android:layout_margin="@dimen/_16sdp"
+                   android:inputType="text"
+                   android:maxLines="3"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/description"
-                   android:src="@drawable/ic_job_description" />
+                   app:layout_constraintTop_toBottomOf="@+id/description" />
            </androidx.constraintlayout.widget.ConstraintLayout>
        </androidx.cardview.widget.CardView>
 
        <Button
+           android:id="@+id/btn_add_job"
            style="@style/blue_btn"
            android:text="@string/add"
            android:layout_marginLeft="@dimen/_16sdp"

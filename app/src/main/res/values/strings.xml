@@ -101,6 +101,8 @@
         <item>البلديات</item>
     </string-array>
 
+
+
     <string-array name="governorate_array">
         <item>أختر المحافظة</item>
         <item>شمال غزة</item>
