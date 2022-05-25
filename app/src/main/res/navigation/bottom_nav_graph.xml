@@ -33,12 +33,40 @@
             <action
                 android:id="@+id/action_profileFragment_to_addJobFragment"
                 app:destination="@id/addJobFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_editProfileFragment"
+                app:destination="@id/editProfileFragment" />
         </fragment>
         <fragment
             android:id="@+id/addJobFragment"
             android:name="com.example.drrbni.Fragments.AddJobFragment"
             android:label="fragment_add_job"
             tools:layout="@layout/fragment_add_job" />
+        <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.example.drrbni.Fragments.EditProfileFragment"
+            android:label="EditProfileFragment"
+            tools:layout="@layout/fragment_edit_profile"
+            >
+            <action
+                android:id="@+id/action_editProfileFragment_to_signUpContactInformationFragment2"
+                app:destination="@id/signUpContactInformationFragment" />
+            <action
+                android:id="@+id/action_editProfileFragment_to_signUpAddressFragment"
+                app:destination="@id/signUpAddressFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpContactInformationFragment"
+            android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpContactInformationFragment"
+            android:label="SignUpContactInformationFragment"
+            tools:layout="@layout/fragment_sign_up_contact_information"
+            />
+        <fragment
+            android:id="@+id/signUpAddressFragment"
+            android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
+            android:label="SignUpAddressFragment"
+            tools:layout="@layout/fragment_sign_up_address"
+            />
     </navigation>
 
     <navigation android:id="@+id/categoriesNested"

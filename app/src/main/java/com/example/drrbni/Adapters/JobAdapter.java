@@ -61,8 +61,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
             if (!job.getJobName().isEmpty() && !job.getJobName().equals("")) {
                 binding.jobTitle.setText(job.getJobName());
-            }
-            if (!job.getJobDescription().isEmpty() && !job.getJobDescription().equals("")) {
+            } else if (!job.getJobDescription().isEmpty() && !job.getJobDescription().equals("")) {
                 binding.jobDescription.setText(job.getJobDescription());
             }
         }

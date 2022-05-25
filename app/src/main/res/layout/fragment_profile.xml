@@ -158,6 +158,17 @@
 
            </LinearLayout>
 
+           <Button
+               android:id="@+id/student_btn_edit_profile"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_40sdp"
+               android:text="@string/edit_profile"
+               style="@style/blue_btn"
+               android:layout_marginTop="@dimen/_8sdp"
+               android:layout_marginLeft="@dimen/_24sdp"
+               android:layout_marginRight="@dimen/_24sdp"
+               />
+
            <View
                style="@style/divider"
                android:layout_marginLeft="@dimen/_16sdp"

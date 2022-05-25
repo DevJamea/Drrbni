@@ -87,8 +87,13 @@
     <string name="whatsapp_num">+09720208783</string>
     <string name="education_information">معلومات التعليم</string>
     <string name="college">الجامعة</string>
-
-
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="edit_img_profile">تعديل صورة ملف شخصي</string>
+    <string name="edit_contact_information">تعديل معلومات التواصل</string>
+    <string name="edit_address">تعديل العنوان</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
 
     <string-array name="majors_array">
         <item>أختر التخصص</item>
@@ -100,7 +105,6 @@
         <item>التسويق</item>
         <item>البلديات</item>
     </string-array>
-
 
 
     <string-array name="governorate_array">

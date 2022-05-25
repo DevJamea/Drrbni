@@ -29,8 +29,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private JobAdapter adapter;
 
-    public ProfileFragment() {
-    }
+    public ProfileFragment() {}
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -49,6 +48,14 @@ public class ProfileFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         auth = FirebaseAuth.getInstance();
+
+        binding.studentBtnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_profileFragment_to_editProfileFragment);
+            }
+        });
 
         binding.addJob.setOnClickListener(new View.OnClickListener() {
             @Override

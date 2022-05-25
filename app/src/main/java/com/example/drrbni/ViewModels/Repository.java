@@ -2,7 +2,6 @@ package com.example.drrbni.ViewModels;
 
 import android.app.Application;
 import android.net.Uri;
-import android.util.Log;
 
 import static com.example.drrbni.Constant.ADDRESS;
 import static com.example.drrbni.Constant.COLLECTION_JOBS;
@@ -29,7 +28,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,7 +42,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class Repository {
 
     private Application application;
@@ -58,7 +55,6 @@ public class Repository {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
     }
-
 
     public void signUp(String email, String password,
                        MyListener<FirebaseUser> isSuccessful, MyListener<String> isFailure) {
@@ -77,7 +73,6 @@ public class Repository {
     }
 
     public void storeSignUpData(FirebaseUser firebaseUser, String name, MyListener<Boolean> isSuccessful) {
-
         HashMap<String, Object> data = new HashMap<>();
         data.put(UID, firebaseUser.getUid());
         data.put(NAME, name);
@@ -95,7 +90,6 @@ public class Repository {
     }
 
     public void storeAddressData(String governorate, String address, MyListener<Boolean> isSuccessful) {
-
         HashMap<String, Object> data = new HashMap<>();
         data.put(GOVERNORATE, governorate);
         data.put(ADDRESS, address);
@@ -110,11 +104,9 @@ public class Repository {
 
                     }
                 });
-
     }
 
     public void storeEducationData(String college, String major, MyListener<Boolean> isSuccessful) {
-
         HashMap<String, Object> data = new HashMap<>();
         data.put(COLLEGE, college);
         data.put(MAJOR, major);
@@ -129,11 +121,9 @@ public class Repository {
 
                     }
                 });
-
     }
 
     public void storeContactData(String whatsapp, MyListener<Boolean> isSuccessful) {
-
         HashMap<String, Object> data = new HashMap<>();
         data.put(WHATSAPP, whatsapp);
 
@@ -180,7 +170,6 @@ public class Repository {
         });
     }
 
-
     public void signIn(String email, String password, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -210,6 +199,20 @@ public class Repository {
                         }
                     }
                 });
+    }
+
+    public void resetPassword(String email, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    isSuccessful.onValuePosted(true);
+                } else {
+                    isFailure.onValuePosted(task.getException().getMessage());
+                }
+
+            }
+        });
     }
 
     public void getInfoProfile(String uid, MyListener<Student> isSuccessful, MyListener<Boolean> isFailure) {
@@ -250,14 +253,14 @@ public class Repository {
                         firebaseStorage.getReference().child("Images/")
                                 .putFile(image)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
-                                    public void onSuccess(Uri uri) {
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
 
-                                        HashMap<String, Object> data = new HashMap<>();
-                                        data.put(IMG, uri.toString());
+                                                HashMap<String, Object> data = new HashMap<>();
+                                                data.put(IMG, uri.toString());
 //
 //                                        firebaseFirestore.collection(COLLECTION_JOBS)
 //                                                .add(data)
@@ -268,10 +271,10 @@ public class Repository {
 //                                                            isSuccessful.onValuePosted(true);
 //                                                    }
 //                                                });
+                                            }
+                                        });
                                     }
                                 });
-                            }
-                        });
                     }
                 });
     }

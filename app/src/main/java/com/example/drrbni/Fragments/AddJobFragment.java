@@ -3,21 +3,15 @@ package com.example.drrbni.Fragments;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentAddJobBinding;
@@ -33,8 +27,7 @@ public class AddJobFragment extends Fragment {
     private ActivityResultLauncher<String> permission;
     private Uri image;
 
-    public AddJobFragment() {
-    }
+    public AddJobFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

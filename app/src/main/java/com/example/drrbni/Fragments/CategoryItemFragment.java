@@ -13,8 +13,7 @@ public class CategoryItemFragment extends Fragment {
     public CategoryItemFragment() {}
 
     public static CategoryItemFragment newInstance() {
-        CategoryItemFragment fragment = new CategoryItemFragment();
-        return fragment;
+        return new CategoryItemFragment();
     }
 
     @Override
