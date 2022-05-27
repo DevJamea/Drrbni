@@ -91,7 +91,9 @@
     <style name="divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/_1sdp</item>
-        <item name="android:background">@color/intro_description_color</item>
+        <item name="android:background">@color/subtitle_text</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8sdp</item>
     </style>
 
     <!-- FAB -->

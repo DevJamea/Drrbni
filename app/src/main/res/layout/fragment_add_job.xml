@@ -212,14 +212,28 @@
            </androidx.constraintlayout.widget.ConstraintLayout>
        </androidx.cardview.widget.CardView>
 
-       <Button
-           android:id="@+id/btn_add_job"
-           style="@style/blue_btn"
-           android:text="@string/add"
-           android:layout_marginLeft="@dimen/_16sdp"
-           android:layout_marginRight="@dimen/_16sdp"
-           android:layout_marginTop="@dimen/_16sdp"
-           android:layout_marginBottom="@dimen/_16sdp"/>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:id="@+id/btn_add_job"
+               style="@style/blue_btn"
+               android:layout_margin="@dimen/_16sdp"
+               android:text="@string/add" />
+
+
+           <com.google.android.material.progressindicator.CircularProgressIndicator
+               android:id="@+id/progressBar"
+               style="@style/ProgressBar"
+               android:layout_alignEnd="@+id/btn_add_job"
+               app:indicatorColor="@color/white"
+               app:indicatorSize="25dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:trackCornerRadius="5dp" />
+
+       </RelativeLayout>
+
    </LinearLayout>
 
 </ScrollView>

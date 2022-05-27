@@ -1,10 +1,13 @@
 package com.example.drrbni.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
@@ -14,24 +17,24 @@ import java.util.List;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
     private List<Job> jobList;
-    private MyListener<Job> listener;
+    private Context context;
+    private MyListener<String> listener;
 
-    public JobAdapter(List<Job> jobList, MyListener<Job> listener) {
+    public JobAdapter() {
+    }
+
+    public JobAdapter(List<Job> jobList , MyListener<String> listener) {
         this.jobList = jobList;
         this.listener = listener;
-    }
-
-    public void setJobList(List<Job> jobList) {
-        this.jobList = jobList;
         notifyDataSetChanged();
     }
+
 
     @NonNull
     @Override
     public JobAdapter.JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_job_item, null, false);
-        JobAdapter.JobViewHolder ViewHolder = new JobAdapter.JobViewHolder(v);
-        return ViewHolder;
+        context = parent.getContext();
+        return new JobViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_job_item , parent , false));
     }
 
     @Override
@@ -49,21 +52,23 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
         CustomJobItemBinding binding;
         Job job;
-
         public JobViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = CustomJobItemBinding.bind(itemView);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onValuePosted(job.getJobId());
+                }
+            });
         }
 
         public void bind(Job job) {
             this.job = job;
+            Glide.with(context).load(job.getImg()).placeholder(R.drawable.anim_progress).into(binding.jobImage);
+            binding.jobTitle.setText(job.getJobName());
+            binding.jobDescription.setText(job.getJobDescription());
 
-            if (!job.getJobName().isEmpty() && !job.getJobName().equals("")) {
-                binding.jobTitle.setText(job.getJobName());
-            } else if (!job.getJobDescription().isEmpty() && !job.getJobDescription().equals("")) {
-                binding.jobDescription.setText(job.getJobDescription());
-            }
         }
     }
 

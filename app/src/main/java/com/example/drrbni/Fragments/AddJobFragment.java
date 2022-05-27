@@ -12,6 +12,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentAddJobBinding;
@@ -32,6 +34,9 @@ public class AddJobFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
+
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
         getImg = registerForActivityResult(
@@ -63,8 +68,6 @@ public class AddJobFragment extends Fragment {
         binding = FragmentAddJobBinding
                 .inflate(getLayoutInflater(), container, false);
 
-        auth = FirebaseAuth.getInstance();
-
         binding.imageSlider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,33 +78,62 @@ public class AddJobFragment extends Fragment {
         binding.btnAddJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                load();
+
                 String jobName = binding.etJobName.getText().toString().trim();
                 String major = binding.spMajor.getSelectedItem().toString();
                 String jobLink = binding.etJobLink.getText().toString().trim();
                 String jobDescription = binding.etDescription.getText().toString().trim();
 
-                if (TextUtils.isEmpty(jobName)) {
+                if (image == null){
+                    stopLoad();
+                    Snackbar.make(view, "أختر صورة", Snackbar.LENGTH_LONG).show();
+                    return;
+                }else if (TextUtils.isEmpty(jobName)) {
+                    stopLoad();
                     Snackbar.make(view, "أدخل اسم العمل", Snackbar.LENGTH_LONG).show();
                     return;
                 } else if (binding.spMajor.getSelectedItemPosition() < 1) {
+                    stopLoad();
                     Snackbar.make(view, "أدخل التخصص", Snackbar.LENGTH_LONG).show();
                     return;
                 } else if (TextUtils.isEmpty(jobDescription)) {
+                    stopLoad();
                     Snackbar.make(view, "أدخل وصف العمل", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                profileViewModel.storeJobData(auth.getCurrentUser().getUid(), image, jobName, major, jobLink, jobDescription, new MyListener<Boolean>() {
-                    @Override
-                    public void onValuePosted(Boolean value) {
-                        //TODO:: finish this fragment
-                    }
-                });
+                profileViewModel.storeJobData(auth.getCurrentUser().getUid(), image, jobName, major,
+                        jobLink, jobDescription, new MyListener<Boolean>() {
+                            @Override
+                            public void onValuePosted(Boolean value) {
+                                stopLoad();
+                                getActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        }, new MyListener<Boolean>() {
+                            @Override
+                            public void onValuePosted(Boolean value) {
+                                stopLoad();
+                                Snackbar.make(view, "فشل التحميل", Snackbar.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
 
 
         return binding.getRoot();
+    }
+
+    public void load(){
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnAddJob.setEnabled(false);
+        binding.btnAddJob.setClickable(false);
+    }
+
+    public void stopLoad(){
+        binding.progressBar.setVisibility(View.GONE);
+        binding.btnAddJob.setEnabled(true);
+        binding.btnAddJob.setClickable(true);
     }
 
     @Override

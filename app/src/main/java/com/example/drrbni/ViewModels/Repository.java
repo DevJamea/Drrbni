@@ -11,6 +11,7 @@ import static com.example.drrbni.Constant.EMAIL;
 import static com.example.drrbni.Constant.GOVERNORATE;
 import static com.example.drrbni.Constant.IMG;
 import static com.example.drrbni.Constant.JOB_DESCRIPTION;
+import static com.example.drrbni.Constant.JOB_ID;
 import static com.example.drrbni.Constant.JOB_LINK;
 import static com.example.drrbni.Constant.JOB_NAME;
 import static com.example.drrbni.Constant.MAJOR;
@@ -18,9 +19,11 @@ import static com.example.drrbni.Constant.NAME;
 import static com.example.drrbni.Constant.STUDENT_TYPE;
 import static com.example.drrbni.Constant.TYPE_USER;
 import static com.example.drrbni.Constant.UID;
+import static com.example.drrbni.Constant.USER_ID;
 import static com.example.drrbni.Constant.WHATSAPP;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
@@ -48,13 +51,18 @@ public class Repository {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage firebaseStorage;
+    private MutableLiveData<Student> profileInfo;
+    private MutableLiveData<List<Job>> jobsData;
 
     public Repository(Application application) {
         this.application = application;
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        profileInfo = new MutableLiveData<>();
+        jobsData = new MutableLiveData<>();
     }
+
 
     public void signUp(String email, String password,
                        MyListener<FirebaseUser> isSuccessful, MyListener<String> isFailure) {
@@ -215,7 +223,7 @@ public class Repository {
         });
     }
 
-    public void getInfoProfile(String uid, MyListener<Student> isSuccessful, MyListener<Boolean> isFailure) {
+    public void requestProfileInfo(String uid) {
         firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                 .whereEqualTo(UID, uid)
                 .get()
@@ -225,63 +233,45 @@ public class Repository {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Student student = document.toObject(Student.class);
-                                isSuccessful.onValuePosted(student);
+                                profileInfo.postValue(student);
                             }
-                        } else {
-                            isFailure.onValuePosted(true);
                         }
                     }
                 });
     }
 
-    public void storeJobData(String uid, Uri image, String jobName, String major, String jobLink, String jobDescription, MyListener<Boolean> isSuccessful) {
-        HashMap<String, Object> data = new HashMap<>();
-        data.put(UID, uid);
-        data.put(JOB_NAME, jobName);
-        data.put(MAJOR, major);
-        data.put(JOB_LINK, jobLink);
-        data.put(JOB_DESCRIPTION, jobDescription);
-        data.put(IMG, image.toString());
-
-        firebaseFirestore.collection(COLLECTION_JOBS)
-                .add(data)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isSuccessful())
-                            isSuccessful.onValuePosted(true);
-                        firebaseStorage.getReference().child("Images/")
-                                .putFile(image)
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-
-                                                HashMap<String, Object> data = new HashMap<>();
-                                                data.put(IMG, uri.toString());
-//
-//                                        firebaseFirestore.collection(COLLECTION_JOBS)
-//                                                .add(data)
-//                                                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//                                                    @Override
-//                                                    public void onComplete(@NonNull Task<DocumentReference> task) {
-//                                                        if (task.isSuccessful())
-//                                                            isSuccessful.onValuePosted(true);
-//                                                    }
-//                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                    }
-                });
+    public MutableLiveData<Student> getProfileInfo() {
+        return profileInfo;
     }
 
-    public void getJobs(String uid, MyListener<List<Job>> isSuccessful, MyListener<Boolean> isFailure) {
+    public void storeJobData(String uid, Uri image, String jobName, String major, String jobLink,
+                             String jobDescription, MyListener<Boolean> isSuccessful , MyListener<Boolean> isFailure) {
+
+        firebaseStorage.getReference().child("JobImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        DocumentReference docRef = firebaseFirestore.collection(COLLECTION_JOBS).document();
+                        Job job = new Job(docRef.getId() , uid , jobName , major , jobLink , jobDescription
+                        , uri.toString());
+                        docRef.set(job);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                isFailure.onValuePosted(true);
+            }
+        });
+    }
+
+    public void requestGetJobs(String uid) {
         firebaseFirestore.collection(COLLECTION_JOBS)
-                .whereEqualTo(UID, uid)
+                .whereEqualTo(USER_ID, uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -291,12 +281,14 @@ public class Repository {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Job job = document.toObject(Job.class);
                                 jobList.add(job);
-                                isSuccessful.onValuePosted(jobList);
+                                jobsData.postValue(jobList);
                             }
-                        } else {
-                            isFailure.onValuePosted(true);
                         }
                     }
                 });
+    }
+
+    public MutableLiveData<List<Job>> getJobsData() {
+        return jobsData;
     }
 }

@@ -18,6 +18,8 @@ public class Constant {
     public static final String UID = "UserId";
     public static final String TYPE_USER = "typeUser";
     public static final int STUDENT_TYPE = 101;
+    public static final String JOB_ID = "jobId";
+    public static final String USER_ID = "userId";
 
 
     public static final String COLLECTION_JOBS = "Jobs";

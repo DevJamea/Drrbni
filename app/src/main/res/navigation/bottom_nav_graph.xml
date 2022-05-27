@@ -36,6 +36,9 @@
             <action
                 android:id="@+id/action_profileFragment_to_editProfileFragment"
                 app:destination="@id/editProfileFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_showAndEditJobFragment"
+                app:destination="@id/showAndEditJobFragment" />
         </fragment>
         <fragment
             android:id="@+id/addJobFragment"
@@ -67,6 +70,11 @@
             android:label="SignUpAddressFragment"
             tools:layout="@layout/fragment_sign_up_address"
             />
+        <fragment
+            android:id="@+id/showAndEditJobFragment"
+            android:name="com.example.drrbni.ShowAndEditJobFragment"
+            android:label="fragment_show_and_edit_job"
+            tools:layout="@layout/fragment_show_and_edit_job" />
     </navigation>
 
     <navigation android:id="@+id/categoriesNested"

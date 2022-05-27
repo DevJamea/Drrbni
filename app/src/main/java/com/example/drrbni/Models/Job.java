@@ -1,16 +1,35 @@
 package com.example.drrbni.Models;
 
 public class Job {
-    private String jobName,major,jobLink,jobDescription;
+    private String jobId,userId,jobName,major,jobLink,jobDescription, img;
 
-    public Job(String jobName, String major, String jobLink, String jobDescription) {
+    public Job(String jobId, String userId , String jobName, String major, String jobLink, String jobDescription , String img) {
+        this.jobId = jobId;
+        this.userId = userId;
         this.jobName = jobName;
         this.major = major;
         this.jobLink = jobLink;
         this.jobDescription = jobDescription;
+        this.img = img;
     }
 
     public Job() {}
+
+    public String getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getJobName() {
         return jobName;
@@ -42,5 +61,13 @@ public class Job {
 
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
