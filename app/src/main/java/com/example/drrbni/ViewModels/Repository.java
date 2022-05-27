@@ -4,6 +4,7 @@ import android.app.Application;
 import android.net.Uri;
 
 import static com.example.drrbni.Constant.ADDRESS;
+import static com.example.drrbni.Constant.COLLECTION_CATEGORIES;
 import static com.example.drrbni.Constant.COLLECTION_JOBS;
 import static com.example.drrbni.Constant.COLLECTION_USERS_PROFILES;
 import static com.example.drrbni.Constant.COLLEGE;
@@ -25,6 +26,7 @@ import static com.example.drrbni.Constant.WHATSAPP;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.drrbni.Models.Category;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -245,7 +247,7 @@ public class Repository {
     }
 
     public void storeJobData(String uid, Uri image, String jobName, String major, String jobLink,
-                             String jobDescription, MyListener<Boolean> isSuccessful , MyListener<Boolean> isFailure) {
+                             String jobDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
         firebaseStorage.getReference().child("JobImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -255,8 +257,8 @@ public class Repository {
                     public void onSuccess(Uri uri) {
 
                         DocumentReference docRef = firebaseFirestore.collection(COLLECTION_JOBS).document();
-                        Job job = new Job(docRef.getId() , uid , jobName , major , jobLink , jobDescription
-                        , uri.toString());
+                        Job job = new Job(docRef.getId(), uid, jobName, major, jobLink, jobDescription
+                                , uri.toString());
                         docRef.set(job);
                     }
                 });
@@ -290,5 +292,23 @@ public class Repository {
 
     public MutableLiveData<List<Job>> getJobsData() {
         return jobsData;
+    }
+
+    public void getCategories(MyListener<List<Category>> isSuccessful) {
+        firebaseFirestore.collection(COLLECTION_CATEGORIES)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<Category> categoryList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Category category = document.toObject(Category.class);
+                                categoryList.add(category);
+                            }
+                            isSuccessful.onValuePosted(categoryList);
+                        }
+                    }
+                });
     }
 }

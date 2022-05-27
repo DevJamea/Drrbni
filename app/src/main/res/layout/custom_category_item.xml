@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/img_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -24,7 +24,7 @@
             android:src="@drawable/onboarding4" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_category_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_56sdp"
             android:paddingRight="@dimen/_16sdp"

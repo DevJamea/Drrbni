@@ -22,6 +22,13 @@ public class CategoryItemFragment extends Fragment {
         binding = FragmentCategoryItemsBinding
                 .inflate(getLayoutInflater(),container,false);
 
+        String categoryId = CategoryItemFragmentArgs.fromBundle(requireArguments()).getCategoryId();
+        String name = CategoryItemFragmentArgs.fromBundle(requireArguments()).getName();
+
+
+
+        binding.title.setText(name);
+
         return binding.getRoot();
     }
 

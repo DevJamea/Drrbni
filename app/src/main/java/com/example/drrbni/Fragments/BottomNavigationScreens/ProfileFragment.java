@@ -1,6 +1,7 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -9,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +34,8 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private JobAdapter jobAdapter;
 
-    public ProfileFragment() {}
+    public ProfileFragment() {
+    }
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -55,14 +58,17 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding
                 .inflate(getLayoutInflater(), container, false);
 
-         load();
+        load();
 
         profileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
-                if (getActivity() == null)
-                    return;
-                Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                if (getActivity() == null) return;
+                if (student.getImg() == null) {
+                    binding.appBarImage.setImageResource(R.drawable.defult_img_student);
+                } else {
+                    Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                }
                 binding.studentName.setText(student.getName());
                 binding.collageName.setText(student.getCollege());
                 binding.studentEmail.setText(student.getEmail());
@@ -74,8 +80,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel.getJobsData().observe(requireActivity(), new Observer<List<Job>>() {
             @Override
             public void onChanged(List<Job> jobs) {
-                if (getActivity() == null)
-                    return;
+                if (getActivity() == null) return;
                 jobAdapter = new JobAdapter(jobs, new MyListener<String>() {
                     @Override
                     public void onValuePosted(String value) {
@@ -83,10 +88,7 @@ public class ProfileFragment extends Fragment {
                         navController.navigate(R.id.action_profileFragment_to_showAndEditJobFragment);
                     }
                 });
-                RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
-                binding.rvJobs.setLayoutManager(lm);
-                binding.rvJobs.setHasFixedSize(true);
-                binding.rvJobs.setAdapter(jobAdapter);
+                initRV();
             }
         });
 
@@ -107,18 +109,26 @@ public class ProfileFragment extends Fragment {
         });
 
 
-
         return binding.getRoot();
     }
 
-    public void load(){
-        binding.progressBar.setVisibility(View.VISIBLE);
+    public void load() {
+        binding.shimmerView.setVisibility(View.VISIBLE);
+        binding.shimmerView.startShimmerAnimation();
         binding.profileLayout.setVisibility(View.GONE);
     }
 
-    public void stopLoad(){
-        binding.progressBar.setVisibility(View.GONE);
+    public void stopLoad() {
+        binding.shimmerView.setVisibility(View.GONE);
+        binding.shimmerView.stopShimmerAnimation();
         binding.profileLayout.setVisibility(View.VISIBLE);
+    }
+
+    void initRV(){
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
+        binding.rvJobs.setLayoutManager(lm);
+        binding.rvJobs.setHasFixedSize(true);
+        binding.rvJobs.setAdapter(jobAdapter);
     }
 
     @Override

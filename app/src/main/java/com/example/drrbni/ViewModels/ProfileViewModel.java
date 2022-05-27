@@ -23,7 +23,7 @@ public class ProfileViewModel extends AndroidViewModel {
         jobsData = repository.getJobsData();
     }
 
-    public void requestProfileInfo(String uid ){
+    public void requestProfileInfo(String uid){
         repository.requestProfileInfo(uid);
     }
 

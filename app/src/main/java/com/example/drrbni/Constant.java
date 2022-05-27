@@ -28,6 +28,11 @@ public class Constant {
     public static final String JOB_DESCRIPTION = "jobDescription";
 
 
+    public static final String COLLECTION_CATEGORIES = "Categories";
+    public static final String CATEGORY_IMAGE = "image";
+    public static final String CATEGORY_NAME = "name";
+
+
 
 
 

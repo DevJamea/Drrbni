@@ -20,8 +20,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     private Context context;
     private MyListener<String> listener;
 
-    public JobAdapter() {
-    }
+    public JobAdapter() {}
 
     public JobAdapter(List<Job> jobList , MyListener<String> listener) {
         this.jobList = jobList;

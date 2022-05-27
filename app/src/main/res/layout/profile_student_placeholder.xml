@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.BottomNavigationScreens.ProfileFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -34,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@android:drawable/sym_def_app_icon"
+                    android:background="@color/gray_bg"
                     app:layout_collapseMode="parallax" />
 
 
@@ -46,8 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <!--        android:layout_marginBottom="@dimen/_48sdp"  ^^^    -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +61,7 @@
                     android:layout_marginRight="@dimen/_16sdp"
                     android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                     android:gravity="right"
-                    android:text="@string/student_name"
+                    android:background="@color/gray_bg"
                     android:textColor="@color/title_text"
                     android:textSize="@dimen/_30sdp" />
 
@@ -73,23 +70,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
+                    android:gravity="right|center_vertical"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/collage_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/collage_name"
-                        android:textColor="@color/title_text"
+                        android:background="@color/gray_bg"
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="@dimen/_18sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_college" />
+                        android:gravity="center_vertical"
+                        android:background="@color/gray_bg" />
 
                 </LinearLayout>
 
@@ -98,23 +97,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
+                    android:gravity="right|center_vertical"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/major_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/major_name"
-                        android:textColor="@color/title_text"
+                        android:background="@color/gray_bg"
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="@dimen/_18sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_college" />
+                        android:gravity="center_vertical"
+                        android:background="@color/gray_bg" />
 
                 </LinearLayout>
 
@@ -123,107 +123,81 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
+                    android:gravity="right|center_vertical"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/student_email"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/email_address"
-                        android:textColor="@color/title_text"
+                        android:background="@color/gray_bg"
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="@dimen/_18sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_email" />
+                        android:gravity="center_vertical"
+                        android:background="@color/gray_bg" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/student_whatsapp_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
+                    android:gravity="right|center_vertical"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/student_whatsapp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/whatsapp_num"
-                        android:textColor="@color/title_text"
+                        android:background="@color/gray_bg"
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="@dimen/_18sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_whatsapp" />
+                        android:gravity="center_vertical"
+                        android:background="@color/gray_bg" />
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/student_btn_edit_profile"
-                    style="@style/blue_btn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_24sdp"
-                    android:background="@drawable/btn_small"
-                    android:text="@string/edit_profile" />
+                    android:background="@color/gray_bg" />
 
                 <View
                     style="@style/divider"
+                    android:background="@color/gray_bg"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_jobs"
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    tools:listitem="@layout/custom_job_item" />
+                    android:layout_height="@dimen/_130sdp"
+                    android:background="@color/gray_bg"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    />
 
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_job"
-            android:layout_width="@dimen/_52sdp"
-            android:layout_height="@dimen/_52sdp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:src="@drawable/ic_add"
-            app:fabCustomSize="@dimen/_52sdp" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        >
-
-        <include layout="@layout/profile_student_placeholder"/>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
