@@ -86,6 +86,7 @@
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11085526315789473" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Drrbni/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/drawable/bg_gray_image.xml" value="0.173" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/drawable/ic_profile.xml" value="0.173" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/drawable/tab_indicator_default.xml" value="0.124" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -94,12 +95,18 @@
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_company_item.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_job_item.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/custom_post_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/edit_profile_address_placeholder.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/edit_profile_contact_information_placeholder.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/edit_profile_placeholder.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_add_job.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_category_items.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_change_password_bottom_sheet.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_company_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_edit_address.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_edit_contact_information.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_edit_proile.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_education_information.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_filter_dialog.xml" value="0.25416666666666665" />
@@ -113,6 +120,8 @@
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_show_post.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_add_img.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_address.xml" value="0.25416666666666665" />
+        <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/fragment_sign_up_contact_information.xml" value="0.25416666666666665" />
         <entry key="..\:/GraduationProject/Drrbni/app/src/main/res/layout/profile_student_placeholder.xml" value="0.25416666666666665" />
       </map>
     </option>

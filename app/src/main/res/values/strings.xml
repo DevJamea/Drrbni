@@ -95,6 +95,7 @@
     <string name="old_password">كلمة المرور القديمة</string>
     <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
     <string name="category_name">اسم التصنيف</string>
+    <string name="current_password">كلمة المرور الحالية</string>
 
     <string-array name="majors_array">
         <item>أختر التخصص</item>

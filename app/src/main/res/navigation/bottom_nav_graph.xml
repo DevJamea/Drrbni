@@ -47,34 +47,35 @@
             tools:layout="@layout/fragment_add_job" />
         <fragment
             android:id="@+id/editProfileFragment"
-            android:name="com.example.drrbni.Fragments.EditProfileFragment"
+            android:name="com.example.drrbni.Fragments.EditProfile.EditProfileFragment"
             android:label="EditProfileFragment"
             tools:layout="@layout/fragment_edit_profile"
             >
+
             <action
-                android:id="@+id/action_editProfileFragment_to_signUpContactInformationFragment2"
-                app:destination="@id/signUpContactInformationFragment" />
+                android:id="@+id/action_editProfileFragment_to_editContactInformationFragment"
+                app:destination="@id/editContactInformationFragment" />
             <action
-                android:id="@+id/action_editProfileFragment_to_signUpAddressFragment"
-                app:destination="@id/signUpAddressFragment" />
+                android:id="@+id/action_editProfileFragment_to_editAddressFragment"
+                app:destination="@id/editAddressFragment" />
         </fragment>
-        <fragment
-            android:id="@+id/signUpContactInformationFragment"
-            android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpContactInformationFragment"
-            android:label="SignUpContactInformationFragment"
-            tools:layout="@layout/fragment_sign_up_contact_information"
-            />
-        <fragment
-            android:id="@+id/signUpAddressFragment"
-            android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
-            android:label="SignUpAddressFragment"
-            tools:layout="@layout/fragment_sign_up_address"
-            />
         <fragment
             android:id="@+id/showAndEditJobFragment"
             android:name="com.example.drrbni.ShowAndEditJobFragment"
             android:label="fragment_show_and_edit_job"
             tools:layout="@layout/fragment_show_and_edit_job" />
+        <fragment
+            android:id="@+id/editContactInformationFragment"
+            android:name="com.example.drrbni.Fragments.EditProfile.EditContactInformationFragment"
+            android:label="EditContactInformationFragment"
+            tools:layout="@layout/fragment_edit_contact_information"
+            />
+        <fragment
+            android:id="@+id/editAddressFragment"
+            android:name="com.example.drrbni.Fragments.EditProfile.EditAddressFragment"
+            android:label="EditAddressFragment"
+            tools:layout="@layout/fragment_edit_address"
+            />
     </navigation>
 
     <navigation android:id="@+id/categoriesNested"

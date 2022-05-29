@@ -33,7 +33,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -51,6 +54,7 @@ public class Repository {
 
     private Application application;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage firebaseStorage;
     private MutableLiveData<Student> profileInfo;
@@ -59,6 +63,7 @@ public class Repository {
     public Repository(Application application) {
         this.application = application;
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         profileInfo = new MutableLiveData<>();
@@ -311,4 +316,113 @@ public class Repository {
                     }
                 });
     }
+
+    public void editImg(Uri image, MyListener<Boolean> isFailure) {
+        firebaseStorage.getReference().child("Images/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        HashMap<String, Object> data = new HashMap<>();
+                        data.put(IMG, uri.toString());
+
+                        firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                                .document(firebaseAuth.getCurrentUser().getUid())
+                                .update(data)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                isFailure.onValuePosted(true);
+            }
+        });
+    }
+
+    public void editProfile(String name,String email,String major, MyListener<Boolean> isSuccessful){
+        HashMap<String, Object> data = new HashMap<>();
+        data.put(NAME, name);
+        data.put(EMAIL, email);
+        data.put(MAJOR, major);
+
+        firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                .document(firebaseAuth.getCurrentUser().getUid())
+                .update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            isSuccessful.onValuePosted(true);
+                    }
+                });
+    }
+
+    public void editProfileContactInformation(String whatsapp, MyListener<Boolean> isSuccessful){
+        HashMap<String, Object> data = new HashMap<>();
+        data.put(WHATSAPP, whatsapp);
+
+        firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                .document(firebaseAuth.getCurrentUser().getUid())
+                .update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            isSuccessful.onValuePosted(true);
+                    }
+                });
+    }
+
+    public void editAddressData(String governorate, String address, MyListener<Boolean> isSuccessful) {
+        HashMap<String, Object> data = new HashMap<>();
+        data.put(GOVERNORATE, governorate);
+        data.put(ADDRESS, address);
+
+        firebaseFirestore.collection(COLLECTION_USERS_PROFILES).
+                document(firebaseAuth.getCurrentUser().getUid()).update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            isSuccessful.onValuePosted(true);
+
+                    }
+                });
+    }
+
+    public void changePassword(String currentPassword,String newPassword,String confPassword,MyListener<String > isSuccessful, MyListener<String> isFailure){
+        AuthCredential credential = EmailAuthProvider.getCredential(firebaseUser.getEmail(),currentPassword);
+        firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                firebaseUser.updatePassword(newPassword)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                isSuccessful.onValuePosted("تم تحديث كلمة المرور");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                isFailure.onValuePosted(e.getMessage());
+            }
+        });
+    }
+
 }

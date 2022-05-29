@@ -26,8 +26,7 @@ public class SignInFragment extends Fragment {
     private FragmentSignInBinding binding;
     private SignInViewModel signInViewModel;
 
-    public SignInFragment() {
-    }
+    public SignInFragment() {}
 
     public static SignInFragment newInstance() {
         return new SignInFragment();
