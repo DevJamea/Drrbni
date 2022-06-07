@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "1031798115844",
-    "project_id": "drrbni",
-    "storage_bucket": "drrbni.appspot.com"
+    "project_number": "865242961992",
+    "project_id": "drrbni-b4010",
+    "storage_bucket": "drrbni-b4010.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1031798115844:android:e326c121aaff5f64e4af51",
+        "mobilesdk_app_id": "1:865242961992:android:89f7baf26e6b467216207d",
         "android_client_info": {
           "package_name": "com.example.drrbni"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1031798115844-bmp17csv3boi9o44i36mm0inp0605iau.apps.googleusercontent.com",
+          "client_id": "865242961992-vl7hv0umgppho98knqnjm03l9bn9g100.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.drrbni",
-            "certificate_hash": "65cbd2a7ce4f6482817238d02736c2bfc09ae481"
+            "certificate_hash": "1fd41a574dab006ec1e35667c984d3396b3e21d5"
           }
         },
         {
-          "client_id": "1031798115844-pevl2kuske1qf2j8al23k435g7qtmb4v.apps.googleusercontent.com",
+          "client_id": "865242961992-5rb1l1hrc2qibfp1m562ma30c5qihko5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDbsFOkBES5BJCf2JOyesy2kGeStYSeI9Q"
+          "current_key": "AIzaSyDTd4PuCyXVD9dizSYGcjSh11lWa8_MUMo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1031798115844-pevl2kuske1qf2j8al23k435g7qtmb4v.apps.googleusercontent.com",
+              "client_id": "865242961992-5rb1l1hrc2qibfp1m562ma30c5qihko5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -52,9 +52,9 @@ public class CategoriesFragment extends Fragment {
                     @Override
                     public void onValuePosted(Integer value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(CategoriesFragmentDirections
-                                .actionCategoriesFragmentToCategoryItemFragment
-                                        (values.get(value).getCategory_Id(),values.get(value).getName()));
+                     //   navController.navigate(CategoriesFragmentDirections
+                                //actionCategoriesFragmentToCategoryItemFragment
+                                   //     (values.get(value).getCategory_Id(),values.get(value).getName()));
                     }
                 });
                 stopLoad();
