@@ -85,20 +85,33 @@
                         android:hint="@string/email"
                         android:inputType="textEmailAddress" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_profile_et_categories"
-                        style="@style/editText"
-                        android:layout_below="@+id/edit_profile_et_email"
+
+                    <FrameLayout
+                        android:id="@+id/fl"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_52sdp"
                         android:layout_marginTop="@dimen/_16sdp"
-                        android:hint="التصنيف"
-                        android:inputType="textEmailAddress" />
+                        android:layout_below="@+id/edit_profile_et_email"
+                        android:background="@drawable/edittext_background"
+                        android:layout_marginRight="@dimen/_24sdp"
+                        android:layout_marginLeft="@dimen/_24sdp"
+                        style="@style/editText"
+                        android:elevation="@dimen/_8sdp">
+
+                        <Spinner
+                            android:id="@+id/edit_profile_categories"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/spinner"/>
+
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/tv_edit_contact_information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/edit_profile_et_categories"
-                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_below="@id/fl"
+                        android:layout_alignEnd="@+id/fl"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_medium"
                         android:text="@string/edit_contact_information"
@@ -109,7 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_edit_contact_information"
-                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_alignEnd="@+id/tv_edit_contact_information"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_medium"
                         android:text="@string/edit_address"
@@ -120,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_edit_address"
-                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_alignEnd="@+id/tv_edit_address"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_medium"
                         android:text="@string/change_password"

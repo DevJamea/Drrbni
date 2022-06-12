@@ -108,7 +108,7 @@ public class AddJobFragment extends Fragment {
                             @Override
                             public void onValuePosted(Boolean value) {
                                 stopLoad();
-                                getActivity().getSupportFragmentManager().popBackStack();
+                                requireActivity().getSupportFragmentManager().popBackStack();
                             }
                         }, new MyListener<Boolean>() {
                             @Override

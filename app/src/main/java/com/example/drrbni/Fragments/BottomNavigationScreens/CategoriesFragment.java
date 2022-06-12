@@ -1,9 +1,11 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,12 +14,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.drrbni.Adapters.CategoryAdapter;
 import com.example.drrbni.Models.Category;
-import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.CategoryViewHolder;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentCategoriesBinding;
+
 import java.util.List;
 
 public class CategoriesFragment extends Fragment {
@@ -25,6 +28,7 @@ public class CategoriesFragment extends Fragment {
     private FragmentCategoriesBinding binding;
     private CategoryAdapter adapter;
     private CategoryViewHolder categoryViewHolder;
+
     public CategoriesFragment() {}
 
     public static CategoriesFragment newInstance() {
@@ -48,13 +52,14 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onValuePosted(List<Category> values) {
                 if (getActivity() == null) return;
+
                 adapter = new CategoryAdapter(values, new MyListener<Integer>() {
                     @Override
                     public void onValuePosted(Integer value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
-                     //   navController.navigate(CategoriesFragmentDirections
-                                //actionCategoriesFragmentToCategoryItemFragment
-                                   //     (values.get(value).getCategory_Id(),values.get(value).getName()));
+                        navController.navigate(CategoriesFragmentDirections
+                                .actionCategoriesFragmentToCategoryItemFragment
+                                        (values.get(value).getCategory_Id(), values.get(value).getName()));
                     }
                 });
                 stopLoad();
@@ -72,7 +77,7 @@ public class CategoriesFragment extends Fragment {
         binding = null;
     }
 
-    void initRV(){
+    void initRV() {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
         binding.rvCategories.setLayoutManager(lm);
         binding.rvCategories.setHasFixedSize(true);

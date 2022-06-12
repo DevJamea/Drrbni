@@ -1,22 +1,15 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.text.TextUtils;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.drrbni.MainActivity;
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.SignUpViewModel;
@@ -24,9 +17,6 @@ import com.example.drrbni.databinding.FragmentSignUpBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.ScheduledExecutorService;
-
 
 public class SignUpFragment extends Fragment {
 
@@ -37,8 +27,7 @@ public class SignUpFragment extends Fragment {
     public SignUpFragment() {}
 
     public static SignUpFragment newInstance() {
-        SignUpFragment fragment = new SignUpFragment();
-        return fragment;
+        return new SignUpFragment();
     }
 
     @Override

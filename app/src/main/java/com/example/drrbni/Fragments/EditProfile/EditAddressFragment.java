@@ -45,26 +45,8 @@ public class EditAddressFragment extends Fragment {
             @Override
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
-                int position;
-                if (student.getGovernorate().equals("أختر المحافظة")){
-                    position = 0;
-                    binding.spGovernorate.setSelection(position);
-                } else if (student.getGovernorate().equals("شمال غزة")){
-                    position = 1;
-                    binding.spGovernorate.setSelection(position);
-                } else if (student.getGovernorate().equals("غزة")){
-                    position = 2;
-                    binding.spGovernorate.setSelection(position);
-                } else if (student.getGovernorate().equals("الوسطى")){
-                    position = 3;
-                    binding.spGovernorate.setSelection(position);
-                } else if (student.getGovernorate().equals("خانيونس")){
-                    position = 4;
-                    binding.spGovernorate.setSelection(position);
-                } else if (student.getGovernorate().equals("رفح")){
-                    position = 5;
-                    binding.spGovernorate.setSelection(position);
-                }
+                int position=0;
+                checkGovernmentSpinner(position, student);
 
                 binding.etAddress.setText(student.getAddress());
                 stopLoad();
@@ -79,13 +61,35 @@ public class EditAddressFragment extends Fragment {
                 profileViewModel.editAddressData(governorate,address, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        //TODO finish this fragment
+                        requireActivity().getSupportFragmentManager().popBackStack();
                     }
                 });
             }
         });
 
         return binding.getRoot();
+    }
+
+    private void checkGovernmentSpinner(int position,Student student) {
+        if (student.getGovernorate().equals("أختر المحافظة")){
+            position = 0;
+            binding.spGovernorate.setSelection(position);
+        } else if (student.getGovernorate().equals("شمال غزة")){
+            position = 1;
+            binding.spGovernorate.setSelection(position);
+        } else if (student.getGovernorate().equals("غزة")){
+            position = 2;
+            binding.spGovernorate.setSelection(position);
+        } else if (student.getGovernorate().equals("الوسطى")){
+            position = 3;
+            binding.spGovernorate.setSelection(position);
+        } else if (student.getGovernorate().equals("خانيونس")){
+            position = 4;
+            binding.spGovernorate.setSelection(position);
+        } else if (student.getGovernorate().equals("رفح")){
+            position = 5;
+            binding.spGovernorate.setSelection(position);
+        }
     }
 
     @Override

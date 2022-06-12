@@ -20,9 +20,9 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        return root;
+
+        return binding.getRoot();
     }
 
     @Override

@@ -40,8 +40,6 @@ public class SignUpContactInformationFragment extends Fragment {
         binding = FragmentSignUpContactInformationBinding
                 .inflate(getLayoutInflater(),container,false);
 
-
-
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

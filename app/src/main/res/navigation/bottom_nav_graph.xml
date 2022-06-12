@@ -117,13 +117,25 @@
                 />
             <action
                 android:id="@+id/action_categoryItemFragment_to_companyProfileFragment"
-                app:destination="@id/companyProfileFragment" />
+                app:destination="@id/companyProfileFragment" >
+                <argument
+                    android:name="userId"
+                    app:argType="string"
+                    app:nullable="true"
+                    />
+            </action>
         </fragment>
         <fragment
             android:id="@+id/companyProfileFragment"
             android:name="com.example.drrbni.Fragments.CompanyProfileFragment"
             android:label="fragment_company_profile"
-            tools:layout="@layout/fragment_company_profile" />
+            tools:layout="@layout/fragment_company_profile" >
+            <argument
+                android:name="userId"
+                app:argType="string"
+                app:nullable="true"
+                />
+        </fragment>
     </navigation>
 
     <navigation android:id="@+id/notificationsNested"

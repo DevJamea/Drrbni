@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.EducationInformationViewModel;
@@ -19,12 +20,15 @@ import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentEducationInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 public class EducationInformationFragment extends Fragment {
 
     private FragmentEducationInformationBinding binding;
     private EducationInformationViewModel educationInformationViewModel;
 
-    public EducationInformationFragment() {}
+    public EducationInformationFragment() {
+    }
 
     public static EducationInformationFragment newInstance(String param1, String param2) {
         return new EducationInformationFragment();
@@ -41,8 +45,11 @@ public class EducationInformationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentEducationInformationBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentEducationInformationBinding.inflate(getLayoutInflater(), container, false);
 
+        loadShimmer();
+        getColleges();
+        getMajors();
 
         binding.signUpBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +70,7 @@ public class EducationInformationFragment extends Fragment {
                 educationInformationViewModel.storeData(college, major, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value){
+                        if (value) {
                             stopLoad();
                             NavController navController = Navigation.findNavController(binding.getRoot());
                             navController.navigate(R.id.action_educationInformationFragment_to_signUpContactInformationFragment);
@@ -77,15 +84,51 @@ public class EducationInformationFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void load(){
+    private void getColleges() {
+        educationInformationViewModel.getColleges(new MyListener<List<String>>() {
+            @Override
+            public void onValuePosted(List<String> value) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item, value);
+                binding.signUpCollege.setAdapter(adapter);
+                stopLoadShimmer();
+            }
+        });
+    }
+
+    private void getMajors() {
+        educationInformationViewModel.getMajors(new MyListener<List<String>>() {
+            @Override
+            public void onValuePosted(List<String> value) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item, value);
+                binding.signUpMajor.setAdapter(adapter);
+                stopLoadShimmer();
+            }
+        });
+    }
+
+    public void load() {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.signUpBtnNext.setEnabled(false);
         binding.signUpBtnNext.setClickable(false);
     }
 
-    public void stopLoad(){
+    public void stopLoad() {
         binding.progressBar.setVisibility(View.GONE);
         binding.signUpBtnNext.setEnabled(true);
         binding.signUpBtnNext.setClickable(true);
+    }
+
+    public void loadShimmer() {
+        binding.shimmerView.setVisibility(View.VISIBLE);
+        binding.shimmerView.startShimmerAnimation();
+        binding.educationInformation.setVisibility(View.GONE);
+    }
+
+    public void stopLoadShimmer() {
+        binding.shimmerView.setVisibility(View.GONE);
+        binding.shimmerView.stopShimmerAnimation();
+        binding.educationInformation.setVisibility(View.VISIBLE);
     }
 }

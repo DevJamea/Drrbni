@@ -13,8 +13,7 @@ public class NotificationDialogFragment extends Fragment {
     public NotificationDialogFragment() {}
 
     public static NotificationDialogFragment newInstance() {
-        NotificationDialogFragment fragment = new NotificationDialogFragment();
-        return fragment;
+        return new NotificationDialogFragment();
     }
 
     @Override

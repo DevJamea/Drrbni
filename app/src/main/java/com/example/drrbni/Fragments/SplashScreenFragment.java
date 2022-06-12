@@ -2,6 +2,8 @@ package com.example.drrbni.Fragments;
 
 import static com.example.drrbni.Constant.SPLASH_SCREEN_TIME_OUT;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,13 +22,17 @@ public class SplashScreenFragment extends Fragment {
     public SplashScreenFragment() {}
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentSplashScreenBinding.inflate
                 (getLayoutInflater(), container, false);
-
-        auth = FirebaseAuth.getInstance();
 
 //        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -42,7 +48,6 @@ public class SplashScreenFragment extends Fragment {
                     NavController navController = Navigation.findNavController(binding.getRoot());
                     navController.navigate(R.id.action_splashScreen_to_onboarding);
                 }
-
             }
         }, SPLASH_SCREEN_TIME_OUT);
 

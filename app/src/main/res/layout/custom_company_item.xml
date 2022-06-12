@@ -95,9 +95,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/company_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/imageView3"
             android:scaleType="centerCrop"
             android:src="@drawable/company" />
     </androidx.cardview.widget.CardView>

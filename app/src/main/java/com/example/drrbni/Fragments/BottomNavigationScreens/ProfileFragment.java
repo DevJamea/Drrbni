@@ -34,8 +34,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private JobAdapter jobAdapter;
 
-    public ProfileFragment() {
-    }
+    public ProfileFragment() {}
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();

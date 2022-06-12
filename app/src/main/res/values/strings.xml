@@ -96,6 +96,7 @@
     <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
     <string name="category_name">اسم التصنيف</string>
     <string name="current_password">كلمة المرور الحالية</string>
+    <string name="whatsapp2">Whatsapp</string>
 
     <string-array name="majors_array">
         <item>أختر التخصص</item>
@@ -133,8 +134,6 @@
         <item>الكلية الجامعية للعلوم والتكنولوجيا</item>
         <item>كلية فلسطين التقنية - دير البلح</item>
         <item>كلية العودة الجامعية</item>
-        <item>رفح</item>
-        <item>رفح</item>
     </string-array>
 
 </resources>

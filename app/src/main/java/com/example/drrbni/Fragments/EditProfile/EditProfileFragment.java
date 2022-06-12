@@ -3,7 +3,6 @@ package com.example.drrbni.Fragments.EditProfile;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -13,20 +12,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ArrayAdapter;
 import com.bumptech.glide.Glide;
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
-import com.example.drrbni.ViewModels.AddImfViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentEditProfileBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import java.util.List;
 
 public class EditProfileFragment extends Fragment {
 
@@ -36,6 +35,7 @@ public class EditProfileFragment extends Fragment {
     private ActivityResultLauncher<String> getImg;
     private ActivityResultLauncher<String> permission;
     private Uri image;
+    private Student thisStudent;
 
     public EditProfileFragment() {
     }
@@ -80,11 +80,13 @@ public class EditProfileFragment extends Fragment {
         binding = FragmentEditProfileBinding.inflate(getLayoutInflater(), container, false);
 
         load();
+        getMajors();
 
         profileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
+                thisStudent = student;
                 if (student.getImg() == null) {
                     binding.profileImage.setImageResource(R.drawable.defult_img_student);
                 } else {
@@ -92,7 +94,15 @@ public class EditProfileFragment extends Fragment {
                 }
                 binding.editProfileEtName.setText(student.getName());
                 binding.editProfileEtEmail.setText(student.getEmail());
-                binding.editProfileEtCategories.setText(student.getMajor());
+                stopLoad();
+            }
+        });
+
+        profileViewModel.getCategoriesName(new MyListener<List<String>>() {
+            @Override
+            public void onValuePosted(List<String> value) {
+                int position = 0;
+                checkCategoryName(position, thisStudent);
                 stopLoad();
             }
         });
@@ -110,22 +120,44 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View view) {
                 String name = binding.editProfileEtName.getText().toString().trim();
                 String email = binding.editProfileEtEmail.getText().toString().trim();
-                String major = binding.editProfileEtCategories.getText().toString().trim();
+                String major = binding.editProfileCategories.getSelectedItem().toString();
 
-                if (image == null) return;
-                profileViewModel.editImg(image, new MyListener<Boolean>() {
-                    @Override
-                    public void onValuePosted(Boolean value) {
-                        Snackbar.make(requireView(), "فشل تحميل الصورة", Snackbar.LENGTH_LONG).show();
-                    }
-                });
+                if (TextUtils.isEmpty(name))
+                    name = thisStudent.getName();
+                else if (TextUtils.isEmpty(email))
+                    email = thisStudent.getEmail();
+                else if (binding.editProfileCategories.getSelectedItemPosition() < 1)
+                    major = thisStudent.getMajor();
 
-                profileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {
-                    @Override
-                    public void onValuePosted(Boolean value) {
-                        //TODO finish this fragment
-                    }
-                });
+                if (image == null) {
+                    profileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {
+                        @Override
+                        public void onValuePosted(Boolean value) {
+                            if (value) {
+                                Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
+                                requireActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        }
+                    });
+                } else {
+                    profileViewModel.editProfileDataWithImg(image, name, email, major, new MyListener<Boolean>() {
+                        @Override
+                        public void onValuePosted(Boolean value) {
+                            if (value) {
+                                Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
+                                requireActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        }
+                    }, new MyListener<Boolean>() {
+                        @Override
+                        public void onValuePosted(Boolean value) {
+                            if (value) {
+                                Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
+                                requireActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -171,6 +203,46 @@ public class EditProfileFragment extends Fragment {
         binding.shimmerView.setVisibility(View.GONE);
         binding.shimmerView.stopShimmerAnimation();
         binding.editProfileLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void getMajors() {
+        profileViewModel.getMajors(new MyListener<List<String>>() {
+            @Override
+            public void onValuePosted(List<String> value) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item, value);
+                binding.editProfileCategories.setAdapter(adapter);
+                stopLoad();
+            }
+        });
+    }
+
+    private void checkCategoryName(int position, Student student) {
+        if (student.getMajor().equals("أختر التخصص")) {
+            position = 0;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("التسويق")) {
+            position = 1;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("تكنولوجيا المعلومات")) {
+            position = 2;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("الهندسة")) {
+            position = 3;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("البلديات")) {
+            position = 4;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("التصميم والديكور")) {
+            position = 5;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("المحاسبة")) {
+            position = 6;
+            binding.editProfileCategories.setSelection(position);
+        } else if (student.getMajor().equals("الصحافة والاعلام")) {
+            position = 7;
+            binding.editProfileCategories.setSelection(position);
+        }
     }
 
 }

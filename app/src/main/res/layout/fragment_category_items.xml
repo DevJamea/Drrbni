@@ -24,12 +24,46 @@ tools:context=".Fragments.CategoryItemFragment">
         android:text="@string/category_name"/>
 </androidx.appcompat.widget.Toolbar>
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_category_items"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/_4sdp"
-    tools:listitem="@layout/custom_company_item"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_4sdp"
+            tools:listitem="@layout/custom_company_item"/>
+
+        <ImageView
+            android:id="@+id/empty_img"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/empty_list"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:gravity="center"
+            />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/categories_placeholder" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </RelativeLayout>
+
+
 
 
 </LinearLayout>
