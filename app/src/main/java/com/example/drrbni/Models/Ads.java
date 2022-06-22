@@ -2,7 +2,9 @@ package com.example.drrbni.Models;
 
 import com.google.firebase.Timestamp;
 
-public class Ads {
+import java.io.Serializable;
+
+public class Ads implements Serializable {
 
     private String adsId,userId, adsTitle,major,adsRequirements,adsDescription, img;
     private Timestamp timestamp;

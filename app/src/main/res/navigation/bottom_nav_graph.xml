@@ -20,7 +20,14 @@
             android:id="@+id/showPostFragment"
             android:name="com.example.drrbni.Fragments.ShowPostFragment"
             android:label="fragment_show_post"
-            tools:layout="@layout/fragment_show_post" />
+            tools:layout="@layout/fragment_show_post" >
+
+            <argument
+                android:name="adsObject"
+                app:argType="com.example.drrbni.Models.Ads"
+                />
+
+        </fragment>
     </navigation>
 
     <navigation android:id="@+id/profileNested"
@@ -61,9 +68,13 @@
         </fragment>
         <fragment
             android:id="@+id/showAndEditJobFragment"
-            android:name="com.example.drrbni.ShowAndEditJobFragment"
+            android:name="com.example.drrbni.Fragments.ShowAndEditJobFragment"
             android:label="fragment_show_and_edit_job"
-            tools:layout="@layout/fragment_show_and_edit_job" />
+            tools:layout="@layout/fragment_show_and_edit_job" >
+            <argument
+                android:name="jobId"
+                app:argType="string" />
+        </fragment>
         <fragment
             android:id="@+id/editContactInformationFragment"
             android:name="com.example.drrbni.Fragments.EditProfile.EditContactInformationFragment"

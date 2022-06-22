@@ -1,12 +1,22 @@
 package com.example.drrbni.ViewModels;
 
+import static com.example.drrbni.Constant.COLLECTION_ADS;
+import static com.example.drrbni.Constant.COLLECTION_JOBS;
+
 import android.app.Application;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.drrbni.Models.Ads;
+import com.example.drrbni.Models.Company;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import java.util.List;
 
 public class ProfileViewModel extends AndroidViewModel {
@@ -75,5 +85,15 @@ public class ProfileViewModel extends AndroidViewModel {
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
         repository.editProfileDataWithImg(image, studentName, email, major, isSuccessful, isFailure);
     }
+
+    public void deleteJob(String jobId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+        repository.deleteJob(jobId, isSuccessful, isFailure);
+    }
+
+    public void getJobById(String jobId ,MyListener<Job> isSuccessful
+            , MyListener<Boolean> isFailure){
+        repository.getJobById(jobId, isSuccessful, isFailure);
+    }
+
 
 }

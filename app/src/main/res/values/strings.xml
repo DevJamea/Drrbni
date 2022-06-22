@@ -27,7 +27,7 @@
     <string name="title_categories">التصنيفات</string>
     <string name="title_home">الرئيسية</string>
     <string name="filter">الفلتر</string>
-    <string name="sortBy">الترتيب حسب المنطقة</string>
+    <string name="sortBy">الفرز حسب..</string>
     <string name="custom_item_post">عندما أقف أمام الله في نهاية حياتي ، أتمنى ألا يتبقى لديّ القليل من الموهبة وأستطيع القول ، لقد استخدمت كل ما أعطيتني إياه.</string>
     <string name="custom_item_date">5 فبراير</string>
     <string name="custom_item_name">شركة تكنولوجيا المعلومات</string>
@@ -97,18 +97,48 @@
     <string name="category_name">اسم التصنيف</string>
     <string name="current_password">كلمة المرور الحالية</string>
     <string name="whatsapp2">Whatsapp</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
 
     <string-array name="majors_array">
-        <item>أختر التخصص</item>
-        <item>تكنولوجيا المعلومات</item>
+        <item>التخصص المطلوب</item>
+        <item>تكنولوجيا الوسائط المتعددة</item>
+        <item>البرمجيات وقواعد البيانات</item>
+        <item>تصميم وتطوير مواقع الويب</item>
+        <item>أمن المعلومات السيبراني</item>
+        <item>علم البيانات والذكاء الإصطناعي</item>
+        <item>شبكات الحاسوب والإنترنت</item>
+        <item>الهندسة المعمارية</item>
+        <item>الهندسة المدنية</item>
+        <item>هندسة التشييد وإدارة المشاريع</item>
+        <item>هندسة المساحة</item>
+        <item>نظم المعلومات الجغرافية</item>
         <item>المحاسبة</item>
-        <item>الصحافة والاعلام</item>
-        <item>الهندسة</item>
-        <item>التصميم والديكور</item>
-        <item>التسويق</item>
-        <item>البلديات</item>
+        <item>إداراة أتمتة المكاتب</item>
+        <item>التسويق الإلكتروني</item>
+        <item>الإعلام الرقمي</item>
+        <item>العلاقات العامة والإعلان</item>
     </string-array>
 
+    <string-array name="employment_array">
+        <item>كل المجالات</item>
+        <item>تكنولوجيا الوسائط المتعددة</item>
+        <item>البرمجيات وقواعد البيانات</item>
+        <item>تصميم وتطوير مواقع الويب</item>
+        <item>أمن المعلومات السيبراني</item>
+        <item>علم البيانات والذكاء الإصطناعي</item>
+        <item>شبكات الحاسوب والإنترنت</item>
+        <item>الهندسة المعمارية</item>
+        <item>الهندسة المدنية</item>
+        <item>هندسة التشييد وإدارة المشاريع</item>
+        <item>هندسة المساحة</item>
+        <item>نظم المعلومات الجغرافية</item>
+        <item>المحاسبة</item>
+        <item>إداراة أتمتة المكاتب</item>
+        <item>التسويق الإلكتروني</item>
+        <item>الإعلام الرقمي</item>
+        <item>العلاقات العامة والإعلان</item>
+    </string-array>
 
     <string-array name="governorate_array">
         <item>أختر المحافظة</item>

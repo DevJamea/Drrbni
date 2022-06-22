@@ -75,7 +75,7 @@
                         android:id="@+id/text_current_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter"
+                        android:text="@string/sortBy"
                         android:textColor="@color/title_text" />
 
                     <TextView
@@ -84,6 +84,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                         android:text="@string/sortBy"
+                        android:visibility="gone"
                         android:textColor="@color/subtitle_text" />
 
                 </LinearLayout>
@@ -95,7 +96,8 @@
                     android:layout_centerVertical="true"
                     android:padding="@dimen/_8sdp"
                     app:srcCompat="@drawable/ic_clear"
-                    app:tint="@color/basic" />
+                    app:tint="@color/basic"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
 
@@ -114,10 +116,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_bar_container" />
 
+
+    <LinearLayout
+        android:id="@+id/homeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shadow">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_post_items"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/_4sdp"
         android:layout_marginRight="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,6 +139,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shadow"
         tools:listitem="@layout/custom_post_item" />
+
+    <ImageView
+        android:id="@+id/noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/nodata"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shadow" />
+
+    </LinearLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shadow">
+
+        <include layout="@layout/custom_ads_placeholder" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

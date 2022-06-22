@@ -89,10 +89,11 @@
 
     <style name="spinner" >
         <!-- Color when pressed -->
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/basic</item>
         <!-- Default color for the dropdown arrow and line -->
-        <item name="colorControlNormal">@color/basic</item>
-        <item name="android:textColor">@color/basic</item>
+        <item name="colorControlNormal">@color/gray_bg2</item>
+        <item name="android:textColor">@color/gray_bg2</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
         <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 

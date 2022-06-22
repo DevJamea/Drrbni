@@ -567,5 +567,54 @@ public class Repository {
     }
 
 
+    public void getCompanyName(String uid , MyListener<Company> company){
+        firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
+                .whereEqualTo(UID, uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Company com = document.toObject(Company.class);
+                                company.onValuePosted(com);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void deleteJob(String jobId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+        firebaseFirestore.collection(COLLECTION_ADS)
+                .document(jobId)
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            isSuccessful.onValuePosted(true);
+                        }else
+                            isFailure.onValuePosted(true);
+                    }
+                });
+    }
+
+    public void getJobById(String jobId ,MyListener<Job> isSuccessful
+            , MyListener<Boolean> isFailure){
+        firebaseFirestore.collection(COLLECTION_JOBS)
+                .document(jobId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            Job Job = document.toObject(Job.class);
+                            isSuccessful.onValuePosted(Job);
+                        }else
+                            isFailure.onValuePosted(true);
+                    }
+                });
+    }
 
 }

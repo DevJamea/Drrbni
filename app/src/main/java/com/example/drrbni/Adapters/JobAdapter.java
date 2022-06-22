@@ -1,17 +1,25 @@
 package com.example.drrbni.Adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
+import com.example.drrbni.Fragments.BottomNavigationScreens.ProfileFragmentDirections;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
+import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.CustomJobItemBinding;
+import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
@@ -19,15 +27,15 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     private List<Job> jobList;
     private Context context;
     private MyListener<String> listener;
+    private ProfileViewModel profileViewModel;
 
     public JobAdapter() {}
 
-    public JobAdapter(List<Job> jobList , MyListener<String> listener) {
+    public JobAdapter(List<Job> jobList, ProfileViewModel profileViewModel , MyListener<String> listener) {
         this.jobList = jobList;
+        this.profileViewModel = profileViewModel;
         this.listener = listener;
-        notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override
@@ -54,12 +62,6 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
         public JobViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = CustomJobItemBinding.bind(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onValuePosted(job.getJobId());
-                }
-            });
         }
 
         public void bind(Job job) {
@@ -71,6 +73,44 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
             }
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
+
+            binding.dropDown.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.Q)
+                @Override
+                public void onClick(View view) {
+                    PopupMenu popup = new PopupMenu(context , binding.dropDown);
+                    popup.inflate(R.menu.job_menu);
+//                    popup.setForceShowIcon(true);
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            switch (menuItem.getItemId()){
+                                case R.id.jobMenuEdit:
+                                    NavController navController = Navigation.findNavController(binding.getRoot());
+                                    navController.navigate(ProfileFragmentDirections
+                                            .actionProfileFragmentToShowAndEditJobFragment(job.getJobId()));
+                                    return true;
+                                case R.id.jobMenuDelete:
+                                    profileViewModel.deleteJob(job.getJobId(), new MyListener<Boolean>() {
+                                        @Override
+                                        public void onValuePosted(Boolean value) {
+                                            Snackbar.make(binding.getRoot() , "تم الحذف" , Snackbar.LENGTH_LONG).show();
+                                        }
+                                    }, new MyListener<Boolean>() {
+                                        @Override
+                                        public void onValuePosted(Boolean value) {
+                                            Snackbar.make(binding.getRoot() , "فشل الحذف" , Snackbar.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    return true;
+                                default:
+                                    return false;
+                            }
+                        }
+                    });
+                    popup.show();
+                }
+            });
 
         }
     }
