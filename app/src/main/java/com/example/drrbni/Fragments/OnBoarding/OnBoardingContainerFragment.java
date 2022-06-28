@@ -3,11 +3,14 @@ package com.example.drrbni.Fragments.OnBoarding;
 import static com.example.drrbni.Constant.SCREEN_IMG;
 import static com.example.drrbni.Constant.SUB_TITLE;
 import static com.example.drrbni.Constant.TITLE;
+
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+
 import com.example.drrbni.databinding.FragmentOnboardingContainerBinding;
 
 public class OnBoardingContainerFragment extends Fragment {

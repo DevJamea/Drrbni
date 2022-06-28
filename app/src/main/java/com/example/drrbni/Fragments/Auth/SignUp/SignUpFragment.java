@@ -1,15 +1,18 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.SignUpViewModel;
@@ -23,7 +26,6 @@ public class SignUpFragment extends Fragment {
     private FragmentSignUpBinding binding;
     private SignUpViewModel signUpViewModel;
     private FirebaseAuth firebaseAuth;
-    private Fragment fragment;
     public SignUpFragment() {}
 
     public static SignUpFragment newInstance() {
@@ -34,9 +36,6 @@ public class SignUpFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
-        firebaseAuth = FirebaseAuth.getInstance();
-        fragment = this;
     }
 
     @Override
@@ -45,6 +44,8 @@ public class SignUpFragment extends Fragment {
         binding = FragmentSignUpBinding
                 .inflate(getLayoutInflater(),container,false);
 
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         binding.signUpBtnCompleteTheRegistrationProcess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,7 @@ public class SignUpFragment extends Fragment {
                 load();
 
                 if (firebaseAuth.getCurrentUser() != null){
-                    NavController navController = Navigation.findNavController(binding.getRoot());
+                    NavController navController = Navigation.findNavController(requireView());
                     navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
                 }
 
@@ -82,8 +83,9 @@ public class SignUpFragment extends Fragment {
                             public void onValuePosted(Boolean value) {
                                if (value){
                                    stopLoad();
-                                   NavController navController = Navigation.findNavController(binding.getRoot());
+                                   NavController navController = Navigation.findNavController(requireActivity() , R.id.fragmentContainerView);
                                    navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
+                                   Toast.makeText(requireContext(), "hhh", Toast.LENGTH_SHORT).show();
                                }
                             }
                         });

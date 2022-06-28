@@ -4,11 +4,11 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import static com.example.drrbni.Constant.COMPANY_DEFAULT_IMAGE;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -22,6 +22,7 @@ import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.CustomAdsItemBinding;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
+
 import java.text.SimpleDateFormat;
 
 public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
@@ -61,11 +62,47 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
         public void bind(final DocumentSnapshot snapshot,
                          final OnJobSelectedListener listener) {
             load();
+
             Ads ads = snapshot.toObject(Ads.class);
-            homeViewModel.getCompanyName(ads.getUserId(), new MyListener<Company>() {
+
+            homeViewModel.getCompany(ads.getUserId(), new MyListener<Company>() {
                 @Override
                 public void onValuePosted(Company value) {
                     binding.companyName.setText(value.getName());
+                    binding.progressBar.setVisibility(View.VISIBLE);
+
+                    if (value.getImg() != null){
+                        Glide.with(binding.companyAvatar.getContext()).load(value.getImg()).listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                binding.progressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        }).into(binding.companyAvatar);
+
+                    }else {
+                        Glide.with(binding.companyAvatar.getContext()).load(COMPANY_DEFAULT_IMAGE).listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                binding.progressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        }).into(binding.companyAvatar);
+
+                    }
+
+                    stopLoad();
+
                 }
             });
 
@@ -74,19 +111,6 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
             String dateString = formatter.format(ads.getTimestamp().toDate());
             binding.postTime.setText(dateString);
 
-            binding.progressBar.setVisibility(View.VISIBLE);
-            Glide.with(binding.companyAvatar.getContext()).load(ads.getImg()).listener(new RequestListener<Drawable>() {
-                @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                    return false;
-                }
-
-                @Override
-                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                    binding.progressBar.setVisibility(View.GONE);
-                    return false;
-                }
-            }).into(binding.companyAvatar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,7 +118,7 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
                     listener.onAdsSelected(ads);
                 }
             });
-            stopLoad();
+
         }
 
         public void load() {

@@ -1,16 +1,15 @@
 package com.example.drrbni.Fragments.Auth;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.MyListener;
@@ -54,12 +53,12 @@ public class ForgotPasswordFragment extends Fragment {
                         @Override
                         public void onValuePosted(Boolean value) {
                             Snackbar.make(view, "تم إرسال رابط إعادة تعيين كلمة المرور على بريدك الإلكتروني", Snackbar.LENGTH_LONG).show();
-                            NavController navController = Navigation.findNavController(binding.getRoot());
-                            navController.navigate(R.id.action_forgotPasswordFragment_to_loginFragment);
+                            Navigation.findNavController(binding.getRoot()).popBackStack();
                         }
                     }, new MyListener<String>() {
                         @Override
                         public void onValuePosted(String value) {
+                            // todo
                             Snackbar.make(view, value, Snackbar.LENGTH_LONG).show();
                         }
                     });

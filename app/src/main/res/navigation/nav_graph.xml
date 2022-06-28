@@ -45,10 +45,6 @@
             app:destination="@id/forgotPasswordFragment" />
 
         <action
-            android:id="@+id/action_loginFragment_to_signUpAddressFragment"
-            app:destination="@id/signUpAddressFragment" />
-
-        <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:launchSingleTop="true"
@@ -62,43 +58,25 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpContactInformationFragment"
             app:destination="@id/signUpContactInformationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpAddressFragment"
+            app:destination="@id/signUpAddressFragment" />
 
     </fragment>
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.drrbni.Fragments.Auth.ForgotPasswordFragment"
-        android:label="forgotPasswordFragment">
-        <action
-            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/signUpAddressFragment"
-        android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
-        android:label="signUpAddressFragment">
-
-        <action
-            android:id="@+id/action_signUpAddressFragment_to_educationInformationFragment"
-            app:destination="@id/educationInformationFragment">
-        </action>
-
-    </fragment>
+        android:label="forgotPasswordFragment"/>
 
     <fragment
         android:id="@+id/signUpAddImgFragment"
         android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddImgFragment"
         android:label="SignUpAddImgFragment"
         >
-
         <action
-            android:id="@+id/action_signUpAddImgFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-
+            android:id="@+id/action_signUpAddImgFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -117,6 +95,7 @@
 
         </action>
     </fragment>
+
     <fragment
         android:id="@+id/educationInformationFragment"
         android:name="com.example.drrbni.Fragments.Auth.SignUp.EducationInformationFragment"
@@ -129,6 +108,16 @@
 
         </action>
 
+
+    </fragment>
+    <fragment
+        android:id="@+id/signUpAddressFragment"
+        android:name="com.example.drrbni.Fragments.Auth.SignUp.SignUpAddressFragment"
+        android:label="fragment_sign_up_address"
+        tools:layout="@layout/fragment_sign_up_address" >
+        <action
+            android:id="@+id/action_signUpAddressFragment_to_educationInformationFragment"
+            app:destination="@id/educationInformationFragment" />
     </fragment>
 
 </navigation>

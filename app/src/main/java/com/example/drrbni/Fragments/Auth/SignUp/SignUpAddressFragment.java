@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.AddressViewModel;
 import com.example.drrbni.ViewModels.MyListener;
-
 import com.example.drrbni.databinding.FragmentSignUpAddressBinding;
 import com.google.android.material.snackbar.Snackbar;
+
 
 public class SignUpAddressFragment extends Fragment {
 
@@ -48,6 +48,7 @@ public class SignUpAddressFragment extends Fragment {
         binding.signUpBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                load();
                 String governorate = binding.signUpGovernorate.getSelectedItem().toString();;
                 String address = binding.signUpEtAddress.getText().toString().trim();
 

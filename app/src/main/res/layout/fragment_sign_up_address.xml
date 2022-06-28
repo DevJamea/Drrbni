@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Fragments.Auth.SignUp.SignUpAddressFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +28,6 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_52sdp"
@@ -44,12 +45,10 @@
                 android:theme="@style/spinner"/>
 
         </FrameLayout>
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_et_address"
             style="@style/editText"
             android:hint="@string/address" />
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,7 +76,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-
 
 </ScrollView>

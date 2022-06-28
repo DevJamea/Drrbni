@@ -6,8 +6,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.google.firebase.auth.FirebaseUser;
-
 public class AddImfViewModel extends AndroidViewModel {
 
     private Repository repository;

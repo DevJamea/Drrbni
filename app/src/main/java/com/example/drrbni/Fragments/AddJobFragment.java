@@ -3,16 +3,17 @@ package com.example.drrbni.Fragments;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.URLUtil;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
@@ -44,7 +45,7 @@ public class AddJobFragment extends Fragment {
                     @Override
                     public void onActivityResult(Uri result) {
                         if (result != null) {
-                            binding.imageSlider.setImageURI(result);
+                            binding.jobImage.setImageURI(result);
                             image = result;
                         }
                     }
@@ -68,7 +69,7 @@ public class AddJobFragment extends Fragment {
         binding = FragmentAddJobBinding
                 .inflate(getLayoutInflater(), container, false);
 
-        binding.imageSlider.setOnClickListener(new View.OnClickListener() {
+        binding.jobImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 permission.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -81,7 +82,7 @@ public class AddJobFragment extends Fragment {
                 load();
 
                 String jobName = binding.etJobName.getText().toString().trim();
-                String major = binding.spMajor.getSelectedItem().toString();
+                String major = binding.major.getSelectedItem().toString();
                 String jobLink = binding.etJobLink.getText().toString().trim();
                 String jobDescription = binding.etDescription.getText().toString().trim();
 
@@ -93,11 +94,19 @@ public class AddJobFragment extends Fragment {
                     stopLoad();
                     Snackbar.make(view, "أدخل اسم العمل", Snackbar.LENGTH_LONG).show();
                     return;
-                } else if (binding.spMajor.getSelectedItemPosition() < 1) {
+                } else if (binding.major.getSelectedItemPosition() < 1) {
                     stopLoad();
                     Snackbar.make(view, "أدخل التخصص", Snackbar.LENGTH_LONG).show();
                     return;
-                } else if (TextUtils.isEmpty(jobDescription)) {
+                } else if (TextUtils.isEmpty(jobLink)) {
+                    stopLoad();
+                    Snackbar.make(view, "أدخل رابط العمل", Snackbar.LENGTH_LONG).show();
+                    return;
+                }else if (!URLUtil.isValidUrl(jobLink)) {
+                    stopLoad();
+                    Snackbar.make(view, "أدخل رابط صالح", Snackbar.LENGTH_LONG).show();
+                    return;
+                }else if (TextUtils.isEmpty(jobDescription)) {
                     stopLoad();
                     Snackbar.make(view, "أدخل وصف العمل", Snackbar.LENGTH_LONG).show();
                     return;

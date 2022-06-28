@@ -1,6 +1,9 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,10 +14,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbni.Adapters.JobAdapter;
 import com.example.drrbni.Models.Job;
@@ -24,6 +23,7 @@ import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import static com.example.drrbni.Constant.STUDENT_DEFAULT_IMAGE_PROFILE;
 
 import java.util.List;
 
@@ -64,12 +64,13 @@ public class ProfileFragment extends Fragment {
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
                 if (student.getImg() == null) {
-                    binding.appBarImage.setImageResource(R.drawable.defult_img_student);
+                    Glide.with(getActivity()).load(STUDENT_DEFAULT_IMAGE_PROFILE).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 } else {
                     Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 }
                 binding.studentName.setText(student.getName());
                 binding.collageName.setText(student.getCollege());
+                binding.majorName.setText(student.getMajor());
                 binding.studentEmail.setText(student.getEmail());
                 binding.studentWhatsapp.setText(student.getWhatsApp());
                 stopLoad();

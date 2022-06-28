@@ -1,6 +1,10 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -8,15 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.EducationInformationViewModel;
 import com.example.drrbni.ViewModels.MyListener;
-
 import com.example.drrbni.databinding.FragmentEducationInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -47,13 +45,12 @@ public class EducationInformationFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentEducationInformationBinding.inflate(getLayoutInflater(), container, false);
 
-        loadShimmer();
-        getColleges();
-        getMajors();
 
         binding.signUpBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                load();
+
                 String college = binding.signUpCollege.getSelectedItem().toString();
                 String major = binding.signUpMajor.getSelectedItem().toString();
 
@@ -64,8 +61,6 @@ public class EducationInformationFragment extends Fragment {
                     Snackbar.make(view, "أدخل التخصص", Snackbar.LENGTH_LONG).show();
                     return;
                 }
-
-                load();
 
                 educationInformationViewModel.storeData(college, major, new MyListener<Boolean>() {
                     @Override
@@ -84,29 +79,6 @@ public class EducationInformationFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void getColleges() {
-        educationInformationViewModel.getColleges(new MyListener<List<String>>() {
-            @Override
-            public void onValuePosted(List<String> value) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item, value);
-                binding.signUpCollege.setAdapter(adapter);
-                stopLoadShimmer();
-            }
-        });
-    }
-
-    private void getMajors() {
-        educationInformationViewModel.getMajors(new MyListener<List<String>>() {
-            @Override
-            public void onValuePosted(List<String> value) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item, value);
-                binding.signUpMajor.setAdapter(adapter);
-                stopLoadShimmer();
-            }
-        });
-    }
 
     public void load() {
         binding.progressBar.setVisibility(View.VISIBLE);
@@ -120,15 +92,4 @@ public class EducationInformationFragment extends Fragment {
         binding.signUpBtnNext.setClickable(true);
     }
 
-    public void loadShimmer() {
-        binding.shimmerView.setVisibility(View.VISIBLE);
-        binding.shimmerView.startShimmerAnimation();
-        binding.educationInformation.setVisibility(View.GONE);
-    }
-
-    public void stopLoadShimmer() {
-        binding.shimmerView.setVisibility(View.GONE);
-        binding.shimmerView.stopShimmerAnimation();
-        binding.educationInformation.setVisibility(View.VISIBLE);
-    }
 }

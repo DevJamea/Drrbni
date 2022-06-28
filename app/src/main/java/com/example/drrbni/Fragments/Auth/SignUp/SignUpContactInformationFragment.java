@@ -1,15 +1,17 @@
 package com.example.drrbni.Fragments.Auth.SignUp;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.ContactInformationViewModel;
 import com.example.drrbni.ViewModels.MyListener;

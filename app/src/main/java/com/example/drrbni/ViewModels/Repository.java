@@ -1,7 +1,5 @@
 package com.example.drrbni.ViewModels;
 
-import android.app.Application;
-import android.net.Uri;
 import static com.example.drrbni.Constant.ADDRESS;
 import static com.example.drrbni.Constant.COLLECTION_ADS;
 import static com.example.drrbni.Constant.COLLECTION_CATEGORIES;
@@ -14,6 +12,10 @@ import static com.example.drrbni.Constant.COLLEGE;
 import static com.example.drrbni.Constant.EMAIL;
 import static com.example.drrbni.Constant.GOVERNORATE;
 import static com.example.drrbni.Constant.IMG;
+import static com.example.drrbni.Constant.JOB_DESCRIPTION;
+import static com.example.drrbni.Constant.JOB_ID;
+import static com.example.drrbni.Constant.JOB_LINK;
+import static com.example.drrbni.Constant.JOB_NAME;
 import static com.example.drrbni.Constant.MAJOR;
 import static com.example.drrbni.Constant.MAJOR_NAME;
 import static com.example.drrbni.Constant.NAME;
@@ -24,8 +26,14 @@ import static com.example.drrbni.Constant.UID;
 import static com.example.drrbni.Constant.UNIVERSITY_NAME;
 import static com.example.drrbni.Constant.USER_ID;
 import static com.example.drrbni.Constant.WHATSAPP;
+
+import android.app.Application;
+import android.net.Uri;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+
 import com.example.drrbni.Models.Ads;
 import com.example.drrbni.Models.Category;
 import com.example.drrbni.Models.Company;
@@ -47,6 +55,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -189,53 +198,6 @@ public class Repository {
         });
     }
 
-    public void editProfileDataWithImg(Uri image, String studentName, String email, String major
-            , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
-
-        firebaseStorage.getReference()
-                .child("studentProfilePictures/" + System.currentTimeMillis() + image.getLastPathSegment())
-                .putFile(image)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                HashMap<String, Object> data = new HashMap<>();
-                                data.put(NAME, studentName);
-                                data.put(EMAIL, email);
-                                data.put(IMG, uri.toString());
-                                data.put(MAJOR, major);
-
-                                firebaseUser.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-
-                                            firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
-                                                    .document(firebaseUser.getUid())
-                                                    .update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful())
-                                                        isSuccessful.onValuePosted(true);
-                                                }
-                                            });
-
-                                        }
-                                    }
-                                });
-
-                            }
-                        });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                isFailure.onValuePosted(true);
-            }
-        });
-    }
 
     public void signIn(String email, String password, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -372,24 +334,87 @@ public class Repository {
                 });
     }
 
-    public void editProfile(String name, String email, String major, MyListener<Boolean> isSuccessful) {
+
+    public void editProfileDataWithoutImage(String name, String email, String major,
+                MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+
         HashMap<String, Object> data = new HashMap<>();
         data.put(NAME, name);
         data.put(EMAIL, email);
         data.put(MAJOR, major);
 
-        firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
-                .document(firebaseAuth.getCurrentUser().getUid())
-                .update(data)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            isSuccessful.onValuePosted(true);
-                    }
-                });
+        firebaseUser.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                            .document(firebaseUser.getUid())
+                            .update(data)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful())
+                                isSuccessful.onValuePosted(true);
+                            else
+                                isFailure.onValuePosted(true);
+                        }
+                    });
+
+                }else
+                    Log.d("ddddddddd" , task.getException().toString());
+
+            }
+        });
     }
 
+
+    public void editProfileDataWithImg(Uri image, String studentName, String email, String major
+            , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+
+        firebaseStorage.getReference()
+                .child("studentProfilePictures/" + System.currentTimeMillis() + image.getLastPathSegment())
+                .putFile(image)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                HashMap<String, Object> data = new HashMap<>();
+                                data.put(NAME, studentName);
+                                data.put(EMAIL, email);
+                                data.put(IMG, uri.toString());
+                                data.put(MAJOR, major);
+
+                                firebaseUser.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+
+                                            firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                                                    .document(firebaseUser.getUid())
+                                                    .update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful())
+                                                        isSuccessful.onValuePosted(true);
+                                                }
+                                            });
+
+                                        }
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                isFailure.onValuePosted(true);
+            }
+        });
+    }
 
     public void editProfileContactInformation(String whatsapp, MyListener<Boolean> isSuccessful) {
         HashMap<String, Object> data = new HashMap<>();
@@ -424,19 +449,29 @@ public class Repository {
                 });
     }
 
-    public void changePassword(String currentPassword, String newPassword, String confPassword, MyListener<String> isSuccessful, MyListener<String> isFailure) {
-        AuthCredential credential = EmailAuthProvider.getCredential(firebaseUser.getEmail(), currentPassword);
+    public void changePassword(String currentPassword,String newPassword
+            ,MyListener<Boolean > isSuccessful , MyListener<String> isFailure){
+
+        AuthCredential credential = EmailAuthProvider.getCredential(firebaseUser.getEmail() ,currentPassword);
         firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                firebaseUser.updatePassword(newPassword)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful())
-                                    isSuccessful.onValuePosted("تم تحديث كلمة المرور");
-                            }
-                        });
+
+                if (task.isSuccessful()){
+
+                    firebaseUser.updatePassword(newPassword)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    isSuccessful.onValuePosted(true);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            isFailure.onValuePosted(e.toString());
+                        }
+                    });
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -480,22 +515,6 @@ public class Repository {
                 });
     }
 
-    public void getCategoriesName(MyListener<List<String>> isSuccessful) {
-        firebaseFirestore.collection(COLLECTION_MAJORS)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<String> collegeList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                collegeList.add(document.getString(MAJOR_NAME));
-                            }
-                            isSuccessful.onValuePosted(collegeList);
-                        }
-                    }
-                });
-    }
 
     public void getCompaniesByMajor(String major, MyListener<List<Company>> isSuccessful, MyListener<String> isFailure) {
         firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
@@ -567,7 +586,7 @@ public class Repository {
     }
 
 
-    public void getCompanyName(String uid , MyListener<Company> company){
+    public void getCompany(String uid , MyListener<Company> company){
         firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
                 .whereEqualTo(UID, uid)
                 .get()
@@ -613,6 +632,90 @@ public class Repository {
                             isSuccessful.onValuePosted(Job);
                         }else
                             isFailure.onValuePosted(true);
+                    }
+                });
+    }
+
+
+    public void editJobData(String jobId , Uri image, String jobName, String major, String jobLink,
+                            String jobDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure){
+
+        firebaseStorage.getReference()
+                .child(("JobImages/" + System.currentTimeMillis() + image.getLastPathSegment()))
+                .putFile(image)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+
+                                HashMap<String, Object> job = new HashMap<>();
+                                job.put(JOB_ID, jobId);
+                                job.put(IMG, uri.toString());
+                                job.put(MAJOR, major);
+                                job.put(JOB_NAME, jobName);
+                                job.put(JOB_LINK, jobLink);
+                                job.put(JOB_DESCRIPTION, jobDescription);
+
+                                firebaseFirestore.collection(COLLECTION_JOBS)
+                                        .document(jobId)
+                                        .update(job).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful())
+                                            isSuccessful.onValuePosted(true);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                isFailure.onValuePosted(true);
+            }
+        });
+
+    }
+
+    public void editJobDataWithoutImg(String jobId , String jobName, String major, String jobLink,
+                            String jobDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure){
+
+        HashMap<String, Object> job = new HashMap<>();
+        job.put(JOB_ID, jobId);
+        job.put(MAJOR, major);
+        job.put(JOB_NAME, jobName);
+        job.put(JOB_LINK, jobLink);
+        job.put(JOB_DESCRIPTION, jobDescription);
+
+        firebaseFirestore.collection(COLLECTION_JOBS)
+                .document(jobId)
+                .update(job).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    isSuccessful.onValuePosted(true);
+                else
+                    isFailure.onValuePosted(true);
+            }
+        });
+
+    }
+
+    public void getCompanyImgAndName(String companyId , MyListener<Company> company){
+        firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
+                .whereEqualTo(UID, companyId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Company com = document.toObject(Company.class);
+                                company.onValuePosted(com);
+                            }
+                        }
                     }
                 });
     }

@@ -6,103 +6,202 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ShowPostFragment">
 
-        <LinearLayout
-            android:id="@+id/post"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ads_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16sdp"
+            android:text="@string/ads_title"
+            android:textSize="@dimen/_24sdp"
+            android:textColor="@color/white"
+            android:gravity="right"
+            android:background="@color/basic"
+            android:fontFamily="@font/ibm_plex_sans_arabic_regular"/>
 
 
-            <TextView
-                android:id="@+id/post_title"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:layout_marginRight="@dimen/_16sdp"
-                android:layout_marginLeft="@dimen/_16sdp"
-                android:text="@string/post_title"
-                android:textSize="@dimen/_24sdp"
-                android:textColor="@color/basic"
-                android:fontFamily="@font/ibm_plex_sans_arabic_regular"/>
+                android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:layout_marginLeft="@dimen/_8sdp">
-
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/ads_image"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/_16sdp"
-                    android:orientation="vertical">
+                    android:layout_height="@dimen/_160sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/post_description"
-                        android:textSize="@dimen/_16sdp"
-                        android:textColor="@color/basic"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"/>
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    style="@style/ProgressBar"
+                    app:indicatorColor="@color/basic"
+                    app:indicatorSize="25dp"
+                    android:layout_marginEnd="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:trackCornerRadius="5dp" />
 
-                    <View style="@style/divider"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/post_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/description"
-                        android:textSize="@dimen/_14sdp"
-                        android:textColor="@color/title_text"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:layout_marginLeft="@dimen/_8sdp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/ads_major"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:textColor="@color/basic"/>
+
+                <TextView
+                    android:id="@+id/ads_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:padding="@dimen/_16sdp"
-                    android:orientation="vertical">
+                    android:textColor="@color/basic"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/post_requirements"
-                        android:textSize="@dimen/_16sdp"
-                        android:textColor="@color/basic"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"/>
+            </LinearLayout>
 
-                    <View style="@style/divider"/>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/post_requirements"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/requirements"
-                        android:textSize="@dimen/_14sdp"
-                        android:textColor="@color/title_text"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp">
 
-            <Button
-                android:id="@+id/training_request_btn"
-                style="@style/blue_btn"
-                android:layout_margin="@dimen/_24sdp"
-                android:text="@string/training_request"/>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/description1"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:textColor="@color/basic"/>
+
+                <TextView
+                    android:id="@+id/ads_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:padding="@dimen/_16sdp"
+                    android:textColor="@color/basic"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            android:layout_margin="@dimen/_16sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/ads_requirements"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:textColor="@color/basic"/>
+
+                <TextView
+                    android:id="@+id/ads_requirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:padding="@dimen/_16sdp"
+                    android:textColor="@color/basic"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
+        <Button
+            android:id="@+id/btn_request"
+            style="@style/blue_btn"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/training_request" />
+
+        <Button
+            android:id="@+id/btn_navigate"
+            style="@style/blue_btn"
+            android:backgroundTint="@color/btn_cancel"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/move" />
+
+    </LinearLayout>
 </ScrollView>

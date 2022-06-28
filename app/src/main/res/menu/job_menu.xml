@@ -12,7 +12,6 @@
         android:id="@+id/jobMenuDelete"
         android:title="@string/delete"
         android:icon="@drawable/ic_delete"
-
         app:showAsAction="never"/>
 
 </menu>

@@ -3,6 +3,11 @@ package com.example.drrbni.Fragments.EditProfile;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -12,30 +17,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
 import com.bumptech.glide.Glide;
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
+import com.example.drrbni.SpinnerPosition;
+import com.example.drrbni.ViewModels.EditProfileViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentEditProfileBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import java.util.List;
 
 public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
     private FirebaseAuth auth;
-    private ProfileViewModel profileViewModel;
+    private EditProfileViewModel editProfileViewModel;
     private ActivityResultLauncher<String> getImg;
     private ActivityResultLauncher<String> permission;
     private Uri image;
     private Student thisStudent;
+    private SpinnerPosition spinnerPosition;
 
     public EditProfileFragment() {
     }
@@ -47,10 +50,6 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        auth = FirebaseAuth.getInstance();
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        profileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-        profileViewModel.requestGetJobs(auth.getCurrentUser().getUid());
 
         getImg = registerForActivityResult(
                 new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -80,9 +79,13 @@ public class EditProfileFragment extends Fragment {
         binding = FragmentEditProfileBinding.inflate(getLayoutInflater(), container, false);
 
         load();
-        getMajors();
 
-        profileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
+        auth = FirebaseAuth.getInstance();
+        editProfileViewModel = new ViewModelProvider(this).get(EditProfileViewModel.class);
+        editProfileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
+        spinnerPosition = SpinnerPosition.getInstance();
+
+        editProfileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
@@ -94,20 +97,14 @@ public class EditProfileFragment extends Fragment {
                 }
                 binding.editProfileEtName.setText(student.getName());
                 binding.editProfileEtEmail.setText(student.getEmail());
+                binding.editProfileCollege.setSelection(spinnerPosition.getCollegePosition(student.getCollege()));
+                binding.editProfileMajor.setSelection(spinnerPosition.getMajorPosition(student.getMajor()));
                 stopLoad();
             }
         });
 
-        profileViewModel.getCategoriesName(new MyListener<List<String>>() {
-            @Override
-            public void onValuePosted(List<String> value) {
-                int position = 0;
-                checkCategoryName(position, thisStudent);
-                stopLoad();
-            }
-        });
 
-        binding.profileImage.setOnClickListener(new View.OnClickListener() {
+        binding.tvAddImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 permission.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -118,42 +115,54 @@ public class EditProfileFragment extends Fragment {
         binding.btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                update();
+
                 String name = binding.editProfileEtName.getText().toString().trim();
                 String email = binding.editProfileEtEmail.getText().toString().trim();
-                String major = binding.editProfileCategories.getSelectedItem().toString();
+                String major = binding.editProfileMajor.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(name))
                     name = thisStudent.getName();
                 else if (TextUtils.isEmpty(email))
                     email = thisStudent.getEmail();
-                else if (binding.editProfileCategories.getSelectedItemPosition() < 1)
+                else if (binding.editProfileMajor.getSelectedItemPosition() < 1)
                     major = thisStudent.getMajor();
 
                 if (image == null) {
-                    profileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value) {
-                                Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
-                                requireActivity().getSupportFragmentManager().popBackStack();
+                                stopUpdate();
+                                Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
+                                Navigation.findNavController(binding.getRoot()).popBackStack();
+                            }
+                        }
+                    }, new MyListener<Boolean>() {
+                        @Override
+                        public void onValuePosted(Boolean value) {
+                            if (value){
+                                stopUpdate();
+                                Snackbar.make(view , "فشل التعديل" , Snackbar.LENGTH_LONG).show();
                             }
                         }
                     });
                 } else {
-                    profileViewModel.editProfileDataWithImg(image, name, email, major, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfileDataWithImg(image, name, email, major, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value) {
+                                stopUpdate();
                                 Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
-                                requireActivity().getSupportFragmentManager().popBackStack();
+                                Navigation.findNavController(binding.getRoot()).popBackStack();
                             }
                         }
                     }, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value) {
+                                stopUpdate();
                                 Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
-                                requireActivity().getSupportFragmentManager().popBackStack();
                             }
                         }
                     });
@@ -178,9 +187,8 @@ public class EditProfileFragment extends Fragment {
         binding.tvChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChangePasswordBottomSheetFragment bottomSheet =
-                        ChangePasswordBottomSheetFragment.newInstance();
-                bottomSheet.show(getFragmentManager(), "tag");
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_editProfileFragment_to_changePasswordFragment);
             }
         });
 
@@ -205,44 +213,16 @@ public class EditProfileFragment extends Fragment {
         binding.editProfileLayout.setVisibility(View.VISIBLE);
     }
 
-    private void getMajors() {
-        profileViewModel.getMajors(new MyListener<List<String>>() {
-            @Override
-            public void onValuePosted(List<String> value) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item, value);
-                binding.editProfileCategories.setAdapter(adapter);
-                stopLoad();
-            }
-        });
+    public void update() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnOk.setEnabled(false);
+        binding.btnOk.setClickable(false);
     }
 
-    private void checkCategoryName(int position, Student student) {
-        if (student.getMajor().equals("أختر التخصص")) {
-            position = 0;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("التسويق")) {
-            position = 1;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("تكنولوجيا المعلومات")) {
-            position = 2;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("الهندسة")) {
-            position = 3;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("البلديات")) {
-            position = 4;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("التصميم والديكور")) {
-            position = 5;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("المحاسبة")) {
-            position = 6;
-            binding.editProfileCategories.setSelection(position);
-        } else if (student.getMajor().equals("الصحافة والاعلام")) {
-            position = 7;
-            binding.editProfileCategories.setSelection(position);
-        }
+    public void stopUpdate() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.btnOk.setEnabled(true);
+        binding.btnOk.setClickable(true);
     }
 
 }

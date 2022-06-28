@@ -53,5 +53,9 @@ public class Constant {
     public static final String ADS_TIMESTAMP = "timestamp";
 
 
+    public static final String STUDENT_DEFAULT_IMAGE ="https://defualtimage.s3.amazonaws.com/studentDefualtImage.png";
+    public static final String STUDENT_DEFAULT_IMAGE_PROFILE ="https://defualtimage.s3.amazonaws.com/studentDefualtProfileImage.png";
+    public static final String COMPANY_DEFAULT_IMAGE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultIamge.png";
+    public static final String COMPANY_DEFAULT_IMAGE_PROFILE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultProfileIamge.png";
 
 }

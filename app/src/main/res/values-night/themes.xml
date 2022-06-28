@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Drrbni" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/basic</item>
         <item name="colorPrimaryVariant">@color/basic</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->

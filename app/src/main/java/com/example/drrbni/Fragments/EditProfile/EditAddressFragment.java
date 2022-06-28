@@ -1,23 +1,31 @@
 package com.example.drrbni.Fragments.EditProfile;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.example.drrbni.Models.Student;
+import com.example.drrbni.SpinnerPosition;
+import com.example.drrbni.ViewModels.EditAddressViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentEditAddressBinding;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class EditAddressFragment extends Fragment {
 
     private FragmentEditAddressBinding binding;
     private FirebaseAuth auth;
-    private ProfileViewModel profileViewModel;
+    private EditAddressViewModel editAddressViewModel;
+    private SpinnerPosition spinnerPosition;
+
     public EditAddressFragment() {}
 
     public static EditAddressFragment newInstance() {
@@ -27,10 +35,7 @@ public class EditAddressFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        auth = FirebaseAuth.getInstance();
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        profileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-        profileViewModel.requestGetJobs(auth.getCurrentUser().getUid());
+
     }
 
     @Override
@@ -41,13 +46,16 @@ public class EditAddressFragment extends Fragment {
 
         load();
 
-        profileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
+        auth = FirebaseAuth.getInstance();
+        editAddressViewModel = new ViewModelProvider(this).get(EditAddressViewModel.class);
+        editAddressViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
+        spinnerPosition = SpinnerPosition.getInstance();
+
+        editAddressViewModel.getProfileInfo().observe(requireActivity(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
-                int position=0;
-                checkGovernmentSpinner(position, student);
-
+                binding.spGovernorate.setSelection(spinnerPosition.getGovernoratePosition(student.getGovernorate()));
                 binding.etAddress.setText(student.getAddress());
                 stopLoad();
             }
@@ -58,10 +66,17 @@ public class EditAddressFragment extends Fragment {
             public void onClick(View view) {
                 String governorate = (String) binding.spGovernorate.getSelectedItem();
                 String address = binding.etAddress.getText().toString().trim();
-                profileViewModel.editAddressData(governorate,address, new MyListener<Boolean>() {
+                editAddressViewModel.editAddressData(governorate,address, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        requireActivity().getSupportFragmentManager().popBackStack();
+                        if (value) {
+                            stopUpdate();
+                            Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
+                            Navigation.findNavController(binding.getRoot()).popBackStack();
+                        }else {
+                            stopUpdate();
+                            Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
@@ -70,27 +85,6 @@ public class EditAddressFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void checkGovernmentSpinner(int position,Student student) {
-        if (student.getGovernorate().equals("أختر المحافظة")){
-            position = 0;
-            binding.spGovernorate.setSelection(position);
-        } else if (student.getGovernorate().equals("شمال غزة")){
-            position = 1;
-            binding.spGovernorate.setSelection(position);
-        } else if (student.getGovernorate().equals("غزة")){
-            position = 2;
-            binding.spGovernorate.setSelection(position);
-        } else if (student.getGovernorate().equals("الوسطى")){
-            position = 3;
-            binding.spGovernorate.setSelection(position);
-        } else if (student.getGovernorate().equals("خانيونس")){
-            position = 4;
-            binding.spGovernorate.setSelection(position);
-        } else if (student.getGovernorate().equals("رفح")){
-            position = 5;
-            binding.spGovernorate.setSelection(position);
-        }
-    }
 
     @Override
     public void onDestroy() {
@@ -109,5 +103,15 @@ public class EditAddressFragment extends Fragment {
         binding.shimmerView.stopShimmerAnimation();
         binding.editProfileAddressLayout.setVisibility(View.VISIBLE);
     }
+    public void update() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnOk.setEnabled(false);
+        binding.btnOk.setClickable(false);
+    }
 
+    public void stopUpdate() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.btnOk.setEnabled(true);
+        binding.btnOk.setClickable(true);
+    }
 }

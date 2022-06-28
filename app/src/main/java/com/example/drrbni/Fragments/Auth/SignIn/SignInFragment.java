@@ -3,16 +3,16 @@ package com.example.drrbni.Fragments.Auth.SignIn;
 import static com.example.drrbni.Constant.STUDENT_TYPE;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
@@ -35,7 +35,6 @@ public class SignInFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
 
     }
 
@@ -45,6 +44,8 @@ public class SignInFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSignInBinding
                 .inflate(getLayoutInflater(), container, false);
+
+        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

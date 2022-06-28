@@ -1,18 +1,26 @@
 package com.example.drrbni.Adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.drrbni.Fragments.BottomNavigationScreens.ProfileFragmentDirections;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.R;
@@ -20,6 +28,7 @@ import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.CustomJobItemBinding;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
@@ -39,13 +48,13 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
     @NonNull
     @Override
-    public JobAdapter.JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         return new JobViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_job_item , parent , false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JobAdapter.JobViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
         Job job = jobList.get(position);
         holder.bind(job);
     }
@@ -65,22 +74,31 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
         }
 
         public void bind(Job job) {
+            load();
             this.job = job;
-            if (job.getImg() == null){
-                binding.jobImage.setImageResource(R.drawable.defult_job_img);
-            }else {
-                Glide.with(context).load(job.getImg()).placeholder(R.drawable.anim_progress).into(binding.jobImage);
-            }
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
+            binding.progressBar.setVisibility(View.VISIBLE);
+            Glide.with(context).load(job.getImg()).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
 
-            binding.dropDown.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    binding.progressBar.setVisibility(View.GONE);
+                    return false;
+                }
+            }).into(binding.jobImage);
+
+            binding.jobMenu.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.Q)
                 @Override
                 public void onClick(View view) {
-                    PopupMenu popup = new PopupMenu(context , binding.dropDown);
+                    PopupMenu popup = new PopupMenu(context , binding.jobMenu);
                     popup.inflate(R.menu.job_menu);
-//                    popup.setForceShowIcon(true);
+                    popup.setForceShowIcon(true);
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -112,6 +130,19 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                 }
             });
 
+            stopLoad();
+        }
+
+        public void load() {
+            binding.shimmerView.setVisibility(View.VISIBLE);
+            binding.shimmerView.startShimmerAnimation();
+            binding.customJobsLayout.setVisibility(View.GONE);
+        }
+
+        public void stopLoad() {
+            binding.shimmerView.setVisibility(View.GONE);
+            binding.shimmerView.stopShimmerAnimation();
+            binding.customJobsLayout.setVisibility(View.VISIBLE);
         }
     }
 

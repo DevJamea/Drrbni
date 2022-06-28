@@ -2,24 +2,26 @@ package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import static com.example.drrbni.Constant.COLLECTION_ADS;
 import static com.example.drrbni.Constant.MAJOR;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.drrbni.Adapters.HomeAdapter;
 import com.example.drrbni.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbni.Models.Ads;
 import com.example.drrbni.Models.Filters;
 import com.example.drrbni.ViewModels.HomeViewModel;
 import com.example.drrbni.databinding.FragmentHomeBinding;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -144,7 +146,18 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
     @Override
     public void onAdsSelected(Ads ads) {
         NavController navController = Navigation.findNavController(binding.getRoot());
-        navController.navigate(HomeFragmentDirections
-                .actionHomeFragmentToShowPostFragment(ads));
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToShowPostFragment(ads));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        homeAdapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homeAdapter.startListening();
     }
 }

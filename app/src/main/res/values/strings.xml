@@ -50,7 +50,7 @@
     <string name="major">التخصص</string>
     <string name="add_major">اختيار تخصص</string>
     <string name="job_name">أسم العمل</string>
-    <string name="add_job">" اضافة عمل"</string>
+    <string name="add_job">"إضافة عمل"</string>
     <string name="company_name">شركة المستقبل للتكنولوجيا</string>
     <string name="company_location">غزة - مفترق الصناعة</string>
     <string name="company_major">تكنولوجيا المعلومات</string>
@@ -99,9 +99,13 @@
     <string name="whatsapp2">Whatsapp</string>
     <string name="edit">تعديل</string>
     <string name="delete">حذف</string>
+    <string name="ads_title">عنوان الاعلان</string>
+    <string name="ads_major">التخصص الطلوب</string>
+    <string name="ads_requirements">المتطلبات</string>
+    <string name="move">إنتقال الى الملف الشخصي</string>
 
     <string-array name="majors_array">
-        <item>التخصص المطلوب</item>
+        <item>التخصص</item>
         <item>تكنولوجيا الوسائط المتعددة</item>
         <item>البرمجيات وقواعد البيانات</item>
         <item>تصميم وتطوير مواقع الويب</item>
@@ -151,7 +155,7 @@
 
 
     <string-array name="college_array">
-        <item>أختر جامعة</item>
+        <item>الجامعة</item>
         <item>الجامعة الإسلامية</item>
         <item>جامعة الأقصى</item>
         <item>جامعة فلسطين</item>

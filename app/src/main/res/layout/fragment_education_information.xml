@@ -5,16 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/education_information"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -44,7 +40,8 @@
                 android:id="@+id/sign_up_college"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:theme="@style/spinner"/>
+                android:theme="@style/spinner"
+                android:entries="@array/college_array"/>
 
         </FrameLayout>
 
@@ -60,7 +57,8 @@
                 android:id="@+id/sign_up_major"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:theme="@style/spinner"/>
+                android:theme="@style/spinner"
+                android:entries="@array/majors_array"/>
 
         </FrameLayout>
 
@@ -91,25 +89,7 @@
 
         </RelativeLayout>
 
-        </LinearLayout>
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:visibility="gone"
-            android:layout_alignParentBottom="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <include layout="@layout/education_information_placeholder" />
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-    </RelativeLayout>
-
+    </LinearLayout>
 
 
 </ScrollView>

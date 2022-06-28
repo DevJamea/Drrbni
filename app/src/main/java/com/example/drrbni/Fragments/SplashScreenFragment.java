@@ -1,16 +1,18 @@
 package com.example.drrbni.Fragments;
 
 import static com.example.drrbni.Constant.SPLASH_SCREEN_TIME_OUT;
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 import com.example.drrbni.R;
 import com.example.drrbni.databinding.FragmentSplashScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;

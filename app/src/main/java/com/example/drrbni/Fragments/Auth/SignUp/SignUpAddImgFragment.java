@@ -3,6 +3,9 @@ package com.example.drrbni.Fragments.Auth.SignUp;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -13,17 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.AddImfViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentSignUpAddImgBinding;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.Map;
 
 public class SignUpAddImgFragment extends Fragment {
 
@@ -95,7 +92,7 @@ public class SignUpAddImgFragment extends Fragment {
                         if (value) {
                             stopLoad();
                             NavController navController = Navigation.findNavController(binding.getRoot());
-                            navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
+                            navController.navigate(R.id.action_signUpAddImgFragment_to_loginFragment);
                         }
                     }
                 }, new MyListener<Boolean>() {
@@ -117,7 +114,7 @@ public class SignUpAddImgFragment extends Fragment {
             public void onClick(View view) {
 
                 NavController navController = Navigation.findNavController(binding.getRoot());
-                navController.navigate(R.id.action_signUpAddImgFragment_to_mainFragment);
+                navController.navigate(R.id.action_signUpAddImgFragment_to_loginFragment);
 
             }
         });

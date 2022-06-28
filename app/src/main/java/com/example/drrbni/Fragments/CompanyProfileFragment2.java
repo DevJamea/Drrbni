@@ -1,10 +1,9 @@
 package com.example.drrbni.Fragments;
 
-import android.content.Intent;
+import static com.example.drrbni.Constant.COMPANY_DEFAULT_IMAGE_PROFILE;
+
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.example.drrbni.Constant.COMPANY_DEFAULT_IMAGE_PROFILE;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -26,22 +24,21 @@ import com.bumptech.glide.request.target.Target;
 import com.example.drrbni.Adapters.AdsAdapter;
 import com.example.drrbni.Models.Ads;
 import com.example.drrbni.Models.Company;
-import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.CompanyProfileViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentCompanyProfileBinding;
 
 import java.util.List;
 
-public class CompanyProfileFragment extends Fragment {
+public class CompanyProfileFragment2 extends Fragment {
 
     private FragmentCompanyProfileBinding binding;
     private AdsAdapter adsAdapter;
     private CompanyProfileViewModel companyProfileViewModel;
-    public CompanyProfileFragment() {}
+    public CompanyProfileFragment2() {}
 
-    public static CompanyProfileFragment newInstance() {
-        return new CompanyProfileFragment();
+    public static CompanyProfileFragment2 newInstance() {
+        return new CompanyProfileFragment2();
     }
 
     @Override
@@ -57,7 +54,8 @@ public class CompanyProfileFragment extends Fragment {
                 .inflate(getLayoutInflater(),container,false);
         load();
 
-        String userId = getArguments().getString("userId").trim();
+
+        String userId = getArguments().getString("companyId").trim();
 
         companyProfileViewModel.getInfoCompanyByUID(userId, new MyListener<Company>() {
             @Override
@@ -119,8 +117,8 @@ public class CompanyProfileFragment extends Fragment {
                     @Override
                     public void onValuePosted(Ads value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(CompanyProfileFragmentDirections
-                        .actionCompanyProfileFragmentToShowPostFragment(value));
+                        navController.navigate(CompanyProfileFragment2Directions
+                        .actionCompanyProfileFragment2ToShowPostFragment2(value));
                     }
                 });
                 initRV();

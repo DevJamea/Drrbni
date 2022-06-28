@@ -1,6 +1,9 @@
 package com.example.drrbni.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -10,17 +13,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.drrbni.Adapters.CategoryCompanyAdapter;
 import com.example.drrbni.Models.Company;
 import com.example.drrbni.ViewModels.CompanyProfileViewModel;
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.databinding.FragmentCategoryItemsBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class CategoryItemFragment extends Fragment {
     private FragmentCategoryItemsBinding binding;
     private CategoryCompanyAdapter categoryCompanyAdapter;
     private CompanyProfileViewModel companyProfileViewModel;
+
     public CategoryItemFragment() {}
 
     public static CategoryItemFragment newInstance() {
@@ -48,12 +46,11 @@ public class CategoryItemFragment extends Fragment {
                 .inflate(getLayoutInflater(),container,false);
 
         load();
-        String categoryId = CategoryItemFragmentArgs.fromBundle(requireArguments()).getCategoryId();
-        String majorName = CategoryItemFragmentArgs.fromBundle(requireArguments()).getName();
-        binding.title.setText(majorName);
+        String categoryName = getArguments().getString("categoryName").trim();
 
+        binding.title.setText(categoryName);
 
-        companyProfileViewModel.getCompaniesByMajor(majorName, new MyListener<List<Company>>() {
+        companyProfileViewModel.getCompaniesByMajor(categoryName, new MyListener<List<Company>>() {
             @Override
             public void onValuePosted(List<Company> value) {
                 stopLoad();

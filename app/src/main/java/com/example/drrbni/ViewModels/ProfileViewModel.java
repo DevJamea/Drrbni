@@ -1,21 +1,14 @@
 package com.example.drrbni.ViewModels;
 
-import static com.example.drrbni.Constant.COLLECTION_ADS;
-import static com.example.drrbni.Constant.COLLECTION_JOBS;
-
 import android.app.Application;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.drrbni.Models.Ads;
-import com.example.drrbni.Models.Company;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
 
@@ -53,47 +46,12 @@ public class ProfileViewModel extends AndroidViewModel {
         return jobsData;
     }
 
-    public void editImg(Uri image, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
-        repository.storeImg(image, isSuccessful, isFailure);
-    }
-
-    public void editProfile(String name,String email,String major, MyListener<Boolean> isSuccessful){
-        repository.editProfile(name, email, major, isSuccessful);
-    }
-
-    public void editProfileContactInformation(String whatsapp, MyListener<Boolean> isSuccessful){
-        repository.editProfileContactInformation(whatsapp, isSuccessful);
-    }
-
-    public void editAddressData(String governorate, String address, MyListener<Boolean> isSuccessful) {
-        repository.editAddressData(governorate, address, isSuccessful);
-    }
-
-    public void changePassword(String currentPassword,String newPassword,String confPassword,MyListener<String > isSuccessful, MyListener<String> isFailure){
-        repository.changePassword(currentPassword, newPassword, confPassword, isSuccessful, isFailure);
-    }
-
-    public void getMajors(MyListener<List<String>> isSuccessful) {
-        repository.getMajors(isSuccessful);
-    }
-
-    public void getCategoriesName(MyListener<List<String>> isSuccessful) {
-        repository.getCategoriesName(isSuccessful);
-    }
-
-    public void editProfileDataWithImg(Uri image, String studentName, String email, String major
-            , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
-        repository.editProfileDataWithImg(image, studentName, email, major, isSuccessful, isFailure);
-    }
 
     public void deleteJob(String jobId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
         repository.deleteJob(jobId, isSuccessful, isFailure);
     }
 
-    public void getJobById(String jobId ,MyListener<Job> isSuccessful
-            , MyListener<Boolean> isFailure){
-        repository.getJobById(jobId, isSuccessful, isFailure);
-    }
+
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,13 +52,12 @@ public class CategoriesFragment extends Fragment {
             public void onValuePosted(List<Category> values) {
                 if (getActivity() == null) return;
 
-                adapter = new CategoryAdapter(values, new MyListener<Integer>() {
+                adapter = new CategoryAdapter(values, new MyListener<String>() {
                     @Override
-                    public void onValuePosted(Integer value) {
+                    public void onValuePosted(String value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(CategoriesFragmentDirections
-                                .actionCategoriesFragmentToCategoryItemFragment
-                                        (values.get(value).getCategory_Id(), values.get(value).getName()));
+                        navController.navigate(CategoriesFragmentDirections.
+                                actionCategoriesFragmentToCategoryItemFragment(value));
                     }
                 });
                 stopLoad();
