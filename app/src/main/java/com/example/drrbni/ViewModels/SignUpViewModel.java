@@ -21,7 +21,10 @@ public class SignUpViewModel extends AndroidViewModel {
         repository.signUp(email, password , isSuccessful , isFailure);
     }
 
-    public void storeData (FirebaseUser firebaseUser ,String name ,MyListener<Boolean> isSuccessful  ){
-        repository.storeSignUpData(firebaseUser , name , isSuccessful);
+    public void storeData (FirebaseUser firebaseUser ,String name
+            ,MyListener<Boolean> isSuccessful  ){
+        repository.storeSignUpData(firebaseUser , name  ,isSuccessful);
     }
+
+
 }

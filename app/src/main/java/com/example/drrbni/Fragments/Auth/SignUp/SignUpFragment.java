@@ -76,7 +76,6 @@ public class SignUpFragment extends Fragment {
                 signUpViewModel.signUp(email, password, new MyListener<FirebaseUser>() {
                     @Override
                     public void onValuePosted(FirebaseUser value) {
-
                         //في حالة النجاح يرفع الداتا وينتقل للواجهة التالية
                         signUpViewModel.storeData(value, name, new MyListener<Boolean>() {
                             @Override

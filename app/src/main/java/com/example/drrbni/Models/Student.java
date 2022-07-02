@@ -1,20 +1,30 @@
 package com.example.drrbni.Models;
 
 public class Student {
-    private String email, img, name, major, college, governorate, address, whatsApp, UserId;
+    private String email, img, name, major, college, governorate, address, whatsApp, UserId , token;
     private int typeUser;
 
-    public Student(String email, String img, String name, String specialization, String college, String governorate, String address, String whatsApp, String UserId, int typeUser) {
+    public Student(String email, String img, String name, String major, String college,
+                   String governorate, String address, String whatsApp, String userId, String token, int typeUser) {
         this.email = email;
         this.img = img;
         this.name = name;
-        this.major = specialization;
+        this.major = major;
         this.college = college;
         this.governorate = governorate;
         this.address = address;
         this.whatsApp = whatsApp;
-        this.UserId = this.UserId;
+        UserId = userId;
+        this.token = token;
         this.typeUser = typeUser;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Student() {}

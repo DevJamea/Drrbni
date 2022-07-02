@@ -5,6 +5,7 @@ import static com.example.drrbni.Constant.COLLECTION_ADS;
 import static com.example.drrbni.Constant.COLLECTION_CATEGORIES;
 import static com.example.drrbni.Constant.COLLECTION_JOBS;
 import static com.example.drrbni.Constant.COLLECTION_MAJORS;
+import static com.example.drrbni.Constant.COLLECTION_NOTIFICATION;
 import static com.example.drrbni.Constant.COLLECTION_PROFILE_COMPANIES;
 import static com.example.drrbni.Constant.COLLECTION_UNIVERSITIES;
 import static com.example.drrbni.Constant.COLLECTION_USERS_PROFILES;
@@ -20,7 +21,9 @@ import static com.example.drrbni.Constant.MAJOR;
 import static com.example.drrbni.Constant.MAJOR_NAME;
 import static com.example.drrbni.Constant.NAME;
 import static com.example.drrbni.Constant.PROFILE_COMPANIES_MAJOR;
+import static com.example.drrbni.Constant.REQUESTS;
 import static com.example.drrbni.Constant.STUDENT_TYPE;
+import static com.example.drrbni.Constant.TOKEN;
 import static com.example.drrbni.Constant.TYPE_USER;
 import static com.example.drrbni.Constant.UID;
 import static com.example.drrbni.Constant.UNIVERSITY_NAME;
@@ -34,10 +37,12 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.drrbni.MajorTopic;
 import com.example.drrbni.Models.Ads;
 import com.example.drrbni.Models.Category;
 import com.example.drrbni.Models.Company;
 import com.example.drrbni.Models.Job;
+import com.example.drrbni.Models.Notification;
 import com.example.drrbni.Models.Student;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,9 +55,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 
@@ -67,6 +74,7 @@ public class Repository {
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage firebaseStorage;
+    private FirebaseMessaging firebaseMessaging;
     private MutableLiveData<Student> profileInfo;
     private MutableLiveData<List<Job>> jobsData;
 
@@ -76,6 +84,7 @@ public class Repository {
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        firebaseMessaging = FirebaseMessaging.getInstance();
         profileInfo = new MutableLiveData<>();
         jobsData = new MutableLiveData<>();
     }
@@ -97,21 +106,31 @@ public class Repository {
                 });
     }
 
-    public void storeSignUpData(FirebaseUser firebaseUser, String name, MyListener<Boolean> isSuccessful) {
-        HashMap<String, Object> data = new HashMap<>();
-        data.put(UID, firebaseUser.getUid());
-        data.put(NAME, name);
-        data.put(EMAIL, firebaseUser.getEmail());
-        data.put(TYPE_USER, STUDENT_TYPE);
+    public void storeSignUpData(FirebaseUser firebaseUser, String name ,MyListener<Boolean> isSuccessful) {
 
-        firebaseFirestore.collection(COLLECTION_USERS_PROFILES).document(firebaseUser.getUid())
-                .set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+        getToken(new MyListener<String>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                    isSuccessful.onValuePosted(true);
+            public void onValuePosted(String value) {
+
+                HashMap<String, Object> data = new HashMap<>();
+                data.put(UID, firebaseUser.getUid());
+                data.put(NAME, name);
+                data.put(EMAIL, firebaseUser.getEmail());
+                data.put(TYPE_USER, STUDENT_TYPE);
+                data.put(TOKEN , value);
+
+                firebaseFirestore.collection(COLLECTION_USERS_PROFILES).document(firebaseUser.getUid())
+                        .set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            isSuccessful.onValuePosted(true);
+                    }
+                });
+
             }
         });
+
     }
 
     public void storeAddressData(String governorate, String address, MyListener<Boolean> isSuccessful) {
@@ -135,6 +154,7 @@ public class Repository {
         HashMap<String, Object> data = new HashMap<>();
         data.put(COLLEGE, college);
         data.put(MAJOR, major);
+        subscribeToTopic(major);
 
         firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                 .document(firebaseAuth.getCurrentUser().getUid()).update(data)
@@ -720,4 +740,86 @@ public class Repository {
                 });
     }
 
+    public void getToken(MyListener<String> isSuccessful){
+
+        firebaseMessaging.getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()){
+                    isSuccessful.onValuePosted(task.getResult());
+                }
+            }
+        });
+    }
+
+    public void updateToken(String newToken){
+        if (firebaseUser != null){
+            firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                    .document(firebaseUser.getUid())
+                    .update(TOKEN , newToken);
+        }
+
+    }
+
+    public void subscribeToTopic(String major){
+
+        MajorTopic majorTopic = MajorTopic.getInstance();
+        firebaseMessaging.subscribeToTopic(majorTopic.getMajorTopic(major));
+    }
+
+    public void updateTopic(String oldTopic , String newTopic){
+
+        firebaseMessaging.unsubscribeFromTopic(oldTopic);
+        firebaseMessaging.subscribeToTopic(newTopic);
+
+    }
+
+    public void getTokenByCompanyId(String companyId, MyListener<String> isSuccessful){
+
+        firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
+                .document(companyId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    String token = document.getString(TOKEN);
+                    isSuccessful.onValuePosted(token);
+                }
+            }
+        });
+    }
+
+    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
+
+         firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                .document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            String name = document.getString(NAME);
+                            isSuccessful.onValuePosted(name);
+                        }
+                    }
+                });
+
+    }
+
+    public void addToRequestArray(String adsId){
+
+        firebaseFirestore.collection(COLLECTION_ADS)
+                .document(adsId)
+                .update(REQUESTS , FieldValue.arrayUnion(firebaseUser.getUid()));
+
+
+    }
+
+    public void storeNotification(String senderUid, String title, String body, String adsId){
+
+        DocumentReference docRef = firebaseFirestore.collection(COLLECTION_NOTIFICATION).document();
+        Notification notification = new Notification(docRef.getId(), senderUid, firebaseUser.getUid(),
+                title, body, adsId);
+        docRef.set(notification);
+
+    }
 }
