@@ -20,6 +20,7 @@ import static com.example.drrbni.Constant.JOB_NAME;
 import static com.example.drrbni.Constant.MAJOR;
 import static com.example.drrbni.Constant.MAJOR_NAME;
 import static com.example.drrbni.Constant.NAME;
+import static com.example.drrbni.Constant.NOTIFICATION_RECIPIENT;
 import static com.example.drrbni.Constant.PROFILE_COMPANIES_MAJOR;
 import static com.example.drrbni.Constant.REQUESTS;
 import static com.example.drrbni.Constant.STUDENT_TYPE;
@@ -822,4 +823,45 @@ public class Repository {
         docRef.set(notification);
 
     }
+
+    public void getCompanyNameAndImageByUid(String uid , MyListener<Company> listener){
+        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
+                .whereEqualTo(UID, uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Company company = document.toObject(Company.class);
+                                listener.onValuePosted(company);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void getNotificationsByUid(String uid , MyListener<List<Notification>> isSuccessful
+            , MyListener<Boolean> isFailure){
+
+        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
+                .whereEqualTo(NOTIFICATION_RECIPIENT , uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            List<Notification> notificationList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Notification notification = document.toObject(Notification.class);
+                                notificationList.add(notification);
+                            }
+                            isSuccessful.onValuePosted(notificationList);
+                        }else
+                            isFailure.onValuePosted(true);
+                    }
+                });
+    }
+
+
 }

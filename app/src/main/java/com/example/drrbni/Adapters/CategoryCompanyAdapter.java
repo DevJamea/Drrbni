@@ -102,7 +102,7 @@ public class CategoryCompanyAdapter extends RecyclerView.Adapter<CategoryCompany
                     }
                 }).into(binding.companyImage);
             }
-            binding.companyLocation.setText(company.getGovernorate() + " _ " +company.getAddress());
+            binding.companyLocation.setText(company.getGovernorate() + " - " +company.getAddress());
             binding.companyMajor.setText(company.getCategory());
         }
 

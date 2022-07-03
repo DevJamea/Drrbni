@@ -182,6 +182,7 @@
                 </LinearLayout>
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

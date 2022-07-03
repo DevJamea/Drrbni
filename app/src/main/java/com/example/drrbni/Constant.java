@@ -61,4 +61,5 @@ public class Constant {
     public static final String TOKEN = "token";
     public static final String REQUESTS = "requests";
     public static final String COLLECTION_NOTIFICATION = "Notifications";
+    public static final String NOTIFICATION_RECIPIENT = "recipientUid";
 }

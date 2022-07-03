@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.BottomNavigationScreens.NotificationsFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company2"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company3"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company4"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company5"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company6"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_company7"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/gray_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_company7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textSize="@dimen/_16sdp"
+                android:background="@color/gray_bg"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:background="@color/gray_bg"
+                android:text="@string/notification_description"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                android:textColor="@color/gray_bg"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
