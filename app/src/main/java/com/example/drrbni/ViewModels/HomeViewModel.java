@@ -1,5 +1,6 @@
 package com.example.drrbni.ViewModels;
 
+import android.app.Activity;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,10 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void getCompany(String uid , MyListener<Company> company){
         repository.getCompany(uid, company);
+    }
+
+    public void SignOut(Activity activity){
+        repository.SignOut(activity);
     }
 
 

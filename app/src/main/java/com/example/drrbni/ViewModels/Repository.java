@@ -931,6 +931,7 @@ public class Repository {
         stateAuth = activity.getSharedPreferences(PREF_STATE_AUTH, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = stateAuth.edit();
         editor.putBoolean(STATE_AUTH, false);
+        editor.commit();
         firebaseAuth.signOut();
     }
 

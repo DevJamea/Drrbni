@@ -58,9 +58,11 @@ public class EditEmailFragment extends Fragment {
                 String currentPassword = binding.currentPassword.getText().toString().trim();
                 String email = binding.etEmail.getText().toString().trim();
 
+
                 if (TextUtils.isEmpty(email))
                     email = Email;
 
+                if (currentPassword == null) return;
                 editProfileViewModel.changeEmail(currentPassword, email, auth.getCurrentUser().getUid(), new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {

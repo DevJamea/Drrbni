@@ -96,6 +96,7 @@ public class SignInFragment extends Fragment {
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_mainFragment);
                                             editor.putBoolean(STATE_AUTH,true);
+                                            editor.commit();
                                             return;
                                         }
 

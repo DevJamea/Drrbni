@@ -184,14 +184,33 @@
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginRight="@dimen/_16sdp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_jobs"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:layout_marginRight="@dimen/_4sdp"
-                        android:minHeight="@dimen/_400sdp"
-                        tools:listitem="@layout/custom_job_item" />
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/empty_img"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/empty_list"
+                            android:layout_marginTop="@dimen/_18sdp"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone"
+                            android:gravity="center"
+                            />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_jobs"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/empty_img"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:minHeight="@dimen/_400sdp"
+                            tools:listitem="@layout/custom_job_item" />
+
+                    </RelativeLayout>
+
 
 
                 </LinearLayout>

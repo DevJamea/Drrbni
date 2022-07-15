@@ -2,24 +2,22 @@ package com.example.drrbni.Fragments.BottomNavigationScreens;
 
 import static com.example.drrbni.Constant.COLLECTION_ADS;
 import static com.example.drrbni.Constant.MAJOR;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.drrbni.Adapters.HomeAdapter;
 import com.example.drrbni.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbni.Models.Ads;
 import com.example.drrbni.Models.Filters;
+import com.example.drrbni.R;
 import com.example.drrbni.ViewModels.HomeViewModel;
 import com.example.drrbni.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -66,6 +64,15 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
             public void onClick(View view) {
                 onClearFilter();
                 binding.buttonClearFilter.setVisibility(View.GONE);
+            }
+        });
+
+        binding.iconLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.SignOut(getActivity());
+                NavController navController = Navigation.findNavController(requireActivity(),R.id.fragmentContainerView);
+                navController.navigate(R.id.action_mainFragment_to_loginFragment);
             }
         });
 

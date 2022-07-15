@@ -109,14 +109,19 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(List<Job> jobs) {
                 if (getActivity() == null) return;
-                jobAdapter = new JobAdapter(jobs,profileViewModel, new MyListener<String>() {
-                    @Override
-                    public void onValuePosted(String value) {
-                        NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(R.id.action_profileFragment_to_showAndEditJobFragment);
-                    }
-                });
-                initRV();
+                if (jobs.isEmpty()){
+                    binding.emptyImg.setVisibility(View.VISIBLE);
+                    binding.rvJobs.setVisibility(View.GONE);
+                }else {
+                    jobAdapter = new JobAdapter(jobs,profileViewModel, new MyListener<String>() {
+                        @Override
+                        public void onValuePosted(String value) {
+                            NavController navController = Navigation.findNavController(binding.getRoot());
+                            navController.navigate(R.id.action_profileFragment_to_showAndEditJobFragment);
+                        }
+                    });
+                    initRV();
+                }
             }
         });
 
