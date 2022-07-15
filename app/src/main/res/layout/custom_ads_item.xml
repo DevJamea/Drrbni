@@ -90,10 +90,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-
-
-
-
             </LinearLayout>
 
             <TextView
@@ -114,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:visibility="visible"
+            tools:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -123,5 +119,7 @@
             <include layout="@layout/custom_ads_item_placeholder"/>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

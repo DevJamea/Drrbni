@@ -103,6 +103,8 @@
     <string name="ads_major">التخصص الطلوب</string>
     <string name="ads_requirements">المتطلبات</string>
     <string name="move">إنتقال الى الملف الشخصي</string>
+    <string name="logOut">تسجيل الخروج</string>
+    <string name="edit_email">تعديل البريد الالكتروني</string>
 
     <string-array name="majors_array">
         <item>التخصص</item>

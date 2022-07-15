@@ -63,4 +63,9 @@ public class Constant {
     public static final String REQUESTS = "requests";
     public static final String COLLECTION_NOTIFICATION = "Notifications";
     public static final String NOTIFICATION_RECIPIENT = "recipientUid";
+
+    public static final String PREF_STATE_AUTH = "SharedPreferenceStateAuth";
+    public static final String STATE_AUTH = "stateAuth";
+
+
 }

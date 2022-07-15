@@ -1,7 +1,11 @@
 package com.example.drrbni.Fragments.Auth.SignIn;
 
+import static com.example.drrbni.Constant.PREF_STATE_AUTH;
+import static com.example.drrbni.Constant.STATE_AUTH;
 import static com.example.drrbni.Constant.STUDENT_TYPE;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -25,17 +29,13 @@ public class SignInFragment extends Fragment {
 
     private FragmentSignInBinding binding;
     private SignInViewModel signInViewModel;
+    private SharedPreferences stateAuth;
 
-    public SignInFragment() {}
+    public SignInFragment() {
+    }
 
     public static SignInFragment newInstance() {
         return new SignInFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
 
@@ -46,6 +46,8 @@ public class SignInFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
+        stateAuth = getActivity().getSharedPreferences(PREF_STATE_AUTH, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = stateAuth.edit();
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,36 +69,37 @@ public class SignInFragment extends Fragment {
                     @Override
                     public void onValuePosted(Boolean value) {
 
-                        if (value){
+                        if (value) {
                             signInViewModel.checkSignInData(email, new MyListener<Student>() {
                                 @Override
                                 public void onValuePosted(Student value) {
 
-                                    if (value.getTypeUser() == STUDENT_TYPE){
+                                    if (value.getTypeUser() == STUDENT_TYPE) {
 
-                                        if (value.getAddress() == null){
+                                        if (value.getAddress() == null) {
                                             stopLoad();
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
                                             return;
-                                        }else if (value.getCollege() == null){
+                                        } else if (value.getCollege() == null) {
                                             stopLoad();
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_educationInformationFragment);
                                             return;
-                                        }else if (value.getWhatsApp() == null){
+                                        } else if (value.getWhatsApp() == null) {
                                             stopLoad();
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_signUpContactInformationFragment);
                                             return;
-                                        }else {
+                                        } else {
                                             stopLoad();
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_mainFragment);
+                                            editor.putBoolean(STATE_AUTH,true);
                                             return;
                                         }
 
-                                    }else {
+                                    } else {
                                         // نوع المستخدم ليس طالب
                                         stopLoad();
                                         Snackbar.make(requireView(), "خطأ في البريد الألكتروني او كلمة المرور", Snackbar.LENGTH_LONG).show();
@@ -138,13 +141,13 @@ public class SignInFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void load(){
+    public void load() {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.loginBtn.setEnabled(false);
         binding.loginBtn.setClickable(false);
     }
 
-    public void stopLoad(){
+    public void stopLoad() {
         binding.progressBar.setVisibility(View.GONE);
         binding.loginBtn.setEnabled(true);
         binding.loginBtn.setClickable(true);

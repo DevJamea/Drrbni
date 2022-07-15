@@ -57,8 +57,6 @@ public class FcmNotificationsSender {
 
             mainObject.put("data", dataObject);
 
-
-
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {

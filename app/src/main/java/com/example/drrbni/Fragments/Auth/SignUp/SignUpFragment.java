@@ -84,7 +84,7 @@ public class SignUpFragment extends Fragment {
                                    stopLoad();
                                    NavController navController = Navigation.findNavController(requireActivity() , R.id.fragmentContainerView);
                                    navController.navigate(R.id.action_loginFragment_to_signUpAddressFragment);
-                                   Toast.makeText(requireContext(), "hhh", Toast.LENGTH_SHORT).show();
+//                                   Toast.makeText(requireContext(), "hhh", Toast.LENGTH_SHORT).show();
                                }
                             }
                         });

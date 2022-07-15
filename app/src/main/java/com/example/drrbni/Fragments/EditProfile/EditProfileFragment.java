@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -17,18 +16,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbni.Models.Student;
 import com.example.drrbni.R;
 import com.example.drrbni.SpinnerPosition;
 import com.example.drrbni.ViewModels.EditProfileViewModel;
 import com.example.drrbni.ViewModels.MyListener;
-import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentEditProfileBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import static com.example.drrbni.Constant.STUDENT_DEFAULT_IMAGE;
+
 public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
@@ -40,8 +38,7 @@ public class EditProfileFragment extends Fragment {
     private Student thisStudent;
     private SpinnerPosition spinnerPosition;
 
-    public EditProfileFragment() {
-    }
+    public EditProfileFragment() {}
 
     public static EditProfileFragment newInstance() {
         return new EditProfileFragment();
@@ -96,7 +93,6 @@ public class EditProfileFragment extends Fragment {
                     Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.profileImage);
                 }
                 binding.editProfileEtName.setText(student.getName());
-                binding.editProfileEtEmail.setText(student.getEmail());
                 binding.editProfileCollege.setSelection(spinnerPosition.getCollegePosition(student.getCollege()));
                 binding.editProfileMajor.setSelection(spinnerPosition.getMajorPosition(student.getMajor()));
                 stopLoad();
@@ -118,20 +114,20 @@ public class EditProfileFragment extends Fragment {
                 update();
 
                 String name = binding.editProfileEtName.getText().toString().trim();
-                String email = binding.editProfileEtEmail.getText().toString().trim();
+                String college = binding.editProfileCollege.getSelectedItem().toString();
                 String major = binding.editProfileMajor.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(name))
                     name = thisStudent.getName();
-                else if (TextUtils.isEmpty(email))
-                    email = thisStudent.getEmail();
+                else if (binding.editProfileCollege.getSelectedItemPosition() < 1)
+                    college = thisStudent.getCollege();
                 else if (binding.editProfileMajor.getSelectedItemPosition() < 1)
                     major = thisStudent.getMajor();
 
                 editProfileViewModel.updateTopic(thisStudent.getMajor(), major);
 
                 if (image == null) {
-                    editProfileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfile(name,college , major, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value) {
@@ -150,7 +146,7 @@ public class EditProfileFragment extends Fragment {
                         }
                     });
                 } else {
-                    editProfileViewModel.editProfileDataWithImg(image, name, email, major, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfileDataWithImg(image, name,college , major, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value) {
@@ -169,6 +165,14 @@ public class EditProfileFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        binding.tvEditEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_editProfileFragment_to_editEmailFragment);
             }
         });
 
