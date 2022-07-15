@@ -46,6 +46,7 @@ public class Constant {
     public static final String PROFILE_COMPANIES_USER_ID = "UserId";
 
     public static final String COLLECTION_ADS = "ads";
+    public static final String ADS_ID = "adsId";
     public static final String ADS_TITLE = "adsTitle";
     public static final String ADS_NAME = "jobName";
     public static final String ADS_LINK = "jobLink";

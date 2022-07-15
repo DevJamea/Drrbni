@@ -196,10 +196,30 @@
     <navigation android:id="@+id/notificationsNested"
         app:startDestination="@id/notificationsFragment">
         <fragment
+            android:id="@+id/showPostFragment"
+            android:name="com.example.drrbni.Fragments.ShowPostFragment"
+            android:label="fragment_show_post"
+            tools:layout="@layout/fragment_show_post">
+
+            <argument
+                android:name="adsObject"
+                app:argType="com.example.drrbni.Models.Ads" />
+
+            <argument
+                android:name="showBtn"
+                android:defaultValue="true"
+                app:argType="boolean" />
+
+        </fragment>
+        <fragment
             android:id="@+id/notificationsFragment"
             android:name="com.example.drrbni.Fragments.BottomNavigationScreens.NotificationsFragment"
             android:label="notificationsFragment"
-            tools:layout="@layout/fragment_notifications" />
+            tools:layout="@layout/fragment_notifications" >
+            <action
+                android:id="@+id/action_notificationsFragment_to_showPostFragment"
+                app:destination="@id/showPostFragment" />
+        </fragment>
     </navigation>
 
 

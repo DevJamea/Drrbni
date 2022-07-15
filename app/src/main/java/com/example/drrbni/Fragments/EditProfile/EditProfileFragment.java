@@ -28,7 +28,7 @@ import com.example.drrbni.ViewModels.ProfileViewModel;
 import com.example.drrbni.databinding.FragmentEditProfileBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-
+import static com.example.drrbni.Constant.STUDENT_DEFAULT_IMAGE;
 public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
@@ -91,7 +91,7 @@ public class EditProfileFragment extends Fragment {
                 if (getActivity() == null) return;
                 thisStudent = student;
                 if (student.getImg() == null) {
-                    binding.profileImage.setImageResource(R.drawable.defult_img_student);
+                    Glide.with(getActivity()).load(STUDENT_DEFAULT_IMAGE).placeholder(R.drawable.anim_progress).into(binding.profileImage);
                 } else {
                     Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.profileImage);
                 }
@@ -127,6 +127,8 @@ public class EditProfileFragment extends Fragment {
                     email = thisStudent.getEmail();
                 else if (binding.editProfileMajor.getSelectedItemPosition() < 1)
                     major = thisStudent.getMajor();
+
+                editProfileViewModel.updateTopic(thisStudent.getMajor(), major);
 
                 if (image == null) {
                     editProfileViewModel.editProfile(name, email, major, new MyListener<Boolean>() {

@@ -1,5 +1,6 @@
 package com.example.drrbni.Fragments.BottomNavigationScreens;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.drrbni.Adapters.JobAdapter;
 import com.example.drrbni.Models.Job;
 import com.example.drrbni.Models.Student;
@@ -64,9 +69,32 @@ public class ProfileFragment extends Fragment {
             public void onChanged(Student student) {
                 if (getActivity() == null) return;
                 if (student.getImg() == null) {
-                    Glide.with(getActivity()).load(STUDENT_DEFAULT_IMAGE_PROFILE).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    Glide.with(getActivity()).load(STUDENT_DEFAULT_IMAGE_PROFILE).listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    }).into(binding.appBarImage);
                 } else {
-                    Glide.with(getActivity()).load(student.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                    Glide.with(getActivity()).load(student.getImg()).listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    }).into(binding.appBarImage);
                 }
                 binding.studentName.setText(student.getName());
                 binding.collageName.setText(student.getCollege());

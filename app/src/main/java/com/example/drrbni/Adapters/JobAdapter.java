@@ -113,6 +113,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                                         @Override
                                         public void onValuePosted(Boolean value) {
                                             Snackbar.make(binding.getRoot() , "تم الحذف" , Snackbar.LENGTH_LONG).show();
+                                            notifyDataSetChanged();
                                         }
                                     }, new MyListener<Boolean>() {
                                         @Override

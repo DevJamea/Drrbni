@@ -1,6 +1,7 @@
 package com.example.drrbni.ViewModels;
 
 import static com.example.drrbni.Constant.ADDRESS;
+import static com.example.drrbni.Constant.ADS_ID;
 import static com.example.drrbni.Constant.COLLECTION_ADS;
 import static com.example.drrbni.Constant.COLLECTION_CATEGORIES;
 import static com.example.drrbni.Constant.COLLECTION_JOBS;
@@ -625,7 +626,7 @@ public class Repository {
     }
 
     public void deleteJob(String jobId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
-        firebaseFirestore.collection(COLLECTION_ADS)
+        firebaseFirestore.collection(COLLECTION_JOBS)
                 .document(jobId)
                 .delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -824,25 +825,8 @@ public class Repository {
 
     }
 
-    public void getCompanyNameAndImageByUid(String uid , MyListener<Company> listener){
-        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
-                .whereEqualTo(UID, uid)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Company company = document.toObject(Company.class);
-                                listener.onValuePosted(company);
-                            }
-                        }
-                    }
-                });
-    }
-
-    public void getNotificationsByUid(String uid , MyListener<List<Notification>> isSuccessful
-            , MyListener<Boolean> isFailure){
+    public void getNotificationByUid(String uid , MyListener<List<Notification>> isSuccessful
+    , MyListener<Boolean> isFailure){
 
         firebaseFirestore.collection(COLLECTION_NOTIFICATION)
                 .whereEqualTo(NOTIFICATION_RECIPIENT , uid)
@@ -850,18 +834,53 @@ public class Repository {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()){
-                            List<Notification> notificationList = new ArrayList<>();
+                            List<Notification> notifications = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Notification notification = document.toObject(Notification.class);
-                                notificationList.add(notification);
+                                notifications.add(notification);
                             }
-                            isSuccessful.onValuePosted(notificationList);
+                            isSuccessful.onValuePosted(notifications);
                         }else
                             isFailure.onValuePosted(true);
                     }
                 });
     }
 
+    public void getSenderImgAndName(String senderUid , MyListener<Company> company){
+        firebaseFirestore.collection(COLLECTION_PROFILE_COMPANIES)
+                .whereEqualTo(UID, senderUid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Company com = document.toObject(Company.class);
+                                company.onValuePosted(com);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void getAdsById(String adsId , MyListener<Ads> isSuccessful){
+        firebaseFirestore.collection(COLLECTION_ADS)
+                .whereEqualTo(ADS_ID, adsId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                Ads ads = document.toObject(Ads.class);
+                                isSuccessful.onValuePosted(ads);
+                            }
+                        }
+                    }
+                });
+    }
 
 }

@@ -38,4 +38,7 @@ public class EditProfileViewModel extends AndroidViewModel {
         repository.editProfileDataWithImg(image, studentName, email, major, isSuccessful, isFailure);
     }
 
+    public void updateTopic(String oldTopic , String newTopic){
+        repository.updateTopic(oldTopic , newTopic);
+    }
 }
