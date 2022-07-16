@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.drrbni.ViewModels.MyListener;
 import com.example.drrbni.ViewModels.ProfileViewModel;
@@ -117,7 +118,9 @@ public class AddJobFragment extends Fragment {
                             @Override
                             public void onValuePosted(Boolean value) {
                                 stopLoad();
-                                requireActivity().getSupportFragmentManager().popBackStack();
+//                                requireActivity().getSupportFragmentManager().popBackStack();
+                                  Navigation.findNavController(binding.getRoot()).popBackStack();
+
                             }
                         }, new MyListener<Boolean>() {
                             @Override
@@ -150,5 +153,6 @@ public class AddJobFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 
 }
